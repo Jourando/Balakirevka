@@ -74,7 +74,7 @@ function postUrl(xurl, cb, xmd) {
 			alert(xmlhttp.responseText);
 		}
     }
-	xmlhttp.send(param);
+	xmlhttp.send("param="+param);
 }
 function getUrl(xurl, cb, xmd) {
     var xmlhttp = getXmlHttp();
