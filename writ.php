@@ -14,33 +14,46 @@ $newfile=$newfile."[".$j."]";
 copy($xfile, $newfile);
 $handle = fopen($xfile, 'w');
 $i=0;
-$j=$i;
+$j=$0;
 $act=strtoupper($act);
 foreach($lines as $v) {
-		echo $act."<br>".$oldStr."<br>".$newStr."<br>";
+		echo $act."<br>".$oldStr."<br>".$newStr."<br>".$lines{$i}."<br><hr>";
 		if ($act=="REPLACE") {
 			if ($lines[$i] == "d".$d."[".$i."]='".$oldStr."';") {
 				fwrite($handle, "d".$d."[".$i."]='".$newStr."';\r\n");
 			} else {
 				fwrite($handle, $lines[$i]."\r\n");
 			}
-		}
-		if (($act=="BEFORE") || ($act=="AFTER")) {
-			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
-					if ($act=="BEFORE") {
-						fwrite($handle, "d".$d."[".$j."]='".$newStr."';\r\n");
-						fwrite($handle, "d".$d."[".($j+1)."]='".$oldStr."';\r\n");
-					} else {
-						fwrite($handle, "d".$d."[".$j."]='".$oldStr."';\r\n");
-						fwrite($handle, "d".$d."[".($j+1)."]='".$newStr."';\r\n");
-					}
-					$j=$j+1;
-			} else {
-				fwrite($handle, $lines[$i]."\r\n");
-			}			
-		}
 		$i=$i+1;
-		$j=$j+1;
+		}
+		if ($act=="BEFORE") {
+			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {					
+				fwrite($handle, "d".$d."[".$j."]='".$newStr."';\r\n");
+				fwrite($handle, "d".$d."[".($j+1)."]='".$oldStr."';\r\n");
+				$j=$j+1;
+			} else {
+				list($s1, $s2) = explode('[', $xStr);
+				list($s3, $s4) = explode(']', $xStr);
+				$lines[$i]=$s1."[".$j."]".$s4;
+				fwrite($handle, $lines[$i]."\r\n"); // отдается старый индекс, бля!
+			}
+			$i=$i+1;
+			$j=$j+1;
+		}
+		if ($act=="AFTER") {
+			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
+				fwrite($handle, "d".$d."[".$j."]='".$oldStr."';\r\n");
+				fwrite($handle, "d".$d."[".($j+1)."]='".$newStr."';\r\n");
+				$j=$j+1;
+			} else {
+				list($s1, $s2) = explode('[', $xStr);
+				list($s3, $s4) = explode(']', $xStr);
+				$lines[$i]=$s1."[".$j."]".$s4;				
+				fwrite($handle, $lines[$i]."\r\n");
+			}
+			$i=$i+1;
+			$j=$j+1;			
+		}
 }
 fclose($handle);
 // добавить MoveUp, MoveDwn, Erase, Create;
