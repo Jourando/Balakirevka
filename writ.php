@@ -24,7 +24,7 @@ foreach($lines as $v) {
 				fwrite($handle, $lines[$i]."\r\n");
 			}
 		}
-		if (strtoupper($act)=="BEFORE") {
+		if (strtoupper($act)=="BEFORE") || (strtoupper($act)=="AFTER") {
 			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
 				fwrite($handle, "d".$d."[".$j."]='".$newStr."';\r\n");
 				fwrite($handle, "d".$d."[".($j+1)."]='".$oldStr."';\r\n");

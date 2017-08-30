@@ -309,15 +309,14 @@ if ((depMod==0) || (depMod==999)) {
 	} else { alert('fatal error'); }
 } else {
 	XStr=''+depMod+'##Before##';
+	// в PHP-обработчике объединить Before & After
 }
 ResStr='';
-
-
 
 var tmpS='';
 for (j=0; j<16; j++) {
 	tmpS+='<td>'+document.getElementById('ext'+j).value+'</td>';
-	ResStr+=document.getElementById('ext'+j).value+'|';
+	ResStr+=document.getElementById('ext'+j).value+'|';	// ...а оно еще нужно?
 					}
 var newNode = document.createElement('tr');
 newNode.className='T1';
@@ -345,11 +344,10 @@ if ((depMod==0) || (depMod==999)) {
 	XStr=''+depMod+'##After##';
 }
 ResStr='';
- 
 var tmpS='';
 for (j=0; j<16; j++) {
 	tmpS+='<td>'+document.getElementById('ext'+j).value+'</td>';
-	ResStr+=document.getElementById('ext'+j).value+'|';
+	ResStr+=document.getElementById('ext'+j).value+'|'; // ...а оно нужно?
 					}
 var newNode = document.createElement('tr');
 newNode.className='T1';
@@ -399,8 +397,8 @@ MakeMenu();
 }
 // нужны будут ф-ции Сместить выше/Сместить ниже
 // resize поля text-edit
-// передавать номер раздела в Ajax, передавать номер айтема или старую строку, пересчитывать номера по f2()
-// поле № - disabled 
+
+// завести норм. TODO + разобраться с передачей данных из js-скриптов без рефреша страницы
 </script>
 </head>
 <body>
