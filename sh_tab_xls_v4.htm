@@ -19,7 +19,6 @@ input[type=text] {resize:both;}
 .visible {display: inline-block;}
 .invisible {display: none;}
 </style>
-<!-- https://www.w3schools.com/JSREF/met_tablerow_insertcell.asp -->
 <script>
 //settings
 depMod=0;
@@ -277,6 +276,7 @@ function f3() {
 var trx=document.getElementById('xedit');
 var ResStr='';
 // берем раздел XStr='' + берем знач. раздела из depMod, если оно > 1 + разделитель ## + action=Replace + ##
+// если depMod=0 || depMod=999, искать № раздела в атрибуте tr name
 var XStr='';
 if ((depMod==0) || (depMod==999)) {
 	ResStr=document.getElementById('xedit').name;
