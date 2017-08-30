@@ -304,7 +304,7 @@ var ResStr='';
 var XStr='';
 if ((depMod==0) || (depMod==999)) {
 	if (document.getElementById('xedit').hasAttribute('part')) {
-		ResStr=document.getElementById('xedit').getAttribute('part'); //  -
+		ResStr=document.getElementById('xedit').getAttribute('part');
 		XStr=ResStr+'##Before##';
 	} else { alert('fatal error'); }
 } else {
@@ -336,8 +336,16 @@ function f5() {
 var trx=document.getElementById('xedit');
 var ResStr='';
 var XStr='';
-
-
+if ((depMod==0) || (depMod==999)) {
+	if (document.getElementById('xedit').hasAttribute('part')) {
+		ResStr=document.getElementById('xedit').getAttribute('part');
+		XStr=ResStr+'##After##';
+	} else { alert('fatal error'); }
+} else {
+	XStr=''+depMod+'##After##';
+}
+ResStr='';
+ 
 var tmpS='';
 for (j=0; j<16; j++) {
 	tmpS+='<td>'+document.getElementById('ext'+j).value+'</td>';

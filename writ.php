@@ -14,6 +14,7 @@ $newfile=$newfile."[".$j."]";
 copy($xfile, $newfile);
 $handle = fopen($xfile, 'w');
 $i=0;
+$j=$i;
 foreach($lines as $v) {
 		// echo $lines[$i]."<br>";
 		if (strtoupper($act)=="REPLACE") {
@@ -23,7 +24,17 @@ foreach($lines as $v) {
 				fwrite($handle, $lines[$i]."\r\n");
 			}
 		}
+		if (strtoupper($act)=="BEFORE") {
+			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
+				fwrite($handle, "d".$d."[".$j."]='".$newStr."';\r\n");
+				fwrite($handle, "d".$d."[".($j+1)."]='".$oldStr."';\r\n");
+				$j=$j+1;
+			} else {
+				fwrite($handle, $lines[$i]."\r\n");
+			}			
+		}
 		$i=$i+1;
+		$j=$j+1;
 }
 fclose($handle);
 echo "done";
