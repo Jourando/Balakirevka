@@ -54,6 +54,17 @@ foreach($lines as $v) {
 				$aStr[]=$s1."[".$j."]".$s4."\r\n";
 			}
 		}
+		if ($act=="AFTER") {
+			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
+				$aStr[]="d".$d."[".$j."]='".$oldStr."';\r\n";
+				$aStr[]="d".$d."[".($j+1)."]='".$newStr."';\r\n";
+				$j=$j+1;
+			} else {
+				list($s1, $s2) = explode('[', $lines[$i]);
+				list($s3, $s4) = explode(']', $s2);
+				$aStr[]=$s1."[".$j."]".$s4."\r\n";				
+			}
+		}
 		$i=$i+1;
 		$j=$j+1;
 }
