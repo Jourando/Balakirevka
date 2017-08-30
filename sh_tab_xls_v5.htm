@@ -30,8 +30,9 @@ edtStr+='<td id=et7><input type=text id=ext7 value="" size=8></td><td id=et8><in
 edtStr+='<td id=et13><input type=text id=ext13 value="" size=12></td><td id=et14><input type=text id=ext14 value="" size=14></td><td id=et15><input type=text id=ext15 value="" size=10></td></tr>';
 edtStr+='<tr><td colspan=16><lavel>Вставить строку <input type=button value=Перед Onclick=f4()> <input type=button value=Вместо Onclick=f3()> <input type=button value=После Onclick=f5()> текущей, <input type=button value=Удалить Onclick=f6()> всю строку или <input type=button value=Закрыть Onclick=f2()> без сохранения</label></td></tr>';
 fsetStr='<select id=sect OnChange=f1(this.selectedIndex)><option selected> </option></select>';
-fsetStr+='<label> оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Фамилия и инициалы\';}"> пароль <input id=pusr type=password value=Пароль OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Пароль\';}"> <input type=button value=Отправить Onclick=f8() class=visible id=b1><input type=button value=Перелогиниться Onclick=f9() class=invisible id=b2></label>';
+fsetStr+='<label> оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Фамилия и инициалы\';}"> пароль <input id=pusr type=password value=Пароль OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Пароль\';}"> <input type=button value=Отправить Onclick=f8() class=visible id=b1> <input type=button value=Перелогиниться Onclick=f9() class=invisible id=b2> <input type=button value=Обновить OnClick="location.reload()"></label>';
 </script>
+<!-- данные из скриптов не обновляются. Найти способ обновлять данные без рефреша страниц -->
 <script src=globals.js></script>
 <script src=depart0.js></script>
 <script src=depart1.js></script>
@@ -68,8 +69,7 @@ function postUrl(xurl, xmd) {
 //		xmlhttp.setRequestHeader("Connection", "close"); 
 	xmlhttp.onreadystatechange = function(){      
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			// document.getElementById('out').value=xmlhttp.responseText; 
-			alert(xmlhttp.responseText);
+			// alert(xmlhttp.responseText);
 		}
     }
 	xmlhttp.send("param="+param);
@@ -275,8 +275,6 @@ function f3() {
 // вместо
 var trx=document.getElementById('xedit');
 var ResStr='';
-// 		берем раздел XStr='' + берем знач. раздела из depMod, если оно > 1 + разделитель ## + action=Replace + ##
-// 		если depMod=0 || depMod=999, искать № раздела в атрибуте tr name
 var XStr='';
 var trText='';
 if ((depMod==0) || (depMod==999)) {
@@ -303,6 +301,19 @@ function f4() {
 // перед
 var trx=document.getElementById('xedit');
 var ResStr='';
+var XStr='';
+if ((depMod==0) || (depMod==999)) {
+	if (document.getElementById('xedit').hasAttribute('part')) {
+		ResStr=document.getElementById('xedit').getAttribute('part'); //  -
+		XStr=ResStr+'##Before##';
+	} else { alert('fatal error'); }
+} else {
+	XStr=''+depMod+'##Before##';
+}
+ResStr='';
+
+
+
 var tmpS='';
 for (j=0; j<16; j++) {
 	tmpS+='<td>'+document.getElementById('ext'+j).value+'</td>';
@@ -324,6 +335,9 @@ function f5() {
 // после
 var trx=document.getElementById('xedit');
 var ResStr='';
+var XStr='';
+
+
 var tmpS='';
 for (j=0; j<16; j++) {
 	tmpS+='<td>'+document.getElementById('ext'+j).value+'</td>';
