@@ -17,7 +17,7 @@ $i=0;
 $j=$i;
 $act=strtoupper($act);
 foreach($lines as $v) {
-		// echo $lines[$i]."<br>";
+		echo $act."<br>".$oldStr."<br>".$newStr."<br>";
 		if ($act=="REPLACE") {
 			if ($lines[$i] == "d".$d."[".$i."]='".$oldStr."';") {
 				fwrite($handle, "d".$d."[".$i."]='".$newStr."';\r\n");
