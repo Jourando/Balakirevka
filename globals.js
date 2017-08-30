@@ -1,1 +1,2 @@
-urlStr = 'http:/'+'/test2.ru/auth.php?';
+urlStr='auth.php?';
+datStr='writ.php?';

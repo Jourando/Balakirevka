@@ -1,7 +1,9 @@
-п»ї<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="ru">
-<head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <style>
 body {margin: 0px; padding: 0px}
 th {border: 1px solid #000; background: silver}
@@ -24,16 +26,15 @@ input[type=text] {resize:both;}
 //settings
 depMod=0;
 curMod=0;
-hdrStr='<tr><th rowspan=2>РЅРѕРјРµСЂ</th><th rowspan=2>РґР°С‚Р°</th><th rowspan=2>РІРёРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё</th><th colspan=3>РјРµСЂРѕРїСЂРёСЏС‚РёРµ</th><th rowspan=2>РјРµСЃС‚Рѕ РїСЂРѕРІРµРґРµРЅРёСЏ</th><th colspan=4>РѕС…РІР°С‚</th><th colspan=3>РїСЂРѕРІРѕРґСЏС‰РёРµ</th><th rowspan=2>РѕСЂРіР°РЅРёР·Р°С†РёРѕРЅРЅРѕ-<br>С„РёРЅР°РЅСЃРѕРІРѕРµ</th><th rowspan=2>РґРѕРї.<br>РёРЅС„РѕСЂРјР°С†РёСЏ</th>';
-hdrStr+='</tr><tr><th>С‚РёРї</th><th>РЅР°С€Рё/СЃС‚РѕСЂРѕРЅРЅРёРµ</th><th>РЅР°Р·РІР°РЅРёРµ</th><th>С‚РёРї</th><th>С†РµР»РµРІР°СЏ Р°СѓРґРёС‚РѕСЂРёСЏ</th><th>Р·СЂРёС‚РµР»Рё</th><th>РІС‹СЃС‚СѓРїР°СЋС‰РёРµ/СѓС‡Р°СЃС‚РЅРёРєРё</th><th>РѕС‚РґРµР»РµРЅРёРµ</th><th>РЅР°С‡.РѕС‚РґРµР»РµРЅРёСЏ</th><th>РѕС‚РІРµС‚СЃС‚РІРµРЅРЅС‹Р№</th></tr>';
+hdrStr='<tr><th rowspan=2>номер</th><th rowspan=2>дата</th><th rowspan=2>вид деятельности</th><th colspan=3>мероприятие</th><th rowspan=2>место проведения</th><th colspan=4>охват</th><th colspan=3>проводящие</th><th rowspan=2>организационно-<br>финансовое</th><th rowspan=2>доп.<br>информация</th>';
+hdrStr+='</tr><tr><th>тип</th><th>наши/сторонние</th><th>название</th><th>тип</th><th>целевая аудитория</th><th>зрители</th><th>выступающие/участники</th><th>отделение</th><th>нач.отделения</th><th>ответственный</th></tr>';
 edtStr='<tr><td id=et0><input type=text id=ext0 value=0 size=3 disabled></td><td id=et1><input type=text id=ext1 size=5 value=""></td><td id=et2><input type=text id=ext2 value="" size=24></td><td id=et3><input type=text id=ext3 value="" size=12></td><td id=et4><input type=text id=ext4 value="" size=12></td><td id=et5><input type=text id=ext5 value="" size=14></td><td id=et6><input type=text id=ext6 value="" size=20></td>';
 edtStr+='<td id=et7><input type=text id=ext7 value="" size=8></td><td id=et8><input type=text id=ext8 value="" size=12></td><td id=et9><input type=text id=ext9 value="" size=8></td><td id=et10><input type=text id=ext10 value="" size=12></td><td id=et11><input type=text id=ext11 value="" size=12></td><td id=et12><input type=text id=ext12 value="" size=12></td>';
 edtStr+='<td id=et13><input type=text id=ext13 value="" size=12></td><td id=et14><input type=text id=ext14 value="" size=14></td><td id=et15><input type=text id=ext15 value="" size=10></td></tr>';
-edtStr+='<tr><td colspan=16><lavel>Р’СЃС‚Р°РІРёС‚СЊ СЃС‚СЂРѕРєСѓ <input type=button value=РџРµСЂРµРґ Onclick=f4()> <input type=button value=Р’РјРµСЃС‚Рѕ Onclick=f3()> <input type=button value=РџРѕСЃР»Рµ Onclick=f5()> С‚РµРєСѓС‰РµР№, <input type=button value=РЈРґР°Р»РёС‚СЊ Onclick=f6()> РІСЃСЋ СЃС‚СЂРѕРєСѓ РёР»Рё <input type=button value=Р—Р°РєСЂС‹С‚СЊ Onclick=f2()> Р±РµР· СЃРѕС…СЂР°РЅРµРЅРёСЏ</label></td></tr>';
+edtStr+='<tr><td colspan=16><lavel>Вставить строку <input type=button value=Перед Onclick=f4()> <input type=button value=Вместо Onclick=f3()> <input type=button value=После Onclick=f5()> текущей, <input type=button value=Удалить Onclick=f6()> всю строку или <input type=button value=Закрыть Onclick=f2()> без сохранения</label></td></tr>';
 fsetStr='<select id=sect OnChange=f1(this.selectedIndex)><option selected> </option></select>';
-fsetStr+='<label> РѕРїРµСЂР°С‚РѕСЂ <input type=text id=lusr value="Р¤Р°РјРёР»РёСЏ Рё РёРЅРёС†РёР°Р»С‹" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Р¤Р°РјРёР»РёСЏ Рё РёРЅРёС†РёР°Р»С‹\';}"> РїР°СЂРѕР»СЊ <input id=pusr type=password value=РџР°СЂРѕР»СЊ OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'РџР°СЂРѕР»СЊ\';}"> <input type=button value=РћС‚РїСЂР°РІРёС‚СЊ Onclick=f8() class=visible id=b1><input type=button value=РџРµСЂРµР»РѕРіРёРЅРёС‚СЊСЃСЏ Onclick=f9() class=invisible id=b2></label>';
+fsetStr+='<label> оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Фамилия и инициалы\';}"> пароль <input id=pusr type=password value=Пароль OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Пароль\';}"> <input type=button value=Отправить Onclick=f8() class=visible id=b1><input type=button value=Перелогиниться Onclick=f9() class=invisible id=b2></label>';
 </script>
-<script src=globals.js></script>
 <script src=depart0.js></script>
 <script src=depart1.js></script>
 <script src=depart2.js></script>
@@ -58,48 +59,28 @@ function getXmlHttp(){
         return new XMLHttpRequest();
     }
 }
-// РџРѕР»СѓС‡РёС‚СЊ РґР°РЅРЅС‹Рµ СЃ url Рё РІС‹Р·С‹РІР°С‚СЊ cb - РєРѕР»Р»Р±СЌРє c РѕС‚РІРµС‚РѕРј СЃРµСЂРІРµСЂР°
-function postUrl(xurl, cb, xmd) {
-	var xmlhttp = getXmlHttp();
-	var param;
-	xmlhttp.open("POST", datStr, true);
-	param=xurl;
-	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // РІСЂРѕРґРµ СЌС‚Рё РјРѕРіСѓС‚ С‚РѕСЂРјРѕР·РёС‚СЊ      
-//    xmlhttp.setRequestHeader("Content-length", param.length);
-//    xmlhttp.setRequestHeader("Connection", "close"); 
-	xmlhttp.onreadystatechange = function(){      
-		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			// document.getElementById('out').value=xmlhttp.responseText; 
-			alert(xmlhttp.responseText);
-		}
-    }
-	xmlhttp.send(param);
-}
-function getUrl(xurl, cb, xmd) {
+// Получить данные с url и вызывать cb - коллбэк c ответом сервера
+function getUrl(xurl, cb) {
     var xmlhttp = getXmlHttp();
 	var dc=document.getElementById('fset');
-    // IE РєСЌС€РёСЂСѓРµС‚ XMLHttpRequest Р·Р°РїСЂРѕСЃС‹, С‚Р°Рє С‡С‚Рѕ РґРѕР±Р°РІР»СЏРµРј СЃР»СѓС‡Р°Р№РЅС‹Р№ РїР°СЂР°РјРµС‚СЂ Рє URL
-    // (С…РѕС‚СЏ РјРѕР¶РЅРѕ РѕР±РѕР№С‚РёСЃСЊ РїСЂР°РІРёР»СЊРЅС‹РјРё Р·Р°РіРѕР»РѕРІРєР°РјРё РЅР° СЃРµСЂРІРµСЂРµ)
+    // IE кэширует XMLHttpRequest запросы, так что добавляем случайный параметр к URL
+    // (хотя можно обойтись правильными заголовками на сервере)
     xmlhttp.open("GET", xurl+'&r='+Math.random());
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4) {
 			var Rtxt=xmlhttp.responseText;
-			Rtxt=decodeURIComponent(Rtxt);
-			if (parseInt(xmd)==1) {
-				if (Rtxt[0] == '+') {
-					var j=parseInt(Rtxt);
-					document.getElementById('sect').selectedIndex=j;
-					document.getElementById('sect').disabled=true;
-					document.getElementById('lusr').disabled=true;
-					document.getElementById('pusr').disabled=true;
-					document.getElementById('b1').className='invisible';
-					document.getElementById('b2').className='visible';
-					curMod=j;
-					ShowAll();
-				} else {
-					document.getElementById('fset').innerHTML='<label>РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё: '+Rtxt+' <input type=button value=РћС‚РїСЂР°РІРёС‚СЊ Onclick=f8() class=invisible id=b1><input type=button value=РџРµСЂРµР»РѕРіРёРЅРёС‚СЊСЃСЏ Onclick=f9() class=visible id=b2></label>';		
-				}
+            if (Rtxt[0] == '+') {
+				var j=parseInt(Rtxt);
+				document.getElementById('sect').selectedIndex=j;
+				document.getElementById('sect').disabled=true;
+				document.getElementById('lusr').disabled=true;
+				document.getElementById('pusr').disabled=true;
+				document.getElementById('b1').className='invisible';
+				document.getElementById('b2').className='visible';
+				curMod=j;
+				ShowAll();
+			} else {
+				document.getElementById('fset').innerHTML='<label>Ошибка авторизации: '+Rtxt+' <input type=button value=Отправить Onclick=f8() class=invisible id=b1><input type=button value=Перелогиниться Onclick=f9() class=visible id=b2></label>';		
 			}
             // xmlhttp.status,
             // xmlhttp.getAllResponseHeaders(),
@@ -159,7 +140,7 @@ function modalEdit() {
 						var spWin=document.createElement('div');
 						stWin.className='hdLayer';
 						stWin.id='ModalHead';
-						stWin.innerHTML='Р РµР¶РёРј СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ';
+						stWin.innerHTML='Режим редактирования';
 						spWin.className='ctLayer';
 						spWin.id='ModalCont';
 						spWin.innerHTML='<Table width=100% border=0 id=subTab>'+hdrStr+edtStr+'</Table>';
@@ -189,7 +170,7 @@ for (i=1; i<d1.length; i++) {
 	tmpArr = explode(d1[i], '|');
 	tmpStr='<td>'+tmpArr[0]+'</td><td>'+tmpArr[1]+'</td><td>'+tmpArr[2]+'</td><td>'+tmpArr[3]+'</td><td>'+tmpArr[4]+'</td><td>'+tmpArr[5]+'</td><td>'+tmpArr[6]+'</td><td>'+tmpArr[7]+'</td><td>'+tmpArr[8]+'</td><td>'+tmpArr[9]+'</td><td>'+tmpArr[10]+'</td><td>'+tmpArr[11]+'</td><td>'+tmpArr[12]+'</td><td>'+tmpArr[13]+'</td><td>'+tmpArr[14]+'</td><td>'+tmpArr[15]+'</td>';
 	newTr.innerHTML=tmpStr;
-	if ((curMod==1) || (curMod==999)) {
+	if (curMod==1) {
 		newTr.onclick=function() {
 			this.id='xedit';
 			modalEdit();
@@ -209,7 +190,7 @@ for (i=1; i<d2.length; i++) {
 	tmpArr = explode(d2[i], '|');
 	tmpStr='<td>'+tmpArr[0]+'</td><td>'+tmpArr[1]+'</td><td>'+tmpArr[2]+'</td><td>'+tmpArr[3]+'</td><td>'+tmpArr[4]+'</td><td>'+tmpArr[5]+'</td><td>'+tmpArr[6]+'</td><td>'+tmpArr[7]+'</td><td>'+tmpArr[8]+'</td><td>'+tmpArr[9]+'</td><td>'+tmpArr[10]+'</td><td>'+tmpArr[11]+'</td><td>'+tmpArr[12]+'</td><td>'+tmpArr[13]+'</td><td>'+tmpArr[14]+'</td><td>'+tmpArr[15]+'</td>';
 	newTr.innerHTML=tmpStr;
-	if ((curMod==2)  || (curMod==999)) {
+	if (curMod==2) {
 		newTr.onclick=function() {
 			this.id='xedit';
 			modalEdit();
@@ -229,8 +210,8 @@ for (i=1; i<d3.length; i++) {
 	tmpArr = explode(d3[i], '|');
 	tmpStr='<td>'+tmpArr[0]+'</td><td>'+tmpArr[1]+'</td><td>'+tmpArr[2]+'</td><td>'+tmpArr[3]+'</td><td>'+tmpArr[4]+'</td><td>'+tmpArr[5]+'</td><td>'+tmpArr[6]+'</td><td>'+tmpArr[7]+'</td><td>'+tmpArr[8]+'</td><td>'+tmpArr[9]+'</td><td>'+tmpArr[10]+'</td><td>'+tmpArr[11]+'</td><td>'+tmpArr[12]+'</td><td>'+tmpArr[13]+'</td><td>'+tmpArr[14]+'</td><td>'+tmpArr[15]+'</td>';
 	newTr.innerHTML=tmpStr;
-	// РїСЂРѕРІРµСЂРёС‚СЊ access true|false. If true, РїРѕРґСЂСѓР±Р°С‚СЊ onclick;
-	if ((curMod==3) || (curMod==999)) {
+	// проверить access true|false. If true, подрубать onclick;
+	if (curMod==3) {
 		newTr.onclick=function() {
 			this.id='xedit';
 			modalEdit();
@@ -250,13 +231,14 @@ for (i=1; i<d0.length; i++) {
 }
 }
 function f1(a) {
+// alert(a);
 if (a>0) {
 	ShowAll();
 	depMod=a;
 }
 }
-// Ajax-С„РѕСЂРјР°С‚ POST'a
-// Action # Р Р°Р·РґРµР»[index] # РЎС‚Р°СЂР°СЏ_СЃС‚СЂРѕРєР° # РќРѕРІР°СЏ СЃС‚СЂРѕРєР°
+// Ajax-формат POST'a
+// Action # Раздел[index] # Старая_строка # Новая строка
 function f2() {
 var sxWin=document.getElementById('ModalBody');
 sxWin.removeChild(sxWin.childNodes[1]);
@@ -273,25 +255,18 @@ var trx=document.getElementById('xedit');
 trx.id='skip';
 }
 function f3() {
-// РІРјРµСЃС‚Рѕ
+// вместо
 var trx=document.getElementById('xedit');
 var ResStr='';
-// Р±РµСЂРµРј СЂР°Р·РґРµР» XStr='' + Р±РµСЂРµРј Р·РЅР°С‡. СЂР°Р·РґРµР»Р° РёР· depMod, РµСЃР»Рё РѕРЅРѕ > 1 + СЂР°Р·РґРµР»РёС‚РµР»СЊ ## + action=Replace + ##
-var XStr=''+depMod+'##Replace##';
-var trText='';
 for (j=0; j<16; j++) {
-	trText+=trx.childNodes[j].innerHTML+'|';
 	trx.childNodes[j].innerHTML=document.getElementById('ext'+j).value;
 	ResStr+=document.getElementById('ext'+j).value+'|';
 					}
-XStr=XStr+encodeURIComponent(trText)+'##'+encodeURIComponent(ResStr);
-var xb;
-postUrl(XStr, xb, '1');
-// Ajax'РѕРІР°СЏ РѕС‚РїСЂР°РІРєР° РґР°РЅРЅС‹С…: Replace # СЃС‚СЂРѕРєР° ResStr
+// Ajax'овая отправка данных: Replace # строка ResStr
 f2();
 }
 function f4() {
-// РїРµСЂРµРґ
+// перед
 var trx=document.getElementById('xedit');
 var ResStr='';
 var tmpS='';
@@ -302,17 +277,45 @@ for (j=0; j<16; j++) {
 var newNode = document.createElement('tr');
 newNode.className='T1';
 newNode.innerHTML=tmpS;
-	newNode.onclick=function() {
-		this.id='xedit';
-		modalEdit();
-	}
+	newNode.onclick=function() {this.id='xedit';
+						var mdWin=document.createElement('div');
+						mdWin.className='upLayer';
+						mdWin.id='ModalBack';
+						document.body.appendChild(mdWin);
+						var ssWin=document.createElement('div');
+						ssWin.className='xxLayer';
+						ssWin.id='ModalFore';
+						document.body.appendChild(ssWin);
+						var seWin=document.createElement('div');
+						seWin.className='xeLayer';
+						seWin.id='ModalCell';
+						ssWin.appendChild(seWin);
+						var sxWin=document.createElement('div');
+						sxWin.className='bdLayer';
+						sxWin.id='ModalBody';
+						seWin.appendChild(sxWin);
+						var stWin=document.createElement('div');
+						var spWin=document.createElement('div');
+						stWin.className='hdLayer';
+						stWin.id='ModalHead';
+						stWin.innerHTML='Режим редактирования';
+						spWin.className='ctLayer';
+						spWin.id='ModalCont';
+						spWin.innerHTML='<Table width=100% border=0 id=subTab>'+hdrStr+edtStr+'</Table>';
+						sxWin.appendChild(stWin);
+						sxWin.appendChild(spWin);
+						var trx=document.getElementById('xedit');
+						for (j=0; j<16; j++) {
+							document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
+						}
+							}
 var el0=document.getElementById('mainTab');
 el0.insertBefore(newNode, trx);
-// Ajax'РѕРІР°СЏ РѕС‚РїСЂР°РІРєР° РґР°РЅРЅС‹С…: Before # СЃС‚СЂРѕРєР° ResStr
+// Ajax'овая отправка данных: Before # строка ResStr
 f2();
 }
 function f5() {
-// РїРѕСЃР»Рµ
+// после
 var trx=document.getElementById('xedit');
 var ResStr='';
 var tmpS='';
@@ -323,61 +326,95 @@ for (j=0; j<16; j++) {
 var newNode = document.createElement('tr');
 newNode.className='T1';
 newNode.innerHTML=tmpS;
-	newNode.onclick=function() {
-		this.id='xedit';
-		modalEdit();
-	}
+	newNode.onclick=function() {this.id='xedit';
+						var mdWin=document.createElement('div');
+						mdWin.className='upLayer';
+						mdWin.id='ModalBack';
+						document.body.appendChild(mdWin);
+						var ssWin=document.createElement('div');
+						ssWin.className='xxLayer';
+						ssWin.id='ModalFore';
+						document.body.appendChild(ssWin);
+						var seWin=document.createElement('div');
+						seWin.className='xeLayer';
+						seWin.id='ModalCell';
+						ssWin.appendChild(seWin);
+						var sxWin=document.createElement('div');
+						sxWin.className='bdLayer';
+						sxWin.id='ModalBody';
+						seWin.appendChild(sxWin);
+						var stWin=document.createElement('div');
+						var spWin=document.createElement('div');
+						stWin.className='hdLayer';
+						stWin.id='ModalHead';
+						stWin.innerHTML='Режим редактирования';
+						spWin.className='ctLayer';
+						spWin.id='ModalCont';
+						spWin.innerHTML='<Table width=100% border=0 id=subTab>'+hdrStr+edtStr+'</Table>';
+						sxWin.appendChild(stWin);
+						sxWin.appendChild(spWin);
+						var trx=document.getElementById('xedit');
+						for (j=0; j<16; j++) {
+							document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
+						}
+							}
 var el0=document.getElementById('mainTab');
 insertAfter(newNode, trx);
-// Ajax'РѕРІР°СЏ РѕС‚РїСЂР°РІРєР° РґР°РЅРЅС‹С…: After # СЃС‚СЂРѕРєР° ResStr
+// Ajax'овая отправка данных: After # строка ResStr
 f2();
 }
 function f6() {
 var mdWin=document.getElementById('xedit');
 f2();
 document.getElementById('mainTab').removeChild(mdWin);
-// Ajax'РѕРІР°СЏ РѕС‚РїСЂР°РІРєР° РґР°РЅРЅС‹С…: Erase #
+// Ajax'овая отправка данных: Erase #
 }
 function f7() {
-// СЃРѕР·РґР°С‚СЊ СЃС‚СЂРѕРєСѓ
-// Ajax'РѕРІР°СЏ РѕС‚РїСЂР°РІРєР° РґР°РЅРЅС‹С…: Create #
+// создать строку
+// Ajax'овая отправка данных: Create #
 }
 function f8() {
-var xb;
-var xnewStr1=encodeURIComponent(document.getElementById('lusr').value);
-var xnewStr2=encodeURIComponent(document.getElementById('pusr').value);
 if (depMod>0) {
+	// var cb = new Object;
+	var xb;
 	// var xnewStr1=a4b(document.getElementById('lusr').value);
 	// var xnewStr2=a4b(document.getElementById('pusr').value);
+	var xnewStr1=encodeURIComponent(document.getElementById('lusr').value);
+	var xnewStr2=encodeURIComponent(document.getElementById('pusr').value);
 	var qStr='act=C&u='+xnewStr1+'&p='+xnewStr2+'&d='+depMod;
-	getUrl(urlStr+qStr, xb, '1');
-} else {
-	if ((depMod==0) && (a4b(document.getElementById('lusr').value)=='006500680077')) {
-		var qStr='act=C&u='+xnewStr1+'&p='+xnewStr2+'&d=999';
-		getUrl(urlStr+qStr, xb, '1');
-	} else {
-		var qStr='';
-	}
+	var urlStr='http://test2.ru/auth.php?';
+	console.log('u='+xnewStr1+'; p='+xnewStr2);
+	console.log(qStr);
+	getUrl(urlStr+qStr, xb);
 }
 }
 function f9() {
-curMod=0;
-depMod=0;
 document.getElementById('fset').innerHTML=fsetStr;
 MakeMenu();
 }
-// РЅСѓР¶РЅС‹ Р±СѓРґСѓС‚ С„-С†РёРё РЎРјРµСЃС‚РёС‚СЊ РІС‹С€Рµ/РЎРјРµСЃС‚РёС‚СЊ РЅРёР¶Рµ
-// resize РїРѕР»СЏ text-edit
-// РїРµСЂРµРґР°РІР°С‚СЊ РЅРѕРјРµСЂ СЂР°Р·РґРµР»Р° РІ Ajax, РїРµСЂРµРґР°РІР°С‚СЊ РЅРѕРјРµСЂ Р°Р№С‚РµРјР° РёР»Рё СЃС‚Р°СЂСѓСЋ СЃС‚СЂРѕРєСѓ, РїРµСЂРµСЃС‡РёС‚С‹РІР°С‚СЊ РЅРѕРјРµСЂР° РїРѕ f2()
-// РїРѕР»Рµ в„– - disabled 
+// нужны будут ф-ции Сместить выше/Сместить ниже
+// resize поля text-edit
+// передавать номер раздела в Ajax, передавать номер айтема или старую строку, пересчитывать номера по f2()
+// поле № - disabled 
 </script>
 </head>
 <body>
+
 <DIV id=mainSection>
-<Script>
-document.write('<form autocomplete=on><fieldset name="set" id=fset></fieldset></form>');
-document.write('<Table width=100% border=0 id=mainTab>'+hdrStr+'</Table>');
-</Script>
+<fieldset name="set" id=fset>
+<!-- <select id=sect OnChange=f1(this.selectedIndex)>
+<option selected> </option>
+</select>
+<label>оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value=='') {this.value='Фамилия и инициалы';}"></label><label> пароль <input id=pusr type=password value=Пароль OnFocus=this.value="" OnBlur="if (this.value=='') {this.value='Пароль';}"> <input type=button value=Отправить Onclick=f8() class=visible id=b1><input type=button value=Перелогиниться Onclick=f9() class=invisible id=b2></label>
+-->
+</fieldset>
+<Table width=100% border=0 id=mainTab>
+<tr>
+<th rowspan=2>номер</th><th rowspan=2>дата</th><th rowspan=2>вид деятельности</th><th colspan=3>мероприятие</th><th rowspan=2>место проведения</th><th colspan=4>охват</th><th colspan=3>проводящие</th><th rowspan=2>организационно-<br>финансовое</th><th rowspan=2>доп.<br>информация</th>
+</tr><tr>
+<th>тип</th><th>наши/сторонние</th><th>название</th><th>тип</th><th>целевая аудитория</th><th>зрители</th><th>выступающие/участники</th><th>отделение</th><th>нач.отделения</th><th>ответственный</th>
+</tr>
+</Table>
 </DIV>
 <script>
 ShowAll();

@@ -3,6 +3,12 @@
 // если from существует, xFrom=$_GET['from'] иначе xFrom=default
 $ResStr="";
 $xFrom="";
+/*
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Дата в прошлом
+header("Pragma: no-cache");
+header('Content-Type: text/html; charset=utf-8', true);
+*/
 if (($_GET['act']=="R") || ($_GET['act']=="W") || ($_GET['act']=="D")) {
 // если переменные [departm], [log], [pwd] существуют, то
 // открыть список соответствий и сверить 1) пара log:pwd 2) пара log+pwd:departm 3) CRC(log+pwd+departm):CRC_data from file

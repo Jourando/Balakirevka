@@ -14,7 +14,7 @@ if (($_GET['act']=="R") && ($_GET['p']=="show")) {
 	$str2='<label>1. <input type=button value="Drop User BD" Onclick=location.href="bd_man.php?act=W&p=ubd&from=self"> Сбросить список пользователей</label><br>';
 	$str3='<label>2. <input type=button value="Drop DP BD" Onclick=location.href="bd_man.php?act=W&p=dbd&from=self"> Сбросить список разделов</label><br>';
 	$str4='<label>3. <input type=button value="Drop Data BD" Onclick=location.href="bd_man.php?act=W&p=xbd&from=self"> Сбросить список пользовательских документов</label><br>';
-	$str5='<label>4. <input type=button value="Drop Settings"> Сбросить список настроек</label>';
+	$str5='<label>4. <input type=button value="Drop Settings" Onclick=location.href="bd_man.php?act=W&p=ds&from=self"> Сбросить список настроек</label>';
 	$str6='</div>';
 	// var_dump($fn);
 	echo $str1.$str2.$str3.$str4.$str5.$str6;
@@ -47,7 +47,15 @@ if ($_GET['act']=="W") {
 				fclose($handle);
 			}
 		}
-	}	
+	}
+	if ($_GET['p']=="ds") {
+		$urlStr = 'auth.php?';
+		$datStr = 'writ.php?';
+		$handle = fopen('globals.js', 'w');
+		fwrite($handle, "urlStr='".$urlStr."';\r\n");
+		fwrite($handle, "datStr='".$datStr."';\r\n");
+		fclose($handle);
+	}
 	if ($_GET['from']=='self') {
 			echo "<script>\nlocation.href='bd_man.php?act=R&p=show&from=self';\n</script>\n";
 	}
