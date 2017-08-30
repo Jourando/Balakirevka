@@ -9,9 +9,9 @@ foreach($lines as $v) {
 		echo $lines[$i]."<br>";
 		if (strtoupper($act)=="REPLACE") {
 			if ($lines[$i] == $oldStr) {
-				fwrite($handle, $newStr);
+				fwrite($handle, "d".$d."[".$i."]='".$newStr."';\r\n");
 			} else {
-				fwrite($handle, $lines[$i]);
+				fwrite($handle, $lines[$i]."\r\n");
 			}
 		}
 		$i=$i+1;
