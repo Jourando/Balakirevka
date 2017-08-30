@@ -361,16 +361,35 @@ newNode.innerHTML=tmpS;
 	}
 var el0=document.getElementById('mainTab');
 insertAfter(newNode, trx);
-
 // Ajax'овая отправка данных: After # строка ResStr
 XStr=XStr+encodeURIComponent(trText)+'##'+encodeURIComponent(ResStr);
 postUrl(XStr, '1');
 f2();
 }
 function f6() {
-var mdWin=document.getElementById('xedit');
+var trx=document.getElementById('xedit');
+var ResStr='';
+var XStr='';
+if ((depMod==0) || (depMod==999)) {
+	if (document.getElementById('xedit').hasAttribute('part')) {
+		ResStr=document.getElementById('xedit').getAttribute('part');
+		XStr=ResStr+'##Erase##';
+	} else { alert('fatal error'); }
+} else {
+	XStr=''+depMod+'##Erase##';
+}
+ResStr='';
+var trText='';
+var tmpS='';
+for (j=0; j<16; j++) {
+	trText+=trx.childNodes[j].innerHTML+'|';
+	// tmpS+='<td>'+document.getElementById('ext'+j).value+'</td>';
+	ResStr+='1||||||||||||||||';
+					}
+XStr=XStr+encodeURIComponent(trText)+'##'+encodeURIComponent(ResStr);
+postUrl(XStr, '1');
 f2();
-document.getElementById('mainTab').removeChild(mdWin);
+document.getElementById('mainTab').removeChild(trx);
 // Ajax'овая отправка данных: Erase #
 }
 function f7() {

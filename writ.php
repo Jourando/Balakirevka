@@ -15,7 +15,6 @@ copy($xfile, $newfile);
 // $handle = fopen($xfile, 'w');
 $i=0;
 $j=$i;
-// $aStr;
 $act=strtoupper($act);
 foreach($lines as $v) {
 		echo $act."<br>".$oldStr."<br>".$newStr."<br>";
@@ -65,6 +64,16 @@ foreach($lines as $v) {
 				$aStr[]=$s1."[".$j."]".$s4."\r\n";				
 			}
 		}
+		if ($act=="ERASE") {
+			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
+				// skip
+				$j=$j-1;
+			} else {
+				list($s1, $s2) = explode('[', $lines[$i]);
+				list($s3, $s4) = explode(']', $s2);
+				$aStr[]=$s1."[".$j."]".$s4."\r\n";				
+			}
+		}
 		$i=$i+1;
 		$j=$j+1;
 }
@@ -74,7 +83,6 @@ for ($i=0; $i<count($aStr); $i++) {
 	fwrite($handle, $aStr[$i]);
 }
 fclose($handle);
-// добавить MoveUp, MoveDwn, Erase, Create;
+// добавить MoveUp, MoveDwn, Create;
 echo "done";
-// откат
 ?>
