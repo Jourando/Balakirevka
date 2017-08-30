@@ -15,20 +15,26 @@ copy($xfile, $newfile);
 $handle = fopen($xfile, 'w');
 $i=0;
 $j=$i;
+$act=strtoupper($act);
 foreach($lines as $v) {
 		// echo $lines[$i]."<br>";
-		if (strtoupper($act)=="REPLACE") {
+		if ($act=="REPLACE") {
 			if ($lines[$i] == "d".$d."[".$i."]='".$oldStr."';") {
 				fwrite($handle, "d".$d."[".$i."]='".$newStr."';\r\n");
 			} else {
 				fwrite($handle, $lines[$i]."\r\n");
 			}
 		}
-		if (strtoupper($act)=="BEFORE") || (strtoupper($act)=="AFTER") {
+		if (($act=="BEFORE") || ($act=="AFTER")) {
 			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
-				fwrite($handle, "d".$d."[".$j."]='".$newStr."';\r\n");
-				fwrite($handle, "d".$d."[".($j+1)."]='".$oldStr."';\r\n");
-				$j=$j+1;
+					if ($act=="BEFORE") {
+						fwrite($handle, "d".$d."[".$j."]='".$newStr."';\r\n");
+						fwrite($handle, "d".$d."[".($j+1)."]='".$oldStr."';\r\n");
+					} else {
+						fwrite($handle, "d".$d."[".$j."]='".$oldStr."';\r\n");
+						fwrite($handle, "d".$d."[".($j+1)."]='".$newStr."';\r\n");
+					}
+					$j=$j+1;
 			} else {
 				fwrite($handle, $lines[$i]."\r\n");
 			}			
@@ -37,6 +43,7 @@ foreach($lines as $v) {
 		$j=$j+1;
 }
 fclose($handle);
+// добавить MoveUp, MoveDwn, Erase, Create;
 echo "done";
 // rm
 ?>
