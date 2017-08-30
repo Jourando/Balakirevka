@@ -170,7 +170,6 @@ var el1=document.getElementById('mainTab');
 var newTr;
 var tmpStr=hdrStr;
 el1.innerHTML=tmpStr;
-// alert(dtr);
 newTr = document.createElement('tr');
 newTr.className='T2';
 tmpStr='<td colspan=16 class=depHdr>'+d0[1]+'</td>';
@@ -305,7 +304,6 @@ if ((depMod==0) || (depMod==999)) {
 } else {
 	XStr=''+depMod+'##Before##';
 	// в PHP-обработчике объединить Before & After
-	// пересчитывать индексы в js файлах! без этого не пишется!
 }
 ResStr='';
 
@@ -380,10 +378,8 @@ if ((depMod==0) || (depMod==999)) {
 }
 ResStr='';
 var trText='';
-var tmpS='';
 for (j=0; j<16; j++) {
 	trText+=trx.childNodes[j].innerHTML+'|';
-	// tmpS+='<td>'+document.getElementById('ext'+j).value+'</td>';
 	ResStr+='1||||||||||||||||';
 					}
 XStr=XStr+encodeURIComponent(trText)+'##'+encodeURIComponent(ResStr);
@@ -423,8 +419,8 @@ MakeMenu();
 
 // нужны будут ф-ции Сместить выше/Сместить ниже
 // resize поля text-edit
-
-// завести норм. TODO + разобраться с передачей данных из js-скриптов без рефреша страницы
+// почистить и упростить код, избавиться от вагона лишних переменных
+// разобраться с передачей данных из js-скриптов без рефреша страницы
 </script>
 </head>
 <body>
