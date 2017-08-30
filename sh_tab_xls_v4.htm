@@ -58,16 +58,15 @@ function getXmlHttp(){
         return new XMLHttpRequest();
     }
 }
-// Получить данные с url и вызывать cb - коллбэк c ответом сервера
-function postUrl(xurl, cb, xmd) {
+function postUrl(xurl, xmd) {
 	var xmlhttp = getXmlHttp();
 	var param;
 	xmlhttp.open("POST", datStr, true);
 	param=xurl;
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // вроде эти могут тормозить      
-//    xmlhttp.setRequestHeader("Content-length", param.length);
-//    xmlhttp.setRequestHeader("Connection", "close"); 
+// 		вроде эти могут тормозить      
+//		xmlhttp.setRequestHeader("Content-length", param.length);
+//		xmlhttp.setRequestHeader("Connection", "close"); 
 	xmlhttp.onreadystatechange = function(){      
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			// document.getElementById('out').value=xmlhttp.responseText; 
@@ -186,6 +185,7 @@ el1.appendChild(newTr);
 for (i=1; i<d1.length; i++) {
 	newTr = document.createElement('tr');
 	newTr.className='T1';
+	newTr.name='d1';
 	tmpArr = explode(d1[i], '|');
 	tmpStr='<td>'+tmpArr[0]+'</td><td>'+tmpArr[1]+'</td><td>'+tmpArr[2]+'</td><td>'+tmpArr[3]+'</td><td>'+tmpArr[4]+'</td><td>'+tmpArr[5]+'</td><td>'+tmpArr[6]+'</td><td>'+tmpArr[7]+'</td><td>'+tmpArr[8]+'</td><td>'+tmpArr[9]+'</td><td>'+tmpArr[10]+'</td><td>'+tmpArr[11]+'</td><td>'+tmpArr[12]+'</td><td>'+tmpArr[13]+'</td><td>'+tmpArr[14]+'</td><td>'+tmpArr[15]+'</td>';
 	newTr.innerHTML=tmpStr;
@@ -206,6 +206,7 @@ el2.appendChild(newTr);
 for (i=1; i<d2.length; i++) {
 	newTr = document.createElement('tr');
 	newTr.className='T1';
+	newTr.name='d2';
 	tmpArr = explode(d2[i], '|');
 	tmpStr='<td>'+tmpArr[0]+'</td><td>'+tmpArr[1]+'</td><td>'+tmpArr[2]+'</td><td>'+tmpArr[3]+'</td><td>'+tmpArr[4]+'</td><td>'+tmpArr[5]+'</td><td>'+tmpArr[6]+'</td><td>'+tmpArr[7]+'</td><td>'+tmpArr[8]+'</td><td>'+tmpArr[9]+'</td><td>'+tmpArr[10]+'</td><td>'+tmpArr[11]+'</td><td>'+tmpArr[12]+'</td><td>'+tmpArr[13]+'</td><td>'+tmpArr[14]+'</td><td>'+tmpArr[15]+'</td>';
 	newTr.innerHTML=tmpStr;
@@ -226,10 +227,10 @@ el3.appendChild(newTr);
 for (i=1; i<d3.length; i++) {
 	newTr = document.createElement('tr');
 	newTr.className='T1';
+	newTr.name='d3';
 	tmpArr = explode(d3[i], '|');
 	tmpStr='<td>'+tmpArr[0]+'</td><td>'+tmpArr[1]+'</td><td>'+tmpArr[2]+'</td><td>'+tmpArr[3]+'</td><td>'+tmpArr[4]+'</td><td>'+tmpArr[5]+'</td><td>'+tmpArr[6]+'</td><td>'+tmpArr[7]+'</td><td>'+tmpArr[8]+'</td><td>'+tmpArr[9]+'</td><td>'+tmpArr[10]+'</td><td>'+tmpArr[11]+'</td><td>'+tmpArr[12]+'</td><td>'+tmpArr[13]+'</td><td>'+tmpArr[14]+'</td><td>'+tmpArr[15]+'</td>';
 	newTr.innerHTML=tmpStr;
-	// проверить access true|false. If true, подрубать onclick;
 	if ((curMod==3) || (curMod==999)) {
 		newTr.onclick=function() {
 			this.id='xedit';
@@ -255,7 +256,6 @@ if (a>0) {
 	depMod=a;
 }
 }
-// Ajax-формат POST'a
 // Action # Раздел[index] # Старая_строка # Новая строка
 function f2() {
 var sxWin=document.getElementById('ModalBody');
@@ -277,8 +277,14 @@ function f3() {
 var trx=document.getElementById('xedit');
 var ResStr='';
 // берем раздел XStr='' + берем знач. раздела из depMod, если оно > 1 + разделитель ## + action=Replace + ##
-var XStr=''+depMod+'##Replace##';
-var trText='';
+var XStr='';
+if ((depMod==0) || (depMod==999)) {
+	ResStr=document.getElementById('xedit').name;
+	XStr=ResStr+'##Replace##';
+} else {
+	XStr=''+depMod+'##Replace##';
+}
+ResStr='';
 for (j=0; j<16; j++) {
 	trText+=trx.childNodes[j].innerHTML+'|';
 	trx.childNodes[j].innerHTML=document.getElementById('ext'+j).value;
@@ -286,7 +292,7 @@ for (j=0; j<16; j++) {
 					}
 XStr=XStr+encodeURIComponent(trText)+'##'+encodeURIComponent(ResStr);
 var xb;
-postUrl(XStr, xb, '1');
+postUrl(XStr, '1');
 // Ajax'овая отправка данных: Replace # строка ResStr
 f2();
 }

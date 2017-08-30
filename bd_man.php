@@ -55,6 +55,9 @@ if ($_GET['act']=="W") {
 		fwrite($handle, "urlStr='".$urlStr."';\r\n");
 		fwrite($handle, "datStr='".$datStr."';\r\n");
 		fclose($handle);
+		$handle = fopen('oldata\opt.a', 'w');
+		fwrite($handle, "1");
+		fclose($handle);
 	}
 	if ($_GET['from']=='self') {
 			echo "<script>\nlocation.href='bd_man.php?act=R&p=show&from=self';\n</script>\n";
