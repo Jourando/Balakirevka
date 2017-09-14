@@ -5,7 +5,7 @@ $tmp1=$_POST['param'];
 list($d, $act, $oldStr, $newStr) = explode("##", $tmp1);
 $xfile = 'depart'.$d.'.js';
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-// chmod 0744
+// chmod 0744 
 if (!file_exists('oldata/'.$d)) { mkdir('oldata/'.$d, 0744, true); }
 $newfile='oldata/'.$d.'/depart'.$d;
 $f = scandir('oldata/'.$d);
@@ -66,4 +66,5 @@ for ($i=0; $i<count($aStr); $i++) {
 fclose($handle);
 // добавить MoveUp, MoveDwn, Create;
 echo "done";
+// отдать json?
 ?>

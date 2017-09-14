@@ -38,6 +38,7 @@ fsetStr+='<label> оператор <input type=text id=lusr value="Фамили�
 <script src=depart1.js></script>
 <script src=depart2.js></script>
 <script src=depart3.js></script>
+<!-- итак... всё ПХПой или всё Аджаксом? 50/50 не катит! -->
 <script>
 /* LIB */
 function explode(str, delim) {
@@ -303,7 +304,6 @@ if ((depMod==0) || (depMod==999)) {
 	} else { alert('fatal error'); }
 } else {
 	XStr=''+depMod+'##Before##';
-	// в PHP-обработчике объединить Before & After
 }
 ResStr='';
 
@@ -423,10 +423,10 @@ MakeMenu();
 // разобраться с передачей данных из js-скриптов без рефреша страницы
 </script>
 </head>
-<body>
+<body id=mBody>
 <DIV id=mainSection>
 <Script>
-document.write('<form autocomplete=on><fieldset name="set" id=fset></fieldset></form>');
+document.write('<form autocomplete=1><fieldset name="set" id=fset></fieldset></form>');
 document.write('<Table width=100% border=0 id=mainTab>'+hdrStr+'</Table>');
 </Script>
 </DIV>
