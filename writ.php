@@ -59,8 +59,18 @@ foreach($lines as $v) {
 		$i=$i+1;
 		$j=$j+1;
 }
+// объединить InsBefore и InsAfter, повыкидывать "\r\n" из предварит. сборок $aStr
 $handle = fopen($xfile, 'w');
 for ($i=0; $i<count($aStr); $i++) {
+	if ($i>0) {
+		list($p1, $p2) = explode("=", $aStr[$i]);
+		// номер дата вид деят.	мероприятие[тип, наши/сторонние, название] место_проведения охват[тип, аудитория, зрители, выст/участники] проводящие[отдел, нач.отдел, ответств] орг-фин доп.информация
+		list($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo) = explode("|", $p2);
+		$n=" ".$i;
+		$adInfo=str_replace("';\r\n", "", $adInfo);
+		$a1 = array($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo);
+		$aStr[$i]=$p1."='".join("|", $a1)."';\r\n";
+	}
 	fwrite($handle, $aStr[$i]);
 }
 fclose($handle);
