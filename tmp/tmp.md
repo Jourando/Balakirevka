@@ -9,4 +9,4 @@ Access
 Если через "обновить js"
 
 ------------------------
-CUR STATUS: WAITING FOR TEST RESAULTS
+CUR STATUS: WAITING FOR TEST RESAULTS (0%)
