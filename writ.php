@@ -57,11 +57,26 @@ foreach($lines as $v) {
 		$i=$i+1;
 		$j=$j+1;
 }
+// объединить InsBefore и InsAfter, повыкидывать "\r\n" из предварит. сборок $aStr
+
 $handle = fopen($xfile, 'w');
- for ($i=0; $i<count($aStr); $i++) {
+for ($i=0; $i<count($aStr); $i++) {
+   	if ($i>0) {
+  		list($p1, $p2) = explode("=", $aStr[$i]);
+  		$p2=str_replace("'", "", $p2);
+		// номер дата вид деят.	мероприятие[тип, наши/сторонние, название] место_проведения охват[тип, аудитория, зрители, выст/участники] проводящие[отдел, нач.отдел, ответств] орг-фин доп.информация
+  		list($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo) = explode("|", $p2);
+  		$n=" ".$i;
+  		$adInfo=str_replace(";\r\n", "", $adInfo);
+ 		$a1 = array($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo);
+ 		$aStr[$i]=$p1."='".join("|", $a1)."';\r\n";
+ 	} else {
+  		$aStr[$i]=str_replace("[0]", "", $aStr[$i]);
+  		// мерзкий костыль, в дальнейшем надо убрать само появление 0 в строке
+  	}
   	fwrite($handle, $aStr[$i]);
- }
- fclose($handle);
+}
+fclose($handle);
 // добавить MoveUp, MoveDwn, Create;
 echo "done: ".$i;
 // отдать json?
