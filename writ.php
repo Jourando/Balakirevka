@@ -2,21 +2,19 @@
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Expires: " . date("r"));
 $tmp1=$_POST['param'];
+// d=раздел, act=действие
 list($d, $act, $oldStr, $newStr) = explode("##", $tmp1);
 $xfile = 'depart'.$d.'.js';
-$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-// chmod 0744 
+$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES); 
 if (!file_exists('oldata/'.$d)) { mkdir('oldata/'.$d, 0744, true); }
-$newfile='oldata/'.$d.'/depart'.$d;
-$f = scandir('oldata/'.$d);
+$f=scandir('oldata/'.$d);
 $j=count($f)-1;
-$newfile=$newfile."[".$j."]";
+$newfile='oldata/'.$d.'/depart'.$d."[".$j."]";
 copy($xfile, $newfile);
 $i=0;
 $j=$i;
 $act=strtoupper($act);
 foreach($lines as $v) {
-		echo $act."<br>".$oldStr."<br>".$newStr."<br>";
 		if ($act=="REPLACE") {
 			if ($lines[$i] == "d".$d."[".$i."]='".$oldStr."';") {
 				$aStr[] = "d".$d."[".$i."]='".$newStr."';\r\n";
@@ -59,12 +57,27 @@ foreach($lines as $v) {
 		$i=$i+1;
 		$j=$j+1;
 }
+// объединить InsBefore и InsAfter, повыкидывать "\r\n" из предварит. сборок $aStr
+
 $handle = fopen($xfile, 'w');
 for ($i=0; $i<count($aStr); $i++) {
-	fwrite($handle, $aStr[$i]);
+   	if ($i>0) {
+  		list($p1, $p2) = explode("=", $aStr[$i]);
+  		$p2=str_replace("'", "", $p2);
+		// номер дата вид деят.	мероприятие[тип, наши/сторонние, название] место_проведения охват[тип, аудитория, зрители, выст/участники] проводящие[отдел, нач.отдел, ответств] орг-фин доп.информация
+  		list($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo) = explode("|", $p2);
+  		$n=" ".$i;
+  		$adInfo=str_replace(";\r\n", "", $adInfo);
+ 		$a1 = array($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo);
+ 		$aStr[$i]=$p1."='".join("|", $a1)."';\r\n";
+ 	} else {
+  		$aStr[$i]=str_replace("[0]", "", $aStr[$i]);
+  		// мерзкий костыль, в дальнейшем надо убрать само появление 0 в строке
+  	}
+  	fwrite($handle, $aStr[$i]);
 }
 fclose($handle);
 // добавить MoveUp, MoveDwn, Create;
-echo "done";
+echo "done: ".$i;
 // отдать json?
 ?>
