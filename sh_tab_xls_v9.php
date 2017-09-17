@@ -247,8 +247,12 @@ var newStr = '';
 var oldStr = '';
 var trx=document.getElementById(oldStrID); // исправить!
 for (j=0; j<16; j++) {
-	oldStr+=trx.childNodes[j].innerHTML+'|'; // old
-	newStr+=document.getElementById('ext'+j).value+'|'; // new
+	oldStr+=trx.childNodes[j].innerHTML; // old
+	newStr+=document.getElementById('ext'+j).value; // new
+	if (j<15) {
+		newStr+='|'; // new
+		oldStr+='|';
+	} 
 }
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
 console.log(ResStr);

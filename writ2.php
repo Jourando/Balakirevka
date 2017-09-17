@@ -15,9 +15,11 @@ $j=$i;
 $act=strtoupper($act);
 foreach($lines as $v) {
 		if ($act=="REPLACE") {
-			if ($lines[$i] == $oldStr) {
+			if (trim($lines[$i]) == trim($oldStr)) {
+				echo $lines[$i]." === ".$oldStr;
 				$aStr[] = $newStr;
 			} else {
+				echo $lines[$i]." !== ".$oldStr;
 				$aStr[] = $lines[$i];
 			}
 		}
@@ -69,6 +71,6 @@ for ($i=0; $i<count($aStr); $i++) {
 fclose($handle);
 // добавить MoveUp, MoveDwn, Create;
 echo "done: ".$i;
-print_r($aStr);
+// print_r($aStr);
 // отдать json!
 ?>
