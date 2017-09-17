@@ -2,7 +2,6 @@
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Expires: " . date("r"));
 $tmp1=$_POST['param'];
-// d=раздел, act=действие
 list($d, $act, $oldStr, $newStr) = explode("##", $tmp1);
 $xfile = 'depart'.$d.'.js';
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES); 
@@ -58,7 +57,6 @@ foreach($lines as $v) {
 		$j=$j+1;
 }
 // объединить InsBefore и InsAfter, повыкидывать "\r\n" из предварит. сборок $aStr
-
 $handle = fopen($xfile, 'w');
 for ($i=0; $i<count($aStr); $i++) {
    	if ($i>0) {
@@ -79,5 +77,5 @@ for ($i=0; $i<count($aStr); $i++) {
 fclose($handle);
 // добавить MoveUp, MoveDwn, Create;
 echo "done: ".$i;
-// отдать json?
+// отдать json!
 ?>

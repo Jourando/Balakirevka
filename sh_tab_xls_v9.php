@@ -73,8 +73,6 @@ function getUrl(xurl, cb, xmd) {
 			if (parseInt(xmd)==1) {
 				if (Rtxt[0] == '+') {
 					var j=parseInt(Rtxt);
-					console.log(j);
-					console.log(Rtxt);
 					document.getElementById('dps').selectedIndex=j;
 					document.getElementById('dps').disabled=true;
 					document.getElementById('lusr').disabled=true;
@@ -228,6 +226,18 @@ document.getElementById('dps').selectedIndex=adpt;
 document.getElementById('lusr').value=ausr;
 document.getElementById('pusr').value=apwd;
 if (alg>0) { depMod=adpt; }
+}
+function ItmInsBefore() {
+	
+}
+function ItmInsAfter() {
+	
+}
+function ItmReplace() {
+	
+}
+function ItmDelete() {
+
 }
 </script>
 <?
