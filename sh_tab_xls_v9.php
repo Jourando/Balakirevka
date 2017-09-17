@@ -311,7 +311,7 @@ foreach($lines as $v) {
 		$resStr[$i]="<option value=".$mVal[$i].">".$mLable[$i]."</option>\r\n";
 	}
 	echo $resStr[$i];
-	if (!FILE_EXISTS('depart'.$i.'.a')) {
+	if ((!FILE_EXISTS('depart'.$i.'.a')) || (filesize('depart'.$i.'.a')<12)) {
 		$handle = fopen('depart'.$i.'.a', 'w');
 		fwrite($handle, $defStr."\r\n");
 		fclose($handle);
