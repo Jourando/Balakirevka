@@ -8,10 +8,11 @@ if (ISSET($_GET['us'])==true) {
 	$lx2='Фамилия и инициалы';
 	$lx3='Пароль';
 }
-?>	
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="ru">
 <head>
+<Lang="RU-ru">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
 <Title>Main Tab Editor</Title>
 <style>
@@ -33,7 +34,7 @@ input[type=text] {resize:both;}
 </style>
 </head>
 <body id=mBody>
-<script src=globals2.js?rev=123></script>
+<script src=globals2.js?rev=122></script>
 <script>
 function getXmlHttp(){
     try {
@@ -121,38 +122,45 @@ for (i=0; i<atext.length-3; i++) {
 return btext;
 }
 function modalEdit(tid) {
-var mdWin=document.createElement('div');
-mdWin.className='upLayer';
-mdWin.id='ModalBack';
-document.body.appendChild(mdWin);
-var ssWin=document.createElement('div');
-ssWin.className='xxLayer';
-ssWin.id='ModalFore';
-document.body.appendChild(ssWin);
-var seWin=document.createElement('div');
-seWin.className='xeLayer';
-seWin.id='ModalCell';
-ssWin.appendChild(seWin);
-var sxWin=document.createElement('div');
-sxWin.className='bdLayer';
-sxWin.id='ModalBody';
-seWin.appendChild(sxWin);
-var stWin=document.createElement('div');
-var spWin=document.createElement('div');
-stWin.className='hdLayer';
-stWin.id='ModalHead';
-stWin.innerHTML='Режим редактирования';
-spWin.className='ctLayer';
-spWin.id='ModalCont';
-spWin.innerHTML='<Table width=100% border=0 id=subTab>'+hdrStr+edtStr+'</Table>';
-sxWin.appendChild(stWin);
-sxWin.appendChild(spWin);
-var trx=document.getElementById(tid);
-trx.setAttribute('name', 'edit');
-for (j=0; j<16; j++) {
-	document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
+if (document.getElementById('dps') !== null) {
+	if (document.getElementById('dps').disabled==true) {
+		var mid='sec'+document.getElementById('dps').selectedIndex+'line';
+		if (tid.indexOf(mid) !== -1) {
+			var mdWin=document.createElement('div');
+			mdWin.className='upLayer';
+			mdWin.id='ModalBack';
+			document.body.appendChild(mdWin);
+			var ssWin=document.createElement('div');
+			ssWin.className='xxLayer';
+			ssWin.id='ModalFore';
+			document.body.appendChild(ssWin);
+			var seWin=document.createElement('div');
+			seWin.className='xeLayer';
+			seWin.id='ModalCell';
+			ssWin.appendChild(seWin);
+			var sxWin=document.createElement('div');
+			sxWin.className='bdLayer';
+			sxWin.id='ModalBody';
+			seWin.appendChild(sxWin);
+			var stWin=document.createElement('div');
+			var spWin=document.createElement('div');
+			stWin.className='hdLayer';
+			stWin.id='ModalHead';
+			stWin.innerHTML='Режим редактирования';
+			spWin.className='ctLayer';
+			spWin.id='ModalCont';
+			spWin.innerHTML='<Table width=100% border=0 id=subTab>'+hdrStr+edtStr+'</Table>';
+			sxWin.appendChild(stWin);
+			sxWin.appendChild(spWin);
+			var trx=document.getElementById(tid);
+			trx.setAttribute('name', 'edit');
+			for (j=0; j<16; j++) {
+				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
+			}
+			document.getElementById('hid').value=tid;
+		}
+	}
 }
-document.getElementById('hid').value=tid;
 }
 function modalClose(tid) {
 var sxWin=document.getElementById('ModalBody');
@@ -184,6 +192,29 @@ if (px==1) {
 		}
 	}
 	getUrl(urlStr+qStr, xb, '1');
+} else {
+	var vxtp;
+	var fst=document.getElementById('fset');
+	vxtp='<label>Отдел <select id=dps Onchange="depMod=this.selectedIndex">';
+<?
+$xfile="depart0.a";
+$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$i=0;
+$defStr='1||||||||||||||||';
+$ptmp="";
+foreach($lines as $v) {
+	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
+	if ($i>0) {
+		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>';\r\n";
+	} else {
+		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">".$mLable[$i]."</option>';\r\n";
+	}
+	$i=$i+1;
+}
+$ptmp=$ptmp."vxtp=vxtp+'</select></label>';\r\n";
+echo $ptmp;
+?>
+	fst.innerHTML=vxtp+'<label> оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Фамилия и инициалы\';}"> пароль <input id=pusr type=password value=\'Пароль\' OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Пароль\';}"> <input type=button value=Отправить Onclick=Auth(1) class=visible id=b1> <input type=button value=\'Перелогиниться\' Onclick=Auth(2) class=invisible id=b2> <input type=button value=Обновить OnClick="location.reload()"></label>';
 }	
 }
 function Prw() {
