@@ -45,19 +45,19 @@ foreach($lines as $v) {
 			// потом объединить Before и After
 		}
 		if ($act=="ERASE") {
-			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
+			if (trim($lines[$i]) == trim($oldStr)) {
 				// skip
 				$j=$j-1;
 			} else {
-				list($s1, $s2) = explode('[', $lines[$i]);
-				list($s3, $s4) = explode(']', $s2);
-				$aStr[]=$s1."[".$j."]".$s4."\r\n";				
+				$sArr = explode('|', $lines[$i]);
+				$sArr[0]=$j;
+				$aStr[]=join("|", $sArr);
 			}
 		}
 		$i=$i+1;
 		$j=$j+1;
 }
-// объединить InsBefore и InsAfter, повыкидывать "\r\n" из предварит. сборок $aStr
+// объединить InsBefore и InsAfter
 $handle = fopen($xfile, 'w');
 for ($i=0; $i<count($aStr); $i++) {
 	// номер дата вид деят.	мероприятие[тип, наши/сторонние, название] место_проведения охват[тип, аудитория, зрители, выст/участники] проводящие[отдел, нач.отдел, ответств] орг-фин доп.информация
@@ -70,6 +70,5 @@ for ($i=0; $i<count($aStr); $i++) {
 fclose($handle);
 // добавить MoveUp, MoveDwn, Create;
 echo "done: ".$i;
-// print_r($aStr);
 // отдать json!
 ?>
