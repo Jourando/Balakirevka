@@ -121,38 +121,45 @@ for (i=0; i<atext.length-3; i++) {
 return btext;
 }
 function modalEdit(tid) {
-var mdWin=document.createElement('div');
-mdWin.className='upLayer';
-mdWin.id='ModalBack';
-document.body.appendChild(mdWin);
-var ssWin=document.createElement('div');
-ssWin.className='xxLayer';
-ssWin.id='ModalFore';
-document.body.appendChild(ssWin);
-var seWin=document.createElement('div');
-seWin.className='xeLayer';
-seWin.id='ModalCell';
-ssWin.appendChild(seWin);
-var sxWin=document.createElement('div');
-sxWin.className='bdLayer';
-sxWin.id='ModalBody';
-seWin.appendChild(sxWin);
-var stWin=document.createElement('div');
-var spWin=document.createElement('div');
-stWin.className='hdLayer';
-stWin.id='ModalHead';
-stWin.innerHTML='Режим редактирования';
-spWin.className='ctLayer';
-spWin.id='ModalCont';
-spWin.innerHTML='<Table width=100% border=0 id=subTab>'+hdrStr+edtStr+'</Table>';
-sxWin.appendChild(stWin);
-sxWin.appendChild(spWin);
-var trx=document.getElementById(tid);
-trx.setAttribute('name', 'edit');
-for (j=0; j<16; j++) {
-	document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
+if (document.getElementById('dps') !== null) {
+	if (document.getElementById('dps').disabled==true) {
+		var mid='sec'+document.getElementById('dps').selectedIndex+'line';
+		if (tid.indexOf(mid) !== -1) {
+			var mdWin=document.createElement('div');
+			mdWin.className='upLayer';
+			mdWin.id='ModalBack';
+			document.body.appendChild(mdWin);
+			var ssWin=document.createElement('div');
+			ssWin.className='xxLayer';
+			ssWin.id='ModalFore';
+			document.body.appendChild(ssWin);
+			var seWin=document.createElement('div');
+			seWin.className='xeLayer';
+			seWin.id='ModalCell';
+			ssWin.appendChild(seWin);
+			var sxWin=document.createElement('div');
+			sxWin.className='bdLayer';
+			sxWin.id='ModalBody';
+			seWin.appendChild(sxWin);
+			var stWin=document.createElement('div');
+			var spWin=document.createElement('div');
+			stWin.className='hdLayer';
+			stWin.id='ModalHead';
+			stWin.innerHTML='Режим редактирования';
+			spWin.className='ctLayer';
+			spWin.id='ModalCont';
+			spWin.innerHTML='<Table width=100% border=0 id=subTab>'+hdrStr+edtStr+'</Table>';
+			sxWin.appendChild(stWin);
+			sxWin.appendChild(spWin);
+			var trx=document.getElementById(tid);
+			trx.setAttribute('name', 'edit');
+			for (j=0; j<16; j++) {
+				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
+			}
+			document.getElementById('hid').value=tid;
+		}
+	}
 }
-document.getElementById('hid').value=tid;
 }
 function modalClose(tid) {
 var sxWin=document.getElementById('ModalBody');
