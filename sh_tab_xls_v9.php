@@ -228,10 +228,44 @@ document.getElementById('pusr').value=apwd;
 if (alg>0) { depMod=adpt; }
 }
 function ItmInsBefore() {
-	
+var delim='##';
+var act = 'BEFORE';
+var sect=document.getElementById('dps').selectedIndex;
+var oldStrID = document.getElementById('hid').value;
+var newStr = '';
+var oldStr = '';
+var trx=document.getElementById(oldStrID);
+for (j=0; j<16; j++) {
+	oldStr+=trx.childNodes[j].innerHTML; // old
+	newStr+=document.getElementById('ext'+j).value; // new
+	if (j<15) {
+		newStr+='|';
+		oldStr+='|';
+	} 
+}
+var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
+// console.log(ResStr);
+postUrl(ResStr, '1');	
 }
 function ItmInsAfter() {
-	
+var delim='##';
+var act = 'AFTER';
+var sect=document.getElementById('dps').selectedIndex;
+var oldStrID = document.getElementById('hid').value;
+var newStr = '';
+var oldStr = '';
+var trx=document.getElementById(oldStrID);
+for (j=0; j<16; j++) {
+	oldStr+=trx.childNodes[j].innerHTML; // old
+	newStr+=document.getElementById('ext'+j).value; // new
+	if (j<15) {
+		newStr+='|';
+		oldStr+='|';
+	} 
+}
+var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
+// console.log(ResStr);
+postUrl(ResStr, '1');		
 }
 function ItmReplace() {
 // надо отдать в ajax строку: Action # Раздел[index] # Старая_строка # Новая строка
@@ -250,12 +284,11 @@ for (j=0; j<16; j++) {
 	oldStr+=trx.childNodes[j].innerHTML; // old
 	newStr+=document.getElementById('ext'+j).value; // new
 	if (j<15) {
-		newStr+='|'; // new
+		newStr+='|';
 		oldStr+='|';
 	} 
 }
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
-console.log(ResStr);
 postUrl(ResStr, '1');
 }
 function ItmDelete() {

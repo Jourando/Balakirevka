@@ -16,34 +16,33 @@ $act=strtoupper($act);
 foreach($lines as $v) {
 		if ($act=="REPLACE") {
 			if (trim($lines[$i]) == trim($oldStr)) {
-				echo $lines[$i]." === ".$oldStr;
 				$aStr[] = $newStr;
 			} else {
-				echo $lines[$i]." !== ".$oldStr;
 				$aStr[] = $lines[$i];
 			}
 		}
 		if ($act=="BEFORE") {
-			if ($lines[$i] == "d".$d."[".$i."]='".$oldStr."';") {
-				$aStr[]="d".$d."[".$j."]='".$newStr."';\r\n";
-				$aStr[]="d".$d."[".($j+1)."]='".$oldStr."';\r\n";
+			if (trim($lines[$i]) == trim($oldStr)) {
+				$aStr[]=$newStr;
+				$aStr[]=$oldStr;
 				$j=$j+1;
 			} else {
-				list($s1, $s2) = explode('[', $lines[$i]);
-				list($s3, $s4) = explode(']', $s2);
-				$aStr[]=$s1."[".$j."]".$s4."\r\n";
+				$sArr = explode('|', $lines[$i]);
+				$sArr[0]=$j;
+				$aStr[]=join("|", $sArr);
 			}
 		}
 		if ($act=="AFTER") {
-			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
-				$aStr[]="d".$d."[".$j."]='".$oldStr."';\r\n";
-				$aStr[]="d".$d."[".($j+1)."]='".$newStr."';\r\n";
+			if (trim($lines[$i]) == trim($oldStr)) {
+				$aStr[]=$oldStr;
+				$aStr[]=$newStr;
 				$j=$j+1;
 			} else {
-				list($s1, $s2) = explode('[', $lines[$i]);
-				list($s3, $s4) = explode(']', $s2);
-				$aStr[]=$s1."[".$j."]".$s4."\r\n";				
+				$sArr = explode('|', $lines[$i]);
+				$sArr[0]=$j;
+				$aStr[]=join("|", $sArr);
 			}
+			// потом объединить Before и After
 		}
 		if ($act=="ERASE") {
 			if ($lines[$i] == "d".$d."[".$j."]='".$oldStr."';") {
