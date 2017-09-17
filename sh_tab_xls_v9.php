@@ -184,6 +184,29 @@ if (px==1) {
 		}
 	}
 	getUrl(urlStr+qStr, xb, '1');
+} else {
+	var vxtp;
+	var fst=document.getElementById('fset');
+	vxtp='<label>Отдел <select id=dps Onchange="depMod=this.selectedIndex">';
+<?
+$xfile="depart0.a";
+$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$i=0;
+$defStr='1||||||||||||||||';
+$ptmp="";
+foreach($lines as $v) {
+	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
+	if ($i>0) {
+		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>';\r\n";
+	} else {
+		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">".$mLable[$i]."</option>';\r\n";
+	}
+	$i=$i+1;
+}
+$ptmp=$ptmp."vxtp=vxtp+'</select></label>';\r\n";
+echo $ptmp;
+?>
+	fst.innerHTML=vxtp+'<label> оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Фамилия и инициалы\';}"> пароль <input id=pusr type=password value=\'Пароль\' OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Пароль\';}"> <input type=button value=Отправить Onclick=Auth(1) class=visible id=b1> <input type=button value=\'Перелогиниться\' Onclick=Auth(2) class=invisible id=b2> <input type=button value=Обновить OnClick="location.reload()"></label>';
 }	
 }
 function Prw() {
