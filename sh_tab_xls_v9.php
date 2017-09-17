@@ -8,10 +8,11 @@ if (ISSET($_GET['us'])==true) {
 	$lx2='Фамилия и инициалы';
 	$lx3='Пароль';
 }
-?>	
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="ru">
 <head>
+<Lang="RU-ru">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
 <Title>Main Tab Editor</Title>
 <style>
@@ -33,7 +34,7 @@ input[type=text] {resize:both;}
 </style>
 </head>
 <body id=mBody>
-<script src=globals2.js?rev=123></script>
+<script src=globals2.js?rev=122></script>
 <script>
 function getXmlHttp(){
     try {
