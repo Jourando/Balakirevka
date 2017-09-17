@@ -234,7 +234,25 @@ function ItmInsAfter() {
 	
 }
 function ItmReplace() {
-	
+// надо отдать в ajax строку: Action # Раздел[index] # Старая_строка # Новая строка
+// надо обработать ответ ajax
+// если ответ положительный (json), то...
+// удалить все lines, полученные для данного section
+// вставить все lines, получившиеся из распарсенного json-a методом 
+var delim='##';
+var act = 'REPLACE';
+var sect=document.getElementById('dps').selectedIndex;
+var oldStrID = document.getElementById('hid').value;
+var newStr = '';
+var oldStr = '';
+var trx=document.getElementById(oldStrID); // исправить!
+for (j=0; j<16; j++) {
+	oldStr+=trx.childNodes[j].innerHTML+'|'; // old
+	newStr+=document.getElementById('ext'+j).value+'|'; // new
+}
+var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
+console.log(ResStr);
+postUrl(ResStr, '1');
 }
 function ItmDelete() {
 
