@@ -32,6 +32,14 @@ input[type=text] {resize:both;}
 .visible {display: inline-block;}
 .invisible {display: none;}
 </style>
+<script>
+function reNew(xArr) {
+// window.alert(xArr[1]);
+/* 
+выщитываем id раздела, убиваем все nextSibling (?)
+*/
+}
+</script>
 </head>
 <body id=mBody>
 <script src=globals2.js?rev=122></script>
@@ -49,7 +57,7 @@ function getXmlHttp(){
     }
 }
 function postUrl(xurl, xmd) {
-	var backdata = new Object();
+	var backdata = new Array();
 	var xmlhttp = getXmlHttp();
 	var param;
 	xmlhttp.open("POST", datStr, true);
@@ -59,7 +67,7 @@ function postUrl(xurl, xmd) {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			// alert(xmlhttp.responseText);
 			backdata = JSON.parse(xmlhttp.responseText);
-			console.log(backdata[0]);
+			reNew(backdata);
 		}
     }
 	xmlhttp.send("param="+param);

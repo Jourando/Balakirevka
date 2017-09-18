@@ -9,7 +9,6 @@ if (!file_exists('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT))) { mkdir('oldata/'
 $f=scandir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT));
 $j=count($f)-1;
 $newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
-echo $xfile." to ".$newfile;
 copy($xfile, $newfile);
 $i=0;
 $j=$i;
@@ -58,7 +57,6 @@ foreach($lines as $v) {
 		$i=$i+1;
 		$j=$j+1;
 }
-// объединить InsBefore и InsAfter
 $handle = fopen($xfile, 'w');
 for ($i=0; $i<count($aStr); $i++) {
 	// номер дата вид деят.	мероприятие[тип, наши/сторонние, название] место_проведения охват[тип, аудитория, зрители, выст/участники] проводящие[отдел, нач.отдел, ответств] орг-фин доп.информация
@@ -70,8 +68,7 @@ for ($i=0; $i<count($aStr); $i++) {
 }
 fclose($handle);
 // добавить MoveUp, MoveDwn, Create;
-// echo "done: ".$i;
-sleep(3);
+usleep(100);
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 echo json_encode($lines);
 // отдать json!
