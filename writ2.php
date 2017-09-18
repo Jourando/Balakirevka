@@ -69,6 +69,9 @@ for ($i=0; $i<count($aStr); $i++) {
 }
 fclose($handle);
 // добавить MoveUp, MoveDwn, Create;
-echo "done: ".$i;
+// echo "done: ".$i;
+sleep(3);
+$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+echo json_encode($lines);
 // отдать json!
 ?>

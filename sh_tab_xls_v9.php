@@ -49,6 +49,7 @@ function getXmlHttp(){
     }
 }
 function postUrl(xurl, xmd) {
+	var backdata = new Object();
 	var xmlhttp = getXmlHttp();
 	var param;
 	xmlhttp.open("POST", datStr, true);
@@ -57,6 +58,8 @@ function postUrl(xurl, xmd) {
 	xmlhttp.onreadystatechange = function(){      
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			// alert(xmlhttp.responseText);
+			backdata = JSON.parse(xmlhttp.responseText);
+			console.log(backdata[0]);
 		}
     }
 	xmlhttp.send("param="+param);
@@ -266,11 +269,7 @@ var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURICompon
 postUrl(ResStr, '1');		
 }
 function ItmReplace() {
-// надо отдать в ajax строку: Action # Раздел[index] # Старая_строка # Новая строка
-// надо обработать ответ ajax
-// если ответ положительный (json), то...
-// удалить все lines, полученные для данного section
-// вставить все lines, получившиеся из распарсенного json-a методом 
+// Action # Раздел[index] # Старая_строка # Новая строка
 var delim='##';
 var act = 'REPLACE';
 var sect=document.getElementById('dps').selectedIndex;

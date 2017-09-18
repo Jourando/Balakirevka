@@ -1,6 +1,7 @@
 ﻿rd='sh_tab_xls_v';
 urlStr='http://test2.ru/auth.php?';
 datStr='http://test2.ru/writ2.php?';
+logStr='http://test2.ru/actlog.php?';
 depMod=0;
 curMod=0;
 hdrStr='<tr><th rowspan=2>номер</th><th rowspan=2>дата</th><th rowspan=2>вид деятельности</th><th colspan=3>мероприятие</th><th rowspan=2>место проведения</th><th colspan=4>охват</th><th colspan=3>проводящие</th><th rowspan=2>организационно-<br>финансовое</th><th rowspan=2>доп.<br>информация</th>';
