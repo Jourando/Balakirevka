@@ -34,8 +34,15 @@ input[type=text] {resize:both;}
 </style>
 <script>
 function reNew(xArr) {
+exploder=function(str, delim) {
+	return str.toString().split(delim.toString());
+}
+var dataJs = new Array();
+dataJs=exploder(xArr, '|');
+console.log(dataJs);
 // window.alert(xArr[1]);
 /* 
+парсим циклом значения из массива
 выщитываем id раздела, убиваем все nextSibling (?)
 */
 }
