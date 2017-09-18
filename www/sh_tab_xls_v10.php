@@ -12,7 +12,6 @@ if (ISSET($_GET['us'])==true) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="ru">
 <head>
-<Lang="RU-ru">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
 <Title>Main Tab Editor</Title>
 <style>
@@ -33,16 +32,28 @@ input[type=text] {resize:both;}
 .invisible {display: none;}
 </style>
 <script>
-function reNew(xArr) {
+function reNew(xArr, xmid) {
 exploder=function(str, delim) {
 	return str.toString().split(delim.toString());
+}
+killRows=function(tids) {
+	var elx = new Array();
+	var elx=document.getElementById('mainTab').getElementsByTagName("tr");
+	var s;
+	for (var j = 0; j<elx.length; j++) {
+		s=elx[j].id;
+		if (s.indexOf(tids+'line') != -1) { (element=document.getElementById(s)).parentNode.removeChild(element); }
+	}	
 }
 var dataJs = new Array();
 for (var i = 0; i < xArr.length; i++) {
 	dataJs[i]=exploder(xArr[i], '|');
 }
 console.log(dataJs[1]);
-console.log(dataJs[2]);
+console.log(xmid);
+var tmpId=exploder(xmid, 'line');
+killRows(tmpId[0]);
+console.log(tmpId[0]);
 /* 
 парсим циклом значения из массива
 выщитываем id раздела, убиваем все nextSibling (?)
@@ -76,7 +87,7 @@ function postUrl(xurl, cb, xmd) {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			// alert(xmlhttp.responseText);
 			backdata = JSON.parse(xmlhttp.responseText);
-			reNew(backdata);
+			reNew(backdata, xmd);
 		}
     }
 	xmlhttp.send("param="+param);
@@ -199,7 +210,9 @@ document.body.removeChild(mdWin);
 mdWin=document.getElementById('ModalBack');
 document.body.removeChild(mdWin);
 var trx=document.getElementById(tid);
-trx.setAttribute('name', 'skip');
+if (trx !== null) {
+	trx.setAttribute('name', 'skip');
+}
 }
 function Auth(px) {
 var xb;
