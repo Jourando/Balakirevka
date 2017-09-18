@@ -72,4 +72,5 @@ usleep(100);
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 echo json_encode($lines);
 // отдать json!
+// ну отдали json, полегчало?
 ?>

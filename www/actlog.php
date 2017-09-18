@@ -9,7 +9,7 @@ $obj = '-';
 $exc = '-';
 $type = 'ajax';
 $code = '0';
-$fnc = '-';
+$fnc = 'noname';
 $u_var = 'undefined';
 $u_val = 'undefined';
 if ($_GET['act']=='ACTL') {

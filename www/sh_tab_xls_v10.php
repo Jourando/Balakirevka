@@ -43,7 +43,6 @@ for (var i = 0; i < xArr.length; i++) {
 }
 console.log(dataJs[1]);
 console.log(dataJs[2]);
-// window.alert(xArr[1]);
 /* 
 парсим циклом значения из массива
 выщитываем id раздела, убиваем все nextSibling (?)
@@ -66,7 +65,7 @@ function getXmlHttp(){
         return new XMLHttpRequest();
     }
 }
-function postUrl(xurl, xmd) {
+function postUrl(xurl, cb, xmd) {
 	var backdata = new Array();
 	var xmlhttp = getXmlHttp();
 	var param;
@@ -255,6 +254,7 @@ document.getElementById('pusr').value=apwd;
 if (alg>0) { depMod=adpt; }
 }
 function ItmInsBefore() {
+var xb;
 var delim='##';
 var act = 'BEFORE';
 var sect=document.getElementById('dps').selectedIndex;
@@ -271,9 +271,10 @@ for (j=0; j<16; j++) {
 	} 
 }
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
-postUrl(ResStr, '1');	
+postUrl(ResStr, xb, document.getElementById('hid').value);
 }
 function ItmInsAfter() {
+	var xb;
 var delim='##';
 var act = 'AFTER';
 var sect=document.getElementById('dps').selectedIndex;
@@ -290,10 +291,10 @@ for (j=0; j<16; j++) {
 	} 
 }
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
-postUrl(ResStr, '1');		
+postUrl(ResStr, xb, document.getElementById('hid').value);		
 }
 function ItmReplace() {
-// Action # Раздел[index] # Старая_строка # Новая строка
+	var xb;
 var delim='##';
 var act = 'REPLACE';
 var sect=document.getElementById('dps').selectedIndex;
@@ -310,9 +311,10 @@ for (j=0; j<16; j++) {
 	} 
 }
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
-postUrl(ResStr, '1');
+postUrl(ResStr, xb, document.getElementById('hid').value);
 }
 function ItmDelete() {
+	var xb;
 var delim='##';
 var act = 'ERASE';
 var sect=document.getElementById('dps').selectedIndex;
@@ -329,7 +331,7 @@ for (j=0; j<16; j++) {
 	} 
 }
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
-postUrl(ResStr, '1');
+postUrl(ResStr, xb, document.getElementById('hid').value);
 }
 </script>
 <?
