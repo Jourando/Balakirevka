@@ -38,8 +38,11 @@ exploder=function(str, delim) {
 	return str.toString().split(delim.toString());
 }
 var dataJs = new Array();
-dataJs=exploder(xArr, '|');
-console.log(dataJs);
+for (var i = 0; i < xArr.length; i++) {
+	dataJs[i]=exploder(xArr[i], '|');
+}
+console.log(dataJs[1]);
+console.log(dataJs[2]);
 // window.alert(xArr[1]);
 /* 
 парсим циклом значения из массива
