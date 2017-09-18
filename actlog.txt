@@ -1,1 +1,4 @@
 Joue @ 18 09 2017 05:28:56 from http://test2.ru : action OnClick on obj link via HttpCall... Result is 0
+Joue @ 18 09 2017 06:00:50 from http://test2.ru : action OnClick on obj link2 via HttpCall... Result is 0
+Joue @ 18 09 2017 06:00:50 from http://test2.ru : action OnClick on obj link2 via HttpCall... Result is 1
+{variable enabled=true --- from function x}
