@@ -6,7 +6,6 @@ TODO:
 Сделать список идентефикатороф контролей 
 
 Объединить в writ2.php ф-ции Before + After
-
 ---''---- в main ф-ции отправки в ajax (before, replace, after и delete)
 
 - надо отдать в ajax строку: Action # Раздел[index] # Старая_строка # Новая строка
