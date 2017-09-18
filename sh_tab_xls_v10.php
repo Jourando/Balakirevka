@@ -352,9 +352,9 @@ $i=0;
 foreach (glob("depart*.a") as $filename) {
     $fArray[$i]=$filename; // пересортировать! 
 	// use faSort;
-	$lines[$i] = file($fArray[$i], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 	$j=0;
-	if ($fArray[$i] !== "depart0.a") {
+	if ($fArray[$i] !== "depart0000.a") {
+		$lines[$i] = file($fArray[$i], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 		$rx[$i]="<tr id=sec".$i."hdr class=T2><td id=hdr".$i." colspan=16 class=depHdr>Отдел: ".$m1[$i]."</td></tr>\r\n";
 		echo $rx[$i];
 		foreach($lines[$i] as $v) {
@@ -367,8 +367,6 @@ foreach (glob("depart*.a") as $filename) {
 	}
 	$i=$i+1;
 }
-print_r($fArray);
-// print_r($m1);
 }
 ?>
 <DIV id=mainSection>

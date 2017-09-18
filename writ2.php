@@ -3,12 +3,13 @@ header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Expires: " . date("r"));
 $tmp1=$_POST['param'];
 list($act, $d, $oldStr, $newStr) = explode("##", $tmp1);
-$xfile = 'depart'.$d.'.a';
+$xfile = 'depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'.a';
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES); 
-if (!file_exists('oldata/'.$d)) { mkdir('oldata/'.$d, 0744, true); }
-$f=scandir('oldata/'.$d);
+if (!file_exists('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT))) { mkdir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT), 0744, true); }
+$f=scandir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT));
 $j=count($f)-1;
-$newfile='oldata/'.$d.'/depart'.$d."[".$j."]";
+$newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
+echo $xfile." to ".$newfile;
 copy($xfile, $newfile);
 $i=0;
 $j=$i;
