@@ -46,12 +46,14 @@ killRows=function(tids) {
 	var sArr = new Array();
 	var s;
 	for (var j = 0; j<elx.length; j++) {
-		sArr[j]=elx[j].id;
+		s=elx[j].id;
+		if (s.indexOf(tids+'line') != -1) {
+			while (s.indexOf(tids+'line') != -1) {
+				(element=document.getElementById(s)).parentNode.removeChild(element); // блять, свершилось чудо!
+				s=elx[j].id;
+			}
+		}
 	}
-//	if (s.indexOf(tids+'line') != -1) { dArr[]=s; }
-
-//	var dArr = sArr.filter(function(gotId) {return (dArr[i].indexOf(tids+'line') != -1);});
-//	(element=document.getElementById(s)).parentNode.removeChild(element);
 }
 addRows=function(tids, pArr, rw) {
 //	meSendId = function(meId) {	modalEdit(meId); }
