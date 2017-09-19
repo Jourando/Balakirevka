@@ -94,6 +94,8 @@ for (var k = 0; k<xArr.length; k++) {
 /*  
 --- вар. решения: если собрать их всех оптом, а потом вставить одним шматком через fragment, то вариант решения с insertBefore прокатит
 */
+var isClosed;
+// теперь осталось закрвть modalEdit
 }
 </script>
 </head>
