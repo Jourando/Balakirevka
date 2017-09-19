@@ -56,26 +56,27 @@ killRows=function(tids) {
 	}
 }
 addRows=function(tids, pArr, rw) {
-//	meSendId = function(meId) {	modalEdit(meId); }
 	var elx=document.getElementById(tids+'hdr');
 	var newEl=document.createElement('tr');
 	newEl.id=tids+'line'+rw;
 	newEl.className='T1';
 	newEl.setAttribute('name', 'skip');
-	newEl.onclick = function() {modalEdit();}; // цуко, онклик ващпе вставляться не хочет... попробовать через setAttribute!
+	newEl.setAttribute('onclick', 'modalEdit(\''+newEl.id+'\')');
+
 	// м б дешевле и проще через innerHTML?
 	
 	insertAfter(newEl, elx);
 /*
 			$rs[$i][$j]="<tr Onclick='modalEdit(\"sec".$i."line".$j."\")'><td id=s".$i."r".$j."c1>".$n."</td><td id=s".$i."r".$j."c2>".$dt."</td><td id=s".$i."r".$j."c3>".$vd."</td><td id=s".$i."r".$j."c4>".$acType."</td><td id=s".$i."r".$j."c5>".$acOwner."</td><td id=s".$i."r".$j."c6>".$acName."</td><td id=s".$i."r".$j."c7>".$acPlace."</td><td id=s".$i."r".$j."c8>".$oType."</td><td id=s".$i."r".$j."c9>".$oAud."</td><td id=s".$i."r".$j."c10>".$oSeer."</td>";
 			$rs[$i][$j]=$rs[$i][$j]."<td id=s".$i."r".$j."c11>".$oPrt."</td><td id=s".$i."r".$j."c12>".$hostDep."</td><td id=s".$i."r".$j."c13>".$hostHead."</td><td id=s".$i."r".$j."c14>".$hostLd."</td><td id=s".$i."r".$j."c15>".$fin."</td><td id=s".$i."r".$j."c16>".$adInfo."</td></tr>\r\n";
-			echo $rs[$i][$j];
+
 			
 			newTr = document.createElement('tr');
 			newTr.className='T2';
 			tmpStr='<td colspan=16 class=depHdr>'+d0[1]+'</td>';
 			newTr.innerHTML=tmpStr;
 */
+return newEl.id;
 }
 var dataJs = new Array();
 for (var i = 0; i < xArr.length; i++) {
@@ -85,8 +86,14 @@ for (var i = 0; i < xArr.length; i++) {
 var tmpId=exploder(xmid, 'line');
 killRows(tmpId[0]);
 console.log(xmid+' :: '+tmpId[0]);
-for (var k = 0; k<xArr.length; k++) {	
-	addRows(tmpId[0], dataJs[k], k); // ...проверить, всё ли удалилось
+for (var k = 0; k<xArr.length; k++) {
+	if (k==0) {
+		tmpId[1]=addRows(tmpId[0], dataJs[k], k); // ...порядок вставки!!!!!!!
+		// 1 раз вставляем за папой, остальные - за предыдущим вставленным id
+	} else {
+		tmpId[1]=addRows(tmpId[1], dataJs[k], k);
+		// пока получилась херня. не то поменял... элемент за которым вставка опредеделяется  не тут - var elx
+	}
 }
 /* 
 выщитываем id раздела, добавляем все nextSibling (?)
