@@ -55,8 +55,8 @@ killRows=function(tids) {
 		}
 	}
 }
-addRows=function(tids, pArr, rw) {
-	var elx=document.getElementById(tids+'hdr');
+addRows=function(tids, pids, pArr, rw) {
+	var elx=document.getElementById(pids);
 	var newEl=document.createElement('tr');
 	newEl.id=tids+'line'+rw;
 	newEl.className='T1';
@@ -88,10 +88,10 @@ killRows(tmpId[0]);
 console.log(xmid+' :: '+tmpId[0]);
 for (var k = 0; k<xArr.length; k++) {
 	if (k==0) {
-		tmpId[1]=addRows(tmpId[0], dataJs[k], k); // ...порядок вставки!!!!!!!
+		tmpId[1]=addRows(tmpId[0], tmpId[0]+'hdr', dataJs[k], k); // ...порядок вставки!!!!!!! вставляемый, папа, контент, номер элемента п/п ...
 		// 1 раз вставляем за папой, остальные - за предыдущим вставленным id
 	} else {
-		tmpId[1]=addRows(tmpId[1], dataJs[k], k);
+		tmpId[1]=addRows(tmpId[0], tmpId[1], dataJs[k], k);
 		// пока получилась херня. не то поменял... элемент за которым вставка опредеделяется  не тут - var elx
 	}
 }
