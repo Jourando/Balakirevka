@@ -43,7 +43,6 @@ exploder=function(str, delim) {
 killRows=function(tids) {
 	var elx = new Array();
 	var elx=document.getElementById('mainTab').getElementsByTagName("tr");
-//	var sArr = new Array();
 	var s;
 	for (var j = 0; j<elx.length; j++) {
 		s=elx[j].id;
@@ -63,27 +62,21 @@ addRows=function(tids, pids, pArr, rw) {
 	newEl.setAttribute('name', 'skip');
 	newEl.setAttribute('onclick', 'modalEdit(\''+newEl.id+'\')');
 	var trdw = exploder(tids, 'sec');
-//	console.log(trdw);
 	trdw[1]='s'+trdw[1]+'r'+rw+'c';
 	for (var i=0; i<16; i++) {
 			trdw[0]=trdw[0]+'<td id="'+trdw[1]+(i+1)+'">'+pArr[i]+'</td>';
 	}
 	newEl.innerHTML=trdw[0];
 	insertAfter(newEl, elx);
-/*
-			$rs[$i][$j]="<tr Onclick='modalEdit(\"sec".$i."line".$j."\")'><td id=s".$i."r".$j."c1>".$n."</td><td id=s".$i."r".$j."c2>".$dt."</td><td id=s".$i."r".$j."c3>".$vd."</td><td id=s".$i."r".$j."c4>".$acType."</td><td id=s".$i."r".$j."c5>".$acOwner."</td><td id=s".$i."r".$j."c6>".$acName."</td><td id=s".$i."r".$j."c7>".$acPlace."</td><td id=s".$i."r".$j."c8>".$oType."</td><td id=s".$i."r".$j."c9>".$oAud."</td><td id=s".$i."r".$j."c10>".$oSeer."</td>";
-			$rs[$i][$j]=$rs[$i][$j]."<td id=s".$i."r".$j."c11>".$oPrt."</td><td id=s".$i."r".$j."c12>".$hostDep."</td><td id=s".$i."r".$j."c13>".$hostHead."</td><td id=s".$i."r".$j."c14>".$hostLd."</td><td id=s".$i."r".$j."c15>".$fin."</td><td id=s".$i."r".$j."c16>".$adInfo."</td></tr>\r\n";
-*/
 return newEl.id;
 }
 var dataJs = new Array();
 for (var i = 0; i < xArr.length; i++) {
 	dataJs[i]=exploder(xArr[i], '|');
 }
-// console.log(dataJs[1]);
 var tmpId=exploder(xmid, 'line');
 killRows(tmpId[0]);
-console.log(xmid+' :: '+tmpId[0]);
+// console.log(xmid+' :: '+tmpId[0]);
 for (var k = 0; k<xArr.length; k++) {
 	if (k==0) {
 		tmpId[1]=addRows(tmpId[0], tmpId[0]+'hdr', dataJs[k], k); // вставляемый, папа, контент, номер элемента п/п; 1 раз вставляем за папой, остальные - за предыдущим вставленным id
@@ -91,11 +84,9 @@ for (var k = 0; k<xArr.length; k++) {
 		tmpId[1]=addRows(tmpId[0], tmpId[1], dataJs[k], k);
 	}
 }
-/*  
---- вар. решения: если собрать их всех оптом, а потом вставить одним шматком через fragment, то вариант решения с insertBefore прокатит
-*/
 var isClosed;
-// теперь осталось закрвть modalEdit
+// теперь осталось закрыть modalEdit
+modalClose('none');
 }
 </script>
 </head>
@@ -149,7 +140,6 @@ function getUrl(xurl, cb, xmd) {
 					document.getElementById('b1').className='invisible';
 					document.getElementById('b2').className='visible';
 					depMod=j;
-//					ShowAll();
 				} else {
 					document.getElementById('fset').innerHTML='<label>Ошибка авторизации: '+Rtxt+' <input type=button value=Отправить Onclick=Auth(1) class=invisible id=b1><input type=button value=Перелогиниться Onclick=Auth(2) class=visible id=b2></label>';		
 				}
@@ -413,16 +403,11 @@ echo "<label> оператор <input type=text id=lusr value=\"Фамилия �
 echo "</fieldset></form>\r\n";
 return $mLable;
 }
-function faSort($ffn) {
-
-}
 function getContent($a1, $m1) {
-// $dir = __DIR__;
-// $f=scandir($dir);
 $i=0;
 foreach (glob("depart*.a") as $filename) {
-    $fArray[$i]=$filename; // пересортировать! 
-	// use faSort;
+    $fArray[$i]=$filename; 
+	// dont use faSort;
 	$j=0;
 	if ($fArray[$i] !== "depart0000.a") {
 		$lines[$i] = file($fArray[$i], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -454,6 +439,6 @@ Prw();
 <? getContent('all', $tA) ?>
 </Table>
 </DIV>
-
+<!-- eof -->
 </body>
 </html>
