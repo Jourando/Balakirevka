@@ -42,16 +42,16 @@ exploder=function(str, delim) {
 }
 killRows=function(tids) {
 	var elx = new Array();
-	var dArr = new Array();
 	var elx=document.getElementById('mainTab').getElementsByTagName("tr");
+	var sArr = new Array();
 	var s;
 	for (var j = 0; j<elx.length; j++) {
-		s=elx[j].id;
-		console.log('item '+j+' has '+s+'; we`re looking for '+tids+'line);
-		if (s.indexOf(tids+'line') != -1) { dArr[]=s; }
+		sArr[j]=elx[j].id;
 	}
-	var positiveArr = arr.filter(function(number) {return number > 0;});
-	(element=document.getElementById(s)).parentNode.removeChild(element);
+//	if (s.indexOf(tids+'line') != -1) { dArr[]=s; }
+
+//	var dArr = sArr.filter(function(gotId) {return (dArr[i].indexOf(tids+'line') != -1);});
+//	(element=document.getElementById(s)).parentNode.removeChild(element);
 }
 addRows=function(tids, pArr, rw) {
 //	meSendId = function(meId) {	modalEdit(meId); }
