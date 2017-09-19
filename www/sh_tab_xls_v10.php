@@ -62,10 +62,11 @@ addRows=function(tids, pids, pArr, rw) {
 	newEl.className='T1';
 	newEl.setAttribute('name', 'skip');
 	newEl.setAttribute('onclick', 'modalEdit(\''+newEl.id+'\')');
-	var trdw = exploder(xmid, 'sec');
+	var trdw = exploder(tids, 'sec');
+	console.log(trdw);
 	trdw[1]='s'+trdw[1]+'r'+rw+'c';
 	for (var i=0; i<17; i++) {
-			trdw[0]='<td id="'+trdw[1]+i+'">'+pArr[i]+'</td>';
+			trdw[0]=trdw[0]+'<td id="'+trdw[1]+i+'">'+pArr[i]+'</td>';
 	}
 	newEl.innerHTML=trdw[0];
 	insertAfter(newEl, elx);
