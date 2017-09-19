@@ -56,14 +56,14 @@ killRows=function(tids) {
 	}
 }
 addRows=function(tids, pArr, rw) {
-//			//			//	meSendId = function(meId) {	modalEdit(meId); }
+//	meSendId = function(meId) {	modalEdit(meId); }
 	var elx=document.getElementById(tids+'hdr');
 	var newEl=document.createElement('tr');
 	newEl.id=tids+'line'+rw;
 	newEl.className='T1';
 	newEl.setAttribute('name', 'skip');
-//	newEl.onclick = meSendId('"'+tids+line+rw+'"'); // а заработает?
 	newEl.onclick = function() {modalEdit();}; // цуко, онклик ващпе вставляться не хочет... попробовать через setAttribute!
+	// м б дешевле и проще через innerHTML?
 	
 	insertAfter(newEl, elx);
 /*
