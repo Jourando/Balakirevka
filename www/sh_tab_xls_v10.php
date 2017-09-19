@@ -44,7 +44,7 @@ killRows=function(tids) {
 	var elx = new Array();
 	var elx=document.getElementById('mainTab').getElementsByTagName("tr");
 	var s;
-	for (var j = 0; j<elx.length; j++) {
+	for (var j = 0; j<elx.length+1; j++) {
 		s=elx[j].id;
 		if (s.indexOf(tids+'line') != -1) { (element=document.getElementById(s)).parentNode.removeChild(element); }
 	}	
