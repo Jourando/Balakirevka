@@ -43,11 +43,13 @@ exploder=function(str, delim) {
 killRows=function(tids) {
 	var elx = new Array();
 	var elx=document.getElementById('mainTab').getElementsByTagName("tr");
-	var s;
-	for (var j = 0; j<elx.length; j++) {
-		s=elx[j].id;
-		console.log('item '+j+' has '+s+'; we`re looking for '+tids+'line');
-		if (s.indexOf(tids+'line') != -1) { (element=document.getElementById(s)).parentNode.removeChild(element); }
+	var j=0;
+	var s=elx[j].id;
+		while (s.indexOf(tids+'line') > -1) {
+			s=elx[j].id;
+			(element=document.getElementById(s)).parentNode.removeChild(element);
+		}
+		// console.log('item '+j+' has '+s+'; we`re looking for '+tids+'line');
 	}	
 }
 addRows=function(tids, pArr, rw) {
