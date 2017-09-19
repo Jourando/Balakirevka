@@ -81,7 +81,7 @@ var tmpId=exploder(xmid, 'line');
 killRows(tmpId[0]);
 console.log(xmid+' :: '+tmpId[0]);
 for (var k = 0; k<xArr.length; k++) {	
-	addRows(tmpId[0], dataJs[k], k);
+//	addRows(tmpId[0], dataJs[k], k); // ...проверить, всё ли удалилось
 }
 /* 
 выщитываем id раздела, добавляем все nextSibling (?)
