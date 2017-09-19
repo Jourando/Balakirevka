@@ -49,22 +49,21 @@ killRows=function(tids) {
 		s=elx[j].id;
 		if (s.indexOf(tids+'line') != -1) {
 			while (s.indexOf(tids+'line') != -1) {
-				(element=document.getElementById(s)).parentNode.removeChild(element); // блять, свершилось чудо!
+				(element=document.getElementById(s)).parentNode.removeChild(element);
 				s=elx[j].id;
 			}
 		}
 	}
 }
 addRows=function(tids, pArr, rw) {
-//	meSendId = function(meId) {	modalEdit(meId); }
+//			//			//	meSendId = function(meId) {	modalEdit(meId); }
 	var elx=document.getElementById(tids+'hdr');
 	var newEl=document.createElement('tr');
 	newEl.id=tids+'line'+rw;
 	newEl.className='T1';
 	newEl.setAttribute('name', 'skip');
-//	newEl.onclick = meSendId('"'+tids+line+rw+'"'); 
-// а заработает?
-	newEl.onclick = function() {modalEdit('"'+tids+line+rw+'"');};
+//	newEl.onclick = meSendId('"'+tids+line+rw+'"'); // а заработает?
+	newEl.onclick = function() {modalEdit();}; // цуко, онклик ващпе вставляться не хочет... попробовать через setAttribute!
 	
 	insertAfter(newEl, elx);
 /*
@@ -87,7 +86,7 @@ var tmpId=exploder(xmid, 'line');
 killRows(tmpId[0]);
 console.log(xmid+' :: '+tmpId[0]);
 for (var k = 0; k<xArr.length; k++) {	
-//	addRows(tmpId[0], dataJs[k], k); // ...проверить, всё ли удалилось
+	addRows(tmpId[0], dataJs[k], k); // ...проверить, всё ли удалилось
 }
 /* 
 выщитываем id раздела, добавляем все nextSibling (?)
