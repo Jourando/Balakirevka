@@ -22,8 +22,8 @@ input[type=text] {resize:both;}
 .T1:hover {background: lightblue;}
 .T2 {font-weight: bold}
 .depHdr {color: white; background: black; padding-left: 150px;}
-.upLayer {background: rgba(202, 202, 202, 0.5); width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 3;}
-.xxLayer {width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 5; display: table; text-align: center; vertical-align: middle;}
+.upLayer {background: rgba(202, 202, 202, 0.5); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 3;}
+.xxLayer {width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 5; display: table; text-align: center; vertical-align: middle;}
 .xeLayer {width: 100%; height: 100%; display: table-cell; text-align: center; vertical-align: middle;}
 .bdLayer {display: block; background: #fff; border: 1px solid #000;}
 .hdLayer {background: lightblue; font-weight: bold; padding-left: 50px; height: 20px;}
