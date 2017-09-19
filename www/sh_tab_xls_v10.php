@@ -403,7 +403,6 @@ function getContent($a1, $m1) {
 $i=0;
 foreach (glob("depart*.a") as $filename) {
     $fArray[$i]=$filename; 
-	// dont use faSort;
 	$j=0;
 	if ($fArray[$i] !== "depart0000.a") {
 		$lines[$i] = file($fArray[$i], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -422,6 +421,11 @@ foreach (glob("depart*.a") as $filename) {
 }
 ?>
 <DIV id=mainSection>
+<?
+// сделать клинер и менеджер для олдДата
+// исправить TabOrder в CreatFastLog
+// сделать первичную создавалку дефолтных файлов
+?>
 <? $tA=mkMenu() ?>
 <script>
 Prw();
@@ -435,6 +439,5 @@ Prw();
 <? getContent('all', $tA) ?>
 </Table>
 </DIV>
-<!-- eof -->
 </body>
 </html>
