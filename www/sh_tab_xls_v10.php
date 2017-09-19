@@ -34,7 +34,6 @@ input[type=text] {resize:both;}
 <script>
 function insertAfter(elem, refElem) {
   return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
-  // переписываем ф-цию, костыль для не поддерживающих стандарт в полном объеме
 }
 function reNew(xArr, xmid) {
 exploder=function(str, delim) {
@@ -76,7 +75,6 @@ for (var i = 0; i < xArr.length; i++) {
 }
 var tmpId=exploder(xmid, 'line');
 killRows(tmpId[0]);
-// console.log(xmid+' :: '+tmpId[0]);
 for (var k = 0; k<xArr.length; k++) {
 	if (k==0) {
 		tmpId[1]=addRows(tmpId[0], tmpId[0]+'hdr', dataJs[k], k); // вставляемый, папа, контент, номер элемента п/п; 1 раз вставляем за папой, остальные - за предыдущим вставленным id
@@ -84,8 +82,6 @@ for (var k = 0; k<xArr.length; k++) {
 		tmpId[1]=addRows(tmpId[0], tmpId[1], dataJs[k], k);
 	}
 }
-var isClosed;
-// теперь осталось закрыть modalEdit
 modalClose('none');
 }
 </script>
@@ -265,7 +261,7 @@ if (px==1) {
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $i=0;
-$defStr='1||||||||||||||||';
+$defStr=' 0||||||||||||||||';
 $ptmp="";
 foreach($lines as $v) {
 	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
@@ -380,7 +376,7 @@ function mkMenu() {
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $i=0;
-$defStr=' 1||||||||||||||||';
+$defStr=' 0||||||||||||||||';
 echo "<form autocomplete=1><fieldset name=set id=fset>\r\n";
 echo "<label>Отдел <select id=dps Onchange='depMod=this.selectedIndex'>\r\n";
 foreach($lines as $v) {
