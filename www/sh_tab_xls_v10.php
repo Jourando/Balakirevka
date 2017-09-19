@@ -32,6 +32,10 @@ input[type=text] {resize:both;}
 .invisible {display: none;}
 </style>
 <script>
+function insertAfter(elem, refElem) {
+  return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+  // переписываем ф-цию, костыль для не поддерживающих стандарт в полном объеме
+}
 function reNew(xArr, xmid) {
 exploder=function(str, delim) {
 	return str.toString().split(delim.toString());
@@ -52,6 +56,11 @@ addRows=function(tids, pArr) {
 			$rs[$i][$j]="<tr id=sec".$i."line".$j." class=T1 name=skip Onclick='modalEdit(\"sec".$i."line".$j."\")'><td id=s".$i."r".$j."c1>".$n."</td><td id=s".$i."r".$j."c2>".$dt."</td><td id=s".$i."r".$j."c3>".$vd."</td><td id=s".$i."r".$j."c4>".$acType."</td><td id=s".$i."r".$j."c5>".$acOwner."</td><td id=s".$i."r".$j."c6>".$acName."</td><td id=s".$i."r".$j."c7>".$acPlace."</td><td id=s".$i."r".$j."c8>".$oType."</td><td id=s".$i."r".$j."c9>".$oAud."</td><td id=s".$i."r".$j."c10>".$oSeer."</td>";
 			$rs[$i][$j]=$rs[$i][$j]."<td id=s".$i."r".$j."c11>".$oPrt."</td><td id=s".$i."r".$j."c12>".$hostDep."</td><td id=s".$i."r".$j."c13>".$hostHead."</td><td id=s".$i."r".$j."c14>".$hostLd."</td><td id=s".$i."r".$j."c15>".$fin."</td><td id=s".$i."r".$j."c16>".$adInfo."</td></tr>\r\n";
 			echo $rs[$i][$j];
+			
+			newTr = document.createElement('tr');
+			newTr.className='T2';
+			tmpStr='<td colspan=16 class=depHdr>'+d0[1]+'</td>';
+			newTr.innerHTML=tmpStr;
 */
 }
 var dataJs = new Array();
