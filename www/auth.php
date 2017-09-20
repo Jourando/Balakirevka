@@ -28,10 +28,11 @@ if (($_GET['act']=="R") || ($_GET['act']=="W") || ($_GET['act']=="D")) {
 			// если p=display - вывести меню редактирования
 			echo "<tr><td><a href=# Onclick=location.href='auth.php?act=D&d=".$d[$i]."&u=".$u[$i]."&from=self' style='text-decoration: none'>[x]</a></td><td>".$d[$i]."</td><td>".$u[$i]."</td></tr>";
 		}
-		echo "</Table>";
+		echo "</Table><br><hr><br>";
 		echo "<form name=newusr>";
 		echo "<label>Добавить нового юзера:<br>Логин <input type=text name=lf> Пароль <input type=text name=pf> Раздел <input type=text name=df> <input type=button value=Сохранить Onclick=addusr()></label>";
 		echo "</form>";
+		include('toolmen.php');
 	}
 	if ($_GET['act']=="W") {
 		$tmpStr=$_GET['d'].":".strtoupper($_GET['u']).":".md5($_GET['p']).":";
