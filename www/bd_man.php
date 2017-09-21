@@ -33,8 +33,15 @@ if ($_GET['act']=="W") {
 		fclose($handle);
 	}
 	if ($_GET['p']=="dbd") {
-		$handle = fopen('depart0000.a', 'w');
-		fwrite($handle, "var d0=new Array();\r\nd0[1]='отдел 1';\r\nd0[2]='отдел 2';\r\nd0[3]='отдел 3';\r\nd0[4]='отдел 4';\r\nd0[5]='отдел 5';\r\nd0[6]='отдел 6';\r\n");
+		$d="0";
+		$xfile = 'depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'.a';
+		if (!file_exists('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT))) { mkdir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT), 0744, true); }
+		$f=scandir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT));
+		$j=count($f)-1;
+		$newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
+		copy($xfile, $newfile);
+		$handle = fopen($xfile, 'w');
+		fwrite($handle, "0= \r\n");
 		fclose($handle);
 	}
 	if ($_GET['p']=="xbd") {
@@ -42,23 +49,32 @@ if ($_GET['act']=="W") {
 		for ($i=2; $i<count($f); $i++) {
 			// здесь условие
 			// if (basename($file) == 'этот файл не трогать') continue;
-			if(preg_match('/\.js/', $f[$i])){ $fn[]=$f[$i];	}
+			if(preg_match('/\.a/', $f[$i])){ $fn[]=$f[$i];	}
 		}
 		for ($i=1; $i<count($fn); $i++) {
-			if ($fn[$i] == 'depart'.$i.'.js') {
+			if ($fn[$i] == 'depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'.a') {
 				$handle = fopen($fn[$i], 'w');
-				fwrite($handle, "var d".$i." = new Array();\r\n");
-				fwrite($handle, "d".$i."[1]='1||||||||||||||||';\r\n");
+				fwrite($handle, " 0|||||||||||||||\r\n");
 				fclose($handle);
 			}
 		}
 	}
 	if ($_GET['p']=="ds") {
-		$urlStr = 'auth.php?';
-		$datStr = 'writ.php?';
-		$handle = fopen('globals.js', 'w');
-		fwrite($handle, "urlStr='".$urlStr."';\r\n");
-		fwrite($handle, "datStr='".$datStr."';\r\n");
+		list($tmpStr, $trash)=file('wrkspace.a');
+		$rd="rd='sh_tab_xls_v';";
+		$urlStr="urlStr='".$tmpStr."/auth.php?';";
+		$datStr="datStr='".$tmpStr."/writ2.php?';";
+		$logStr="logStr='".$tmpStr."/actlog.php?';";
+		$dm="depMod=0;";
+		$cm="curMod=0;";
+		$s1="hdrStr='<tr><th rowspan=2>номер</th><th rowspan=2>дата</th><th rowspan=2>вид деятельности</th><th colspan=3>мероприятие</th><th rowspan=2>место проведения</th><th colspan=4>охват</th><th colspan=3>проводящие</th><th rowspan=2>организационно-<br>финансовое</th><th rowspan=2>доп.<br>информация</th>';\r\nhdrStr+='</tr><tr><th>тип</th><th>внутр./сторонние</th><th>название</th><th>тип</th><th>целевая аудитория</th><th>зрители</th><th>выступающие/участники</th><th>отделение</th><th>нач.отделения</th><th>ответственный</th></tr>';";
+		$s2="edtStr='<tr><td id=et0><input type=text id=ext0 value=0 size=3 disabled></td><td id=et1><input type=text id=ext1 size=5 value=\"\"></td><td id=et2><input type=text id=ext2 value=\"\" size=24></td><td id=et3><input type=text id=ext3 value=\"\" size=12></td><td id=et4><input type=text id=ext4 value=\"\" size=12></td><td id=et5><input type=text id=ext5 value=\"\" size=14></td><td id=et6><input type=text id=ext6 value=\"\" size=20></td>';";
+		$s3="edtStr+='<td id=et7><input type=text id=ext7 value=\"\" size=8></td><td id=et8><input type=text id=ext8 value=\"\" size=12></td><td id=et9><input type=text id=ext9 value=\"\" size=8></td><td id=et10><input type=text id=ext10 value=\"\" size=12></td><td id=et11><input type=text id=ext11 value=\"\" size=12></td><td id=et12><input type=text id=ext12 value=\"\" size=12></td>';";
+		$s4="edtStr+='<td id=et13><input type=text id=ext13 value=\"\" size=12></td><td id=et14><input type=text id=ext14 value=\"\" size=14></td><td id=et15><input type=text id=ext15 value=\"\" size=10></td></tr>';";
+		$s5="edtStr+='<tr><td colspan=16><lavel>Вставить строку <input type=button value=Перед Onclick=ItmInsBefore()> <input type=button value=Вместо Onclick=ItmReplace()> <input type=button value=После Onclick=ItmInsAfter()> текущей, <input type=button value=Удалить Onclick=ItmDelete()> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\\'hid\\').value)> без сохранения <input type=hidden value=x id=hid></label></td></tr>';";
+		$handle = fopen('globals2.js', 'w');
+		fwrite($handle, $rd."\r\n".$urlStr."\r\n".$datStr."\r\n".$logStr."\r\n".$dm."\r\n".$cm."\r\n");
+		fwrite($handle, $s1."\r\n".$s2."\r\n".$s3."\r\n".$s4."\r\n".$s5);
 		fclose($handle);
 		$handle = fopen('oldata\opt.a', 'w');
 		fwrite($handle, "1");
