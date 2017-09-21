@@ -1,4 +1,4 @@
-﻿rd='sh_tab_xls_v';
+rd='sh_tab_xls_v';
 urlStr='http://test2.ru/auth.php?';
 datStr='http://test2.ru/writ2.php?';
 logStr='http://test2.ru/actlog.php?';

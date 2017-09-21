@@ -387,7 +387,7 @@ foreach($lines as $v) {
 		$resStr[$i]="<option value=".$mVal[$i].">".$mLable[$i]."</option>\r\n";
 	}
 	echo $resStr[$i];
-	if ((!FILE_EXISTS('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a')) || (filesize('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a')<7)) {
+	if ((!FILE_EXISTS('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a')) || (filesize('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a')<10)) {
 		$handle = fopen('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a', 'w');
 		fwrite($handle, $defStr."\r\n");
 		fclose($handle);
@@ -421,11 +421,6 @@ foreach (glob("depart*.a") as $filename) {
 }
 ?>
 <DIV id=mainSection>
-<?
-// сделать клинер и менеджер для олдДата
-// исправить TabOrder в CreatFastLog
-// сделать первичную создавалку дефолтных файлов
-?>
 <? $tA=mkMenu() ?>
 <script>
 Prw();

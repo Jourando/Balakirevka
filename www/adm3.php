@@ -18,7 +18,9 @@ if ((!ISSET($_POST['log'])) || (!ISSET($_POST['dep'])) || (ISSET($_POST['relog']
 		} else {
 			$str1='<h3>adm tools</h3><form action="" target=_self method=post>Access blocked <input type=hidden value=0 name="relog">';
 			$str2='<input type=submit value="Retry"></form>';
-			echo '<!-- фейл: '.$i.'.'.$_POST['log'].' - ['.$login[$i][0].' @ 999] and ['.md5($_POST['log']).' @ '.$login[$i][2].'] -->'."\r\n";
+			if (($_GET['mode']=='debug') || ($_GET['mode']=='DEBUG')) {
+				echo '<!-- fail: '.$i.'.'.$_POST['log'].' - ['.$login[$i][0].' @ 999] and ['.md5($_POST['log']).' @ '.$login[$i][2].'] -->'."\r\n";
+			}
 		}
 	}
 	echo $str1.$str2;
