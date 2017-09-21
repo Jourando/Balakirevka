@@ -11,13 +11,14 @@ if ((!ISSET($_POST['log'])) || (!ISSET($_POST['dep'])) || (ISSET($_POST['relog']
 		$login[$i]=explode(":", $logins[$i]);
 	}
 	for ($i=0; $i<count($logins)+1; $i++) {
-		if (($login[$i][0]=="999") & (md5($_POST['log'])==$login[$i][2])) {
+		if (($login[$i][0]=="999") & ($_POST['dep']==$login[$i][0]) & (md5($_POST['log'])==$login[$i][2])) {
 			include('toolmen.php');
+			echo "<h3>Welcome, administrator ".$login[$i][1]."!</h3>";
 			break;
 		} else {
 			$str1='<h3>adm tools</h3><form action="" target=_self method=post>Access blocked <input type=hidden value=0 name="relog">';
 			$str2='<input type=submit value="Retry"></form>';
-			echo '<!-- фейл: '.$i.'.'.$_POST['log'].' - ['.$login[$i][0].' @ 999] and ['.md5($_POST['log']).' @ '.$login[$i][2].'] --><br>'\r\n;
+			echo '<!-- фейл: '.$i.'.'.$_POST['log'].' - ['.$login[$i][0].' @ 999] and ['.md5($_POST['log']).' @ '.$login[$i][2].'] -->'."\r\n";
 		}
 	}
 	echo $str1.$str2;

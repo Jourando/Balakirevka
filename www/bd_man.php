@@ -1,13 +1,18 @@
 ﻿<?php
-echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
-echo '<html lang="ru"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">';
 $retr=false;
-echo "<style>\n";
-echo "input[type=button] {width: 140px;}\n";
-echo "</style>\n";
-echo '<title>BD-man</title></head>';
 $dir = __DIR__;
-echo '<body>';
+$flag=1;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<style>
+input[type=button] {width: 140px;}
+</style>
+<title>BD-man</title>
+</head>
+
+<body>
+<?
 if (($_GET['act']=="R") && ($_GET['p']=="show")) {
 	echo "<p>Workdir is $dir</p>";
 	$str1='<div>';
@@ -28,7 +33,7 @@ if ($_GET['act']=="W") {
 		fclose($handle);
 	}
 	if ($_GET['p']=="dbd") {
-		$handle = fopen('depart0.js', 'w');
+		$handle = fopen('depart0000.a', 'w');
 		fwrite($handle, "var d0=new Array();\r\nd0[1]='отдел 1';\r\nd0[2]='отдел 2';\r\nd0[3]='отдел 3';\r\nd0[4]='отдел 4';\r\nd0[5]='отдел 5';\r\nd0[6]='отдел 6';\r\n");
 		fclose($handle);
 	}
@@ -63,6 +68,9 @@ if ($_GET['act']=="W") {
 			echo "<script>\nlocation.href='bd_man.php?act=R&p=show&from=self';\n</script>\n";
 	}
 }
-echo '</body>';
-echo '</html>';
+?>
+</body>
+</html>
+<?
+$flag=0;
 ?>
