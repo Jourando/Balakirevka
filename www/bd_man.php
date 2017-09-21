@@ -90,10 +90,26 @@ if ($_GET['act']=="W") {
 	if ($_GET['p']=="itmw") {
 		if (ISSET($_GET['lmk'])) {
 			if ($_POST['cont']=='') {
-				echo "Плохо!";
+				echo "<h3>Ошибка! Сброс файла depart0000.a на дефолтное значение!</h3>\r\n<script>\nlocation.href='bd_man.php?act=W&p=dbd&from=self';\n</script>\n";
 			} else {
-				echo "Хорошо!-------------------------------------------------------------------------------------";
+				echo "<h3>Запись новых данных в depart0000.a</h3>\r\n";
+				$d="0";
+				$xfile = 'depart0000.a';
+				if (!file_exists('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT))) { mkdir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT), 0744, true); }
+				$f=scandir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT));
+				$j=count($f)-1;
+				$newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
+				copy($xfile, $newfile);
+				$xt=$_POST['cont'];
+				$handle = fopen($xfile, 'w');
+				fwrite($handle, $xt);
+				fclose($handle);
+				echo "<h3>...успешно завершена</h3><br><br>\r\n";
+				echo "<div style=\"display: inline-block; cursor: pointer; border: 1px dotted #000; font-size: 14px; width: 180px;\" Onclick=\"location.href='bd_man.php?act=R&p=show&from=self'\">Вернуться в меню</div> или <div style=\"display: inline-block; cursor: pointer; border: 1px dotted #000; font-size: 14px; width: 280px;\" Onclick=\"location.href='bd_man.php?act=W&p=itmr&from=me'\">К просмотру содержимого depart0000.a</div>\r\n";
+				include('toolmen.php');
 			}
+		} else {
+			echo "<script>\nlocation.href='bd_man.php?act=R&p=show&from=self';\n</script>\n";
 		}
 	}
 	if ($_GET['from']=='self') {
