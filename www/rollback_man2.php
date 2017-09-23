@@ -63,12 +63,25 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     }
     xlsEOF(); // закрываем файл
 }
+if ($_GET['me']=='self') {
+?>
+<SCRIPT>
+location.href='rollback_man2.php';
+</SCRIPT>
+<?
+}
 ?>
 <HTML><HEAD>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
 <TITLE>XLS CONVERT / ROLLBACK</TITLE>
 </HEAD>
 <BODY>
+<SCRIPT>
+function toXls(a){
+	var dp='depart_'+a+'.xls';
+	location.href='rollback_man2.php?d='+a+'&out='+dp+'&me=self';
+}
+</SCRIPT>
 <FORM>
 <H4></H4>
 <?
@@ -85,7 +98,7 @@ foreach($lines as $v) {
 	}
 	$i=$i+1;
 }
-$ptmp=$ptmp."</select> <input type=button value=toXLS><input type=to</label>\r\n";
+$ptmp=$ptmp."</select> <input type=button value=toXLS OnClick='toXls(document.getElementById(\"dps\").selectedIndex)'><input type=button value=toCSV></label>\r\n";
 echo $ptmp;
 ?>
 </FORM>
