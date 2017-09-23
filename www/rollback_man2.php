@@ -42,10 +42,15 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 	for ($i=0; $i<count($ax); $i++) {
 		$array[$i]=explode("|", $ax[$i]);
 	}
+	if (ISSET($_GET['out'])) {
+			$filename=$_GET['out'];
+	} else {
+			$filename='';
+	}
     header("Content-Type: application/force-download");
     header("Content-Type: application/octet-stream");
     header("Content-Type: application/download");;
-    header("Content-Disposition: attachment;filename=list.xls");
+    header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.xls'));
     header("Content-Transfer-Encoding: binary");
     xlsBOF(); //пишем начало файла
     for($i=0,$counti=count($array);$i<$counti;$i++){ //количество строк
@@ -80,7 +85,7 @@ foreach($lines as $v) {
 	}
 	$i=$i+1;
 }
-$ptmp=$ptmp."</select></label>\r\n";
+$ptmp=$ptmp."</select> <input type=button value=toXLS><input type=to</label>\r\n";
 echo $ptmp;
 ?>
 </FORM>

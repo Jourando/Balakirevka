@@ -18,3 +18,10 @@ TODO:
 
 собрать тулзы в 1 менеджере
 +доработать bd_man.php так, чтоб он научился чистить по 1 разделу, а не все *.а оптом
+
+https://habrahabr.ru/post/245233/ excel
+https://habrahabr.ru/post/136540/ excel
+http://abcvg.com/9129-analog-json_decode-dlya-xml-na-php.html - xml
+http://yournet.kz/blog/php/phpexcel-formatirovanie-yacheek
+http://www.codenet.ru/webmast/php/Excel.php
+http://opennet.ru/base/dev/php_gen_excel.txt.html
