@@ -80,7 +80,7 @@ if ($md==3) {
 if ($_GET['me']=='self') {
 ?>
 <SCRIPT>
-location.href='rollback_man2.php?mode=show';
+location.href='rollback_man3.php?mode=show';
 </SCRIPT>
 <?
 }
@@ -94,7 +94,7 @@ if ($md==0) {
 <SCRIPT>
 function toXls(a){
 	var dp='depart_'+a+'.xls';
-	location.href='rollback_man2.php?d='+a+'&out='+dp+'&me=self&mode=xls';
+	location.href='rollback_man3.php?d='+a+'&out='+dp+'&me=self&mode=xls';
 }
 </SCRIPT>
 <FORM>
