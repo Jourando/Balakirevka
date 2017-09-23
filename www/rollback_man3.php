@@ -25,9 +25,10 @@ function chCode($inStr) {
 $pre='';
 if (ISSET($_GET['mode'])) {
 	if ($_GET['mode']=='xls') {$md=1;}
-	else if ($_GET['mode']=='csv') {$md=2;}
-	else if ($_GET['mode']=='a') {$md=3;}
-	else if ($_GET['mode']=='show') {$md=0;}
+	elseif ($_GET['mode']=='csv') {$md=2;}
+	elseif ($_GET['mode']=='a') {$md=3;}
+	elseif ($_GET['mode']=='show') {$md=0;}
+	else {die('wrong qwery');}
 }
 if ($md==1) {
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
@@ -93,8 +94,10 @@ if ($md==0) {
 <BODY>
 <SCRIPT>
 function toXls(a){
+if (a>0) {
 	var dp='depart_'+a+'.xls';
 	location.href='rollback_man3.php?d='+a+'&out='+dp+'&me=self&mode=xls';
+}
 }
 </SCRIPT>
 <FORM>
