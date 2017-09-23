@@ -74,13 +74,13 @@ $ptmp="<label>Укажите раздел <select id=dps>";
 foreach($lines as $v) {
 	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
 	if ($i>0) {
-		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>';\r\n";
+		$ptmp=$ptmp."<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>";
 	} else {
-		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">".$mLable[$i]."</option>';\r\n";
+		$ptmp=$ptmp."<option value=".$mVal[$i].">".$mLable[$i]."</option>";
 	}
 	$i=$i+1;
 }
-$ptmp=$ptmp."vxtp=vxtp+'</select></label>';\r\n";
+$ptmp=$ptmp."</select></label>\r\n";
 echo $ptmp;
 ?>
 </FORM>
