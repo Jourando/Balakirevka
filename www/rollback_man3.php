@@ -124,7 +124,7 @@ if ($md==3) {
     header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.a'));
     header("Content-Transfer-Encoding: binary");
     for($i=0,$counti=count($array);$i<$counti;$i++){
-            $stmp=join($array[$i], "|");
+            $stmp=join('|', $array[$i]);
 			echo $stmp."\r\n";
     }
 exit;
