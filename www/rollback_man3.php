@@ -104,6 +104,7 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.csv'));
     header("Content-Transfer-Encoding: binary");
 	$handle = fopen('file.csv', w);
+	fwrite($handle, '1');
 	fclose($handle);
 }
 }
