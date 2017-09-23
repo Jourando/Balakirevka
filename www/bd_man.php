@@ -116,6 +116,26 @@ if ($_GET['act']=="W") {
 		echo "<script>\nlocation.href='bd_man.php?act=R&p=show&from=self';\n</script>\n";
 	}
 }
+if ($_GET['act']=="A") {
+	if ($_GET['p']=="rollback") {
+		if ($_GET['d']=="d0") {
+			$xfile="depart0000.a";
+			$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+			$i=0;
+			echo "<h3>Rollback archive</h3>";
+			echo "<label>Выбираем отдел <select id=dps Onchange='depMod=this.selectedIndex'>\r\n";
+			foreach($lines as $v) {
+				list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
+				if ($i>0) {$resStr[$i]="<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>\r\n";}
+				else {$resStr[$i]="<option value=".$mVal[$i].">".$mLable[$i]."</option>\r\n";}
+				echo $resStr[$i];
+				$i++;
+			}
+			echo "</select></label>\r\n";
+		}
+		
+	}
+}
 ?>
 <div>&nbsp;</div>
 </body>
