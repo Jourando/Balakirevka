@@ -19,8 +19,9 @@ function xlsWriteLabel($Row, $Col, $Value ) {
     return;
 }
 function chCode($inStr) {
-// return mb_convert_encoding($inStr,"UTF-8","Windows-1251");	
-mb_convert_encoding($inStr,"UTF-8","ASCII");
+return mb_convert_encoding($inStr,"Windows-1251","UTF-8");	
+// return mb_convert_encoding($inStr,"UTF-8, ASCII,JIS,UTF-8,EUC-JP,SJIS","ASCII");
+// iconv("UTF-8", "Windows-1251", $inStr);
 }
 include('flib.php');
 //где-то тут создаем массив $array[$i][$j] или читаем из файла (из базы данных), после чего начинаем формировать excel-файл
