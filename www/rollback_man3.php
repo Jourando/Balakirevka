@@ -103,15 +103,14 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     header("Content-Type: application/download");;
     header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.csv'));
     header("Content-Transfer-Encoding: binary");
-    for($i=0,$counti=count($array);$i<$counti;$i++){ //количество строк
-        for($j=0,$countj=count($array[$i]);$j<$countj;$j++){ //количество ячеек
+    for($i=0,$counti=count($array);$i<$counti;$i++){
+        for($j=0,$countj=count($array[$i]);$j<$countj;$j++){
             echo chCode($array[$i][$j]).";";
         }
 		echo " \r\n";
     }
 }
 exit;
-// header('Location: http://localhost/ redirec2t.php', true); // не пишется
 }
 if ($md==3) {
 	if (ISSET($_GET['out'])) {
