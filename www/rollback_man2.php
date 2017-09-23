@@ -65,7 +65,24 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 </HEAD>
 <BODY>
 <FORM>
-<H4>
+<H4></H4>
+<?
+$xfile="depart0000.a";
+$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$i=0;
+$ptmp="<label>Укажите раздел <select id=dps>";
+foreach($lines as $v) {
+	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
+	if ($i>0) {
+		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>';\r\n";
+	} else {
+		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">".$mLable[$i]."</option>';\r\n";
+	}
+	$i=$i+1;
+}
+$ptmp=$ptmp."vxtp=vxtp+'</select></label>';\r\n";
+echo $ptmp;
+?>
 </FORM>
 </BODY></HTML>
 <?
