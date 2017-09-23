@@ -19,11 +19,8 @@ function xlsWriteLabel($Row, $Col, $Value ) {
     return;
 }
 function chCode($inStr) {
-return mb_convert_encoding($inStr,"Windows-1251","UTF-8");	
-// return mb_convert_encoding($inStr,"UTF-8, ASCII,JIS,UTF-8,EUC-JP,SJIS","ASCII");
-// iconv("UTF-8", "Windows-1251", $inStr);
+	return mb_convert_encoding($inStr,"Windows-1251","UTF-8");
 }
-include('flib.php');
 //где-то тут создаем массив $array[$i][$j] или читаем из файла (из базы данных), после чего начинаем формировать excel-файл
 $pre='';
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
@@ -50,17 +47,14 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     header("Content-Type: application/download");;
     header("Content-Disposition: attachment;filename=list.xls");
     header("Content-Transfer-Encoding: binary");
- 
     xlsBOF(); //пишем начало файла
- 
     for($i=0,$counti=count($array);$i<$counti;$i++){ //количество строк
-        for($j=0,$countj=count($array[$i]);$j<$countj;$j++){ //количество ячеек    
+        for($j=0,$countj=count($array[$i]);$j<$countj;$j++){ //количество ячеек
+			// х
             xlsWriteLabel($i,$j, chCode($array[$i][$j])); 
-                        //в строку $i, в ячейку $j, записываем содержимое $array[$i][$j]
- 
+                        //в строку $i, в ячейку $j, записываем конвертированное в 1251 содержимое $array[$i][$j]
         }
     }
- 
     xlsEOF(); // закрываем файл
 }
 ?>
