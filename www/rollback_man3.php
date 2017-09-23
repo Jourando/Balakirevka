@@ -23,12 +23,13 @@ function chCode($inStr) {
 }
 //где-то тут создаем массив $array[$i][$j] или читаем из файла (из базы данных), после чего начинаем формировать excel-файл
 $pre='';
+$md=-1;
 if (ISSET($_GET['mode'])) {
 	if ($_GET['mode']=='xls') {$md=1;}
 	elseif ($_GET['mode']=='csv') {$md=2;}
 	elseif ($_GET['mode']=='a') {$md=3;}
 	elseif ($_GET['mode']=='show') {$md=0;}
-	else {die('wrong qwery');}
+	else {die('<pre>wrong qwery</pre>');}
 }
 if ($md==1) {
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
@@ -73,10 +74,51 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 }
 }
 if ($md==2) {
-	
+if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
+	if (ISSET($_GET['f'])) {
+		$fn=$pre.$_GET['f'];
+		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
+		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
+	} else {
+		$fn='depart'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT);
+		if ((ISSET($_GET['old'])) && (ISSET($_GET['back']))) {$pre='oldata/'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT).'/';}
+		else {$pre='';}
+		if (($pre !== '') && (ISSET($_GET['back']))) {
+			$fn=$pre.$fn.'['.str_pad($_GET['back'], 4, "0", STR_PAD_LEFT).']';
+		}
+		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
+		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
+	}
+	$ax = file($fn, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	for ($i=0; $i<count($ax); $i++) {
+		$array[$i]=explode("|", $ax[$i]);
+	}
+	if (ISSET($_GET['out'])) {
+			$filename=$_GET['out'];
+	} else {
+			$filename='';
+	}
+    header("Content-Type: application/force-download");
+    header("Content-Type: application/octet-stream");
+    header("Content-Type: application/download");;
+    header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.csv'));
+    header("Content-Transfer-Encoding: binary");
+	$handle = fopen('file.csv', w);
+	fclose($handle);
+}
 }
 if ($md==3) {
-	
+	if (ISSET($_GET['out'])) {
+			$filename=$_GET['out'];
+	} else {
+			$filename='';
+	}
+    header("Content-Type: application/force-download");
+    header("Content-Type: application/octet-stream");
+    header("Content-Type: application/download");;
+    header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.a'));
+    header("Content-Transfer-Encoding: binary");
+	echo "done";
 }
 if ($_GET['me']=='self') {
 ?>
@@ -99,9 +141,19 @@ if (a>0) {
 	location.href='rollback_man3.php?d='+a+'&out='+dp+'&me=self&mode=xls';
 }
 }
+function toCsv(a) {
+if (a>0) {
+	var dp='depart_'+a+'.csv';
+	location.href='rollback_man3.php?d='+a+'&out='+dp+'&me=self&mode=csv';
+}	
+}
+function toAbs(a) {
+	var dp='depart_'+a+'.a';
+	location.href='rollback_man3.php?d='+a+'&out='+dp+'&me=self&mode=a';
+}
 </SCRIPT>
 <FORM>
-<H4></H4>
+<H4>Экспорт</H4>
 <?
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -116,7 +168,7 @@ foreach($lines as $v) {
 	}
 	$i=$i+1;
 }
-$ptmp=$ptmp."</select> <input type=button value=toXLS OnClick='toXls(document.getElementById(\"dps\").selectedIndex)'><input type=button value=toCSV></label>\r\n";
+$ptmp=$ptmp."</select> <input type=button value=toXLS OnClick='toXls(document.getElementById(\"dps\").selectedIndex)'><input type=button value=toCSV OnClick='toCsv(document.getElementById(\"dps\").selectedIndex)'><input type=button value=toABS OnClick='toAbs(document.getElementById(\"dps\").selectedIndex)'></label>\r\n";
 echo $ptmp;
 include('toolmen.php');
 ?>
