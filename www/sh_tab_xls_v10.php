@@ -30,6 +30,7 @@ input[type=text] {resize:both;}
 .ctLayer {background: snow;}
 .visible {display: inline-block;}
 .invisible {display: none;}
+#unplug {display: block;}
 </style>
 <script>
 function insertAfter(elem, refElem) {

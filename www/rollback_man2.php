@@ -21,7 +21,6 @@ function xlsWriteLabel($Row, $Col, $Value ) {
 function chCode($inStr) {
 	return mb_convert_encoding($inStr,"Windows-1251","UTF-8");
 }
-
 //где-то тут создаем массив $array[$i][$j] или читаем из файла (из базы данных), после чего начинаем формировать excel-файл
 $pre='';
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
@@ -59,4 +58,16 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     }
     xlsEOF(); // закрываем файл
 }
+?>
+<HTML><HEAD>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
+<TITLE>XLS CONVERT / ROLLBACK</TITLE>
+</HEAD>
+<BODY>
+<FORM>
+<H4>
+</FORM>
+</BODY></HTML>
+<?
+$stf=0;
 ?>
