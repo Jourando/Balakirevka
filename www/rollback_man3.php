@@ -110,7 +110,8 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 		echo " \r\n";
     }
 }
-header('Location: http://localhost/ redirec2t.php', true);
+exit;
+// header('Location: http://localhost/ redirec2t.php', true); // не пишется
 }
 if ($md==3) {
 	if (ISSET($_GET['out'])) {
