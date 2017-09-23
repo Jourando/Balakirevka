@@ -1,5 +1,4 @@
 <?php
-
 function uchr ($codes) {
     if (is_scalar($codes)) $codes= func_get_args();
     $str= '';
