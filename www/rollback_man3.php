@@ -103,10 +103,7 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     header("Content-Type: application/download");;
     header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.csv'));
     header("Content-Transfer-Encoding: binary");
-	// фак мой мозг! вот это ересь!
-	$handle = fopen('file.csv', w);
-	fwrite($handle, '1');
-	fclose($handle);
+// .................
 }
 }
 if ($md==3) {
