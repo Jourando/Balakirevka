@@ -23,8 +23,7 @@ return mb_convert_encoding($inStr,"UTF-8","Windows-1251");
 }
 include('flib.php');
 //где-то тут создаем массив $array[$i][$j] или читаем из файла (из базы данных), после чего начинаем формировать excel-файл
-if ((ISSET($_GET['old'])) && (ISSET($_GET['back']))) {$pre='oldata/'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT).'/';}
-else {$pre='';}
+$pre='';
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 	if (ISSET($_GET['f'])) {
 		$fn=$pre.$_GET['f'];
@@ -32,8 +31,11 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
 	} else {
 		$fn='depart'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT);
+		if ((ISSET($_GET['old'])) && (ISSET($_GET['back']))) {$pre='oldata/'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT).'/';}
+		else {$pre='';}
 		if (($pre !== '') && (ISSET($_GET['back']))) {
 			$fn=$pre.$fn.'['.str_pad($_GET['back'], 4, "0", STR_PAD_LEFT).']';
+		}
 		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
 		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
 	}
