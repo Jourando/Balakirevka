@@ -113,6 +113,25 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 exit;
 }
 if ($md==3) {
+if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
+	if (ISSET($_GET['f'])) {
+		$fn=$pre.$_GET['f'];
+		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
+		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
+	} else {
+		$fn='depart'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT);
+		if ((ISSET($_GET['old'])) && (ISSET($_GET['back']))) {$pre='oldata/'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT).'/';}
+		else {$pre='';}
+		if (($pre !== '') && (ISSET($_GET['back']))) {
+			$fn=$pre.$fn.'['.str_pad($_GET['back'], 4, "0", STR_PAD_LEFT).']';
+		}
+		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
+		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
+	}
+	$ax = file($fn, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	for ($i=0; $i<count($ax); $i++) {
+		$array[$i]=explode("|", $ax[$i]);
+	}
 	if (ISSET($_GET['out'])) {
 			$filename=$_GET['out'];
 	} else {
@@ -125,16 +144,18 @@ if ($md==3) {
     header("Content-Transfer-Encoding: binary");
     for($i=0,$counti=count($array);$i<$counti;$i++){
 		for($j=0,$countj=count($array[$i]);$j<$countj;$j++){
-            if ($j<count($array[$i])) {
+            if ($j<count($array[$i])-1) {
 				echo $array[$i][$j]."|";
 			} else {
 				echo $array[$i][$j]."\r\n";
 			}
 		}
     }
+}
 exit;
 }
 if ($_GET['me']=='self') {
+	// не проще ли от Script избавиться?
 ?>
 <SCRIPT>
 location.href='rollback_man3.php?mode=show';
