@@ -212,4 +212,5 @@ include('toolmen.php');
 <?
 }
 $stf=0;
+// не объединить ли ф-ции toAbs, toXls, toCsv
 ?>
