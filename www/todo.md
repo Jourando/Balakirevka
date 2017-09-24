@@ -25,5 +25,3 @@ TODO:
 - http://yournet.kz/blog/php/phpexcel-formatirovanie-yacheek
 - http://www.codenet.ru/webmast/php/Excel.php
 - http://opennet.ru/base/dev/php_gen_excel.txt.html
-
-
