@@ -37,6 +37,8 @@ if (ISSET($_GET['mode'])) {
 	elseif ($_GET['mode']=='a') {$md=3;}
 	elseif ($_GET['mode']=='upl') {$md=4;}
 	elseif ($_GET['mode']=='load') {$md=5;}
+	elseif ($_GET['mode']=='die') {$md=6;}
+	elseif ($_GET['mode']=='insert') {$md=7;}
 	elseif ($_GET['mode']=='show') {$md=0;}
 	else {die('<pre>wrong qwery</pre>');}
 }
@@ -215,7 +217,7 @@ th {border: 1px solid #000; background: silver}
 		echo "<div>[".$r0." is ".((strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV')?$r1:$r2)."]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$_POST['RB1']."</div>";
 		if (strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV') {
 				$flines = file($r0);
-				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK> для выбора режима вставки данных</div><hr>";
+				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=insert&ft=".$r3."&fn=".$r0."&arg=2&r=2441\"'> для выбора режима вставки данных</div><hr>";
 				echo "<Table border=1>";
 ?>
 <tr>
@@ -240,10 +242,18 @@ th {border: 1px solid #000; background: silver}
 		}
 		include('toolmen.php');
     } else {
-        echo("<p>Ошибка загрузки файла<br>");
-		echo("[<a href='http://test2.ru/rollback_man3.php?mode=upl&r=2111'>Перейти обратно</a>]</p>");
+        echo("<p>Ошибка загрузки файла<br>[<a href='http://test2.ru/rollback_man3.php?mode=upl&r=2111'>Перейти обратно</a>]</p>");
     }
 		echo "</BODY></HTML>";
+}
+if ($md==6) {
+	echo "<PRE>Please, choose one:
+- <a href=http://test2.ru/rollback_man3.php?mode=show>Export</a>
+- <a href=http://test2.ru/rollback_man3.php?mode=upl&r=9879890709>Import</a></PRE>";
+	include('toolmen.php');
+}
+if ($md==7) {
+	
 }
 if ($md==0) {
 ?>
