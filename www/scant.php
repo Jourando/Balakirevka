@@ -4,18 +4,18 @@ function getExtension($filename) {
 return substr($filename, strrpos($filename, '.') + 1);
 }
 function renameDirAndFile($patch) {
-echo "<h5>".$patch."</h5>";
+echo "<h4>".$patch."</h4>";
 $handle = opendir($patch);
 while(($file = readdir($handle))) {
 	if (is_file($patch. DIRECTORY_SEPARATOR .$file)) {
 		if ($_POST['ftype']!='') {
 			// echo strtoupper(getExtension($file))." ::: ".strtoupper($_POST['ftype'])."<br>";
 			if (strtoupper(getExtension($file))==strtoupper($_POST['ftype'])) {
-				echo $patch. DIRECTORY_SEPARATOR .$file;
+				echo "<h5>Scan ".$patch. DIRECTORY_SEPARATOR .$file."</h5>";
 				$lines=file($patch. DIRECTORY_SEPARATOR .$file);
 				for ($i=0; $i<count($lines); $i++) {
 					if (strrpos($lines[$i], $_POST['SearchStr'])) {
-						echo "line ".$i." in ".$patch. DIRECTORY_SEPARATOR .$file.": ".$_POST['SearchStr']." found<br>";
+						echo ">><span style='color: red'>line ".$i." in ".$patch. DIRECTORY_SEPARATOR .$file."</span>: ".$_POST['SearchStr']." found<br>";
 					}
 				}
 				echo "<hr>";
