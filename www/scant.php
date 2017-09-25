@@ -28,7 +28,8 @@ while(($file = readdir($handle))) {
 		renameDirAndFile($patch. DIRECTORY_SEPARATOR .$file);  // Обходим вложенный каталог
     }
 }
-closedir($handle); 
+closedir($handle);
+include "toolmen.php"; 
 }	
 
 if ((!ISSET($_POST['SearchStr'])) || (trim($_POST['SearchStr'])=='')) {
@@ -36,18 +37,19 @@ if ((!ISSET($_POST['SearchStr'])) || (trim($_POST['SearchStr'])=='')) {
 <HTML>
 <HEAD><TITLE>SCAN</TITLE></HEAD>
 <BODY>
+<h3>fast text scan</h3>
 <FORM action="" method=post>
 	<input type=text name=SearchStr value=""> String<br>
 	<input type=text name=ftype value="php"> FileType<br>
 	<input type=text name=Dir value=""> Folder<br>
 	<input type=submit value=Scan>
 </FORM>
+<? include "toolmen.php"; ?>
 </BODY>
 </HTML>
 <?
 } else {
 	$cur_dir = __DIR__;
 	renameDirAndFile($cur_dir);
-	// В качестве аргумента передаем путь(имя) до папки.
 }
 ?>
