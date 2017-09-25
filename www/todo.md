@@ -25,3 +25,5 @@ TODO:
 - http://yournet.kz/blog/php/phpexcel-formatirovanie-yacheek
 - http://www.codenet.ru/webmast/php/Excel.php
 - http://opennet.ru/base/dev/php_gen_excel.txt.html
+
+Время и дату разбить на 2 колонки. Сделать проверку на мероприятия а) совпадающие по дате б) совпадающие по дате и времени в) совпадающие по дате, времени и месту
