@@ -176,15 +176,9 @@ td {border: 1px solid #ccc}
 </style>
 </HEAD>
 <BODY>
-<script>
-function fnc() {
-var el=document.getElementByTagName['form'][0];
-el.action='x?ffffff';
-}
-</script>
 <h2>Форма для загрузки csv</h2>
 <form action="rollback_man3.php?mode=load&r=2240" method="post" enctype="multipart/form-data">
-<Table border=0><tr><td><label>Для выбора файла нажмите <input type="file" name="filename"> <input type="submit" value="Upload CSV" OnSubmit='fnc()'></label></td></tr>
+<Table border=0><tr><td><label>Для выбора файла нажмите <input type="file" name="filename"> <input type="submit" value="Upload CSV"></label></td></tr>
 <tr><td><label><input type=radio checked=true name=RB1 value=Windows>WINDOWS</label><br><label><input type=radio name=RB1 value=Dos>DOS</label></td></tr>
 <tr><td><h5>поддерживается только csv-формат!</h5></td></tr></Table>
 </form>
@@ -253,7 +247,26 @@ if ($md==6) {
 	include('toolmen.php');
 }
 if ($md==7) {
-	
+echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>";
+echo "</HEAD><BODY>";
+$xfile="depart0000.a";
+$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$i=0;
+$ptmp="<h5>".$_GET['fn']."</h5><label>Укажите раздел, куда направить данные <select id=dps>";
+foreach($lines as $v) {
+	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
+	if ($i>0) {
+		$ptmp=$ptmp."<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>";
+	} else {
+		$ptmp=$ptmp."<option value=".$mVal[$i].">".$mLable[$i]."</option>";
+	}
+	$i=$i+1;
+}
+$ptmp=$ptmp."</select>&nbsp;&nbsp;&nbsp;";
+echo $ptmp;
+$ptmp="<select id=dfs><option value=1>Добавить в начало</option><option value=2>Заменить существующие</option><option value=3>Добавить в конец</option></select>&nbsp;&nbsp;&nbsp;";
+$ptmp=$ptmp."<input type=button value='Направить в таблицу'> <input type=button value='Отказаться'>";
+echo $ptmp;
 }
 if ($md==0) {
 ?>
