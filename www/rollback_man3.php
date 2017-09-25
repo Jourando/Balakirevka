@@ -18,8 +18,14 @@ function xlsWriteLabel($Row, $Col, $Value ) {
     echo $Value;
     return;
 }
-function chCode($inStr) {
+function chCode1($inStr) {
 	return mb_convert_encoding($inStr,"Windows-1251","UTF-8");
+}
+function chCode2($inStr) {
+	return mb_convert_encoding($inStr,"UTF-8","ASCII");
+}
+function chCode3($inStr) {
+	return mb_convert_encoding($inStr,"UTF-8","Windows-1251");
 }
 //где-то тут создаем массив $array[$i][$j] или читаем из файла (из базы данных), после чего начинаем формировать excel-файл
 $pre='';
@@ -29,6 +35,7 @@ if (ISSET($_GET['mode'])) {
 	elseif ($_GET['mode']=='csv') {$md=2;}
 	elseif ($_GET['mode']=='a') {$md=3;}
 	elseif ($_GET['mode']=='upl') {$md=4;}
+	elseif ($_GET['mode']=='load') {$md=5;}
 	elseif ($_GET['mode']=='show') {$md=0;}
 	else {die('<pre>wrong qwery</pre>');}
 }
@@ -67,7 +74,7 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
         for($j=0,$countj=count($array[$i]);$j<$countj;$j++){ //количество ячеек
 			// если колонка = [список колонок, которые отдаются как числовые], то xlsWriteNumber
 			// иначе...
-            xlsWriteLabel($i,$j, chCode($array[$i][$j])); 
+            xlsWriteLabel($i,$j, chCode1($array[$i][$j])); 
 			//в строку $i, в ячейку $j, записываем конвертированное в 1251 содержимое $array[$i][$j]
         }
     }
@@ -106,7 +113,7 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     header("Content-Transfer-Encoding: binary");
     for($i=0,$counti=count($array);$i<$counti;$i++){
         for($j=0,$countj=count($array[$i]);$j<$countj;$j++){
-            echo chCode($array[$i][$j]).";";
+            echo chCode1($array[$i][$j]).";";
         }
 		echo " \r\n";
     }
@@ -156,7 +163,20 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 exit;
 }
 if ($md==4) {
-	// импорт
+	// импорт 
+?>
+<HTML><HEAD>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
+<TITLE>XLS CONVERT / ROLLBACK</TITLE>
+</HEAD>
+<BODY>
+<h2>Форма для загрузки csv</h2>
+<form action="rollback_man3.php?mode=load&r=2240" method="post" enctype="multipart/form-data">
+<input type="file" name="filename"><br><input type="submit" value="Upload CSV"><br><h5>поддерживается только csv-формат!</h5>
+</form>
+<? include('toolmen.php'); ?>
+</BODY></HTML>
+<?
 }
 if ($_GET['me']=='self') {
 ?>
@@ -164,6 +184,38 @@ if ($_GET['me']=='self') {
 location.href='rollback_man3.php?mode=show';
 </SCRIPT>
 <?
+}
+if ($md==5) {
+	$r0=$_FILES["filename"]["name"];
+	$r1 = 'valid csv-file';
+	$r2 = 'invalid csv-file';
+    if(is_uploaded_file($_FILES["filename"]["tmp_name"])) {
+        // Если файл загружен успешно, перемещаем его из временной директории в конечную
+        move_uploaded_file($_FILES["filename"]["tmp_name"], __DIR__ . DIRECTORY_SEPARATOR . $_FILES["filename"]["name"]);
+		echo $r0." is ".((strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV')?$r1:$r2);
+		if (strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV') {
+				$flines = file($r0);
+				echo "<Table>";
+				for($i=0; $i<count($flines); $i++){
+					$array[$i]=explode(";", $flines[$i]);
+					echo "<tr>";
+					// echo "<td>";
+					// echo join("</td><td>", $array[$i]);
+					// echo "</td>";
+					// var_dump $array[$i];
+					print_r ($array[$i]);
+					for ($j=0; $j<count($array[$i]); $j++) {
+						echo "<td>".chCode3($array[$i][$j])."</td>";
+						echo "<td>".$array[$i][$j]."</td>";
+					}
+					echo "</tr>";
+				}
+				echo "</Table>";
+		}
+		include('toolmen.php');
+    } else {
+        echo("Ошибка загрузки файла");
+    }	
 }
 if ($md==0) {
 ?>
