@@ -84,10 +84,7 @@ if (($_GET['act']=="R") || ($_GET['act']=="W") || ($_GET['act']=="D")) {
 	echo '</body></html>';
 }
 if ($_GET['act']=="C") {
-	include 'flib.php';
 	if (isset($_GET['d'], $_GET['u'], $_GET['p'])) {
-		// $new_u=uchr($_GET['u']);
-		// $new_p=uchr($_GET['p']);
 		$new_u=urldecode($_GET['u']);
 		$new_p=urldecode($_GET['p']);
 		$new_d=$_GET['d'];
