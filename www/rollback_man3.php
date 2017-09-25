@@ -168,11 +168,22 @@ if ($md==4) {
 <HTML><HEAD>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
 <TITLE>XLS CONVERT / ROLLBACK</TITLE>
+<style>
+td {border: 1px solid #ccc}
+</style>
 </HEAD>
 <BODY>
+<script>
+function fnc() {
+var el=document.getElementByTagName['form'][0];
+el.action='x?ffffff';
+}
+</script>
 <h2>Форма для загрузки csv</h2>
 <form action="rollback_man3.php?mode=load&r=2240" method="post" enctype="multipart/form-data">
-<input type="file" name="filename"><br><input type="submit" value="Upload CSV"><br><h5>поддерживается только csv-формат!</h5>
+<Table border=0><tr><td><label>Для выбора файла нажмите <input type="file" name="filename"> <input type="submit" value="Upload CSV" OnSubmit='fnc()'></label></td></tr>
+<tr><td><label><input type=radio checked=true name=RB1 value=Windows>WINDOWS</label><br><label><input type=radio name=RB1 value=Dos>DOS</label></td></tr>
+<tr><td><h5>поддерживается только csv-формат!</h5></td></tr></Table>
 </form>
 <? include('toolmen.php'); ?>
 </BODY></HTML>
@@ -186,27 +197,41 @@ location.href='rollback_man3.php?mode=show';
 <?
 }
 if ($md==5) {
+	echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>";
+?>
+<Style>
+th {border: 1px solid #000; background: silver}
+</Style>
+<?
+	echo "</HEAD><BODY>";
 	$r0=$_FILES["filename"]["name"];
 	$r1 = 'valid csv-file';
 	$r2 = 'invalid csv-file';
+	$r3 = strtoupper($_POST['RB1']);	
     if(is_uploaded_file($_FILES["filename"]["tmp_name"])) {
         // Если файл загружен успешно, перемещаем его из временной директории в конечную
         move_uploaded_file($_FILES["filename"]["tmp_name"], __DIR__ . DIRECTORY_SEPARATOR . $_FILES["filename"]["name"]);
-		echo $r0." is ".((strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV')?$r1:$r2);
+		echo "<div>[".$r0." is ".((strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV')?$r1:$r2)."]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$_POST['RB1']."</div>";
 		if (strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV') {
 				$flines = file($r0);
-				echo "<Table>";
+				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK> для выбора режима вставки данных</div><hr>";
+				echo "<Table border=1>";
+?>
+<tr>
+	<th rowspan=2>номер</th><th rowspan=2>дата</th><th rowspan=2>вид деятельности</th><th colspan=3>мероприятие</th><th rowspan=2>место проведения</th><th colspan=4>охват</th><th colspan=3>проводящие</th><th rowspan=2>организационно-<br>финансовое</th><th rowspan=2>доп.<br>информация</th>
+</tr><tr>
+	<th>тип</th><th>внутренние/сторонние</th><th>название</th><th>тип</th><th>целевая аудитория</th><th>зрители</th><th>выступающие/участники</th><th>отделение</th><th>нач.отделения</th><th>ответственный</th>
+</tr>
+<?
 				for($i=0; $i<count($flines); $i++){
 					$array[$i]=explode(";", $flines[$i]);
 					echo "<tr>";
-					// echo "<td>";
-					// echo join("</td><td>", $array[$i]);
-					// echo "</td>";
-					// var_dump $array[$i];
-					print_r ($array[$i]);
-					for ($j=0; $j<count($array[$i]); $j++) {
-						echo "<td>".chCode3($array[$i][$j])."</td>";
-						echo "<td>".$array[$i][$j]."</td>";
+					for ($j=0; $j<count($array[$i])-1; $j++) {
+						if ($r3=='WINDOWS') {
+							echo "<td>".chCode3($array[$i][$j])."</td>";
+						} else {
+							echo "<td>".chCode2($array[$i][$j])."</td>";
+						}
 					}
 					echo "</tr>";
 				}
@@ -214,8 +239,10 @@ if ($md==5) {
 		}
 		include('toolmen.php');
     } else {
-        echo("Ошибка загрузки файла");
-    }	
+        echo("<p>Ошибка загрузки файла<br>");
+		echo("[<a href='http://test2.ru/rollback_man3.php?mode=upl&r=2111'>Перейти обратно</a>]</p>");
+    }
+		echo "</BODY></HTML>";
 }
 if ($md==0) {
 ?>
