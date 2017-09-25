@@ -5,6 +5,3 @@
 - http://www.codenet.ru/webmast/php/Excel.php
 - http://opennet.ru/base/dev/php_gen_excel.txt.html
 
-/////
-/////
-Balakirevka/www/data.txt
