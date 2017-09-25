@@ -1,5 +1,5 @@
 ﻿<?php
-// v.10.a.1::about revision
+// v.10.a.1::auth revision
 $ResStr="";
 $xFrom="";
 // ввести парам. from...

