@@ -1,4 +1,5 @@
 <?php
+// v.10.a.1::about revision
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Expires: " . date("r"));
 $tmp1=$_POST['param'];

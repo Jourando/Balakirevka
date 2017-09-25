@@ -1,4 +1,5 @@
 ﻿<?php
+// v.10.a.1::about revision
 $retr=false;
 $dir = __DIR__;
 $flag=1;
@@ -118,7 +119,7 @@ if ($_GET['act']=="W") {
 }
 if ($_GET['act']=="A") {
 	if ($_GET['p']=="rollback") {
-		if ($_GET['d']=="d0") {
+//		if ($_GET['d']=="d0") {
 			$xfile="depart0000.a";
 			$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 			$i=0;
@@ -132,8 +133,8 @@ if ($_GET['act']=="A") {
 				$i++;
 			}
 			echo "</select></label>\r\n";
-		}
-		
+//		}
+		echo "<div></div>\r\n";	
 	}
 }
 ?>
