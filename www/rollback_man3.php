@@ -25,7 +25,7 @@ function chCode2($inStr) {
 	return mb_convert_encoding($inStr,"UTF-8","ASCII");
 }
 function chCode3($inStr) {
-	return mb_convert_encoding($inStr,"UTF-8","Windows-1251");
+	return mb_convert_encoding($inStr,"UTF-8", "Windows-1251");
 }
 //где-то тут создаем массив $array[$i][$j] или читаем из файла (из базы данных), после чего начинаем формировать excel-файл
 $pre='';
