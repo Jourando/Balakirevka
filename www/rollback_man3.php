@@ -28,6 +28,7 @@ if (ISSET($_GET['mode'])) {
 	if ($_GET['mode']=='xls') {$md=1;}
 	elseif ($_GET['mode']=='csv') {$md=2;}
 	elseif ($_GET['mode']=='a') {$md=3;}
+	elseif ($_GET['mode']=='upl') {$md=4;}
 	elseif ($_GET['mode']=='show') {$md=0;}
 	else {die('<pre>wrong qwery</pre>');}
 }
@@ -154,8 +155,10 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 }
 exit;
 }
+if ($md==4) {
+	// импорт
+}
 if ($_GET['me']=='self') {
-	// не проще ли от Script избавиться?
 ?>
 <SCRIPT>
 location.href='rollback_man3.php?mode=show';
