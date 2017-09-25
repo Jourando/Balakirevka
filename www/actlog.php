@@ -2,7 +2,7 @@
 // v.10.a.0::log revision
 $mc=0;
 // формат: Время, юзер, с какой стр., c какого объекта, какое действие, тип, успех или код ошибки
-// формат: Ф-ция, имя переменной, знач. переменной
+// формат: Ф-ция, имя переменной, знач. переменной 
 $a="";
 $xfile = 'actlog.txt';
 $usr = 'guest';
@@ -49,7 +49,7 @@ if ($_GET['act']=='VARL') {
 	if (ISSET($_GET['v2'])) {
 		$u_val = $_GET['v2'];
 	}
-	$a = "{variable ".$u_var."=".$u_val." --- from function ".$fnc."}\r\n";
+	$a = "{variable ".$u_var."=".$u_val." -- from function ".$fnc."}\r\n";
 }
 $handle = fopen($xfile, 'a');
 fwrite($handle, $a);
