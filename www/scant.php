@@ -3,18 +3,19 @@
 function getExtension($filename) {
 return substr($filename, strrpos($filename, '.') + 1);
 }
-function renameDirAndFile ($patch) {
+function renameDirAndFile($patch) {
+echo "<h5>".$patch."</h5>";
 $handle = opendir($patch);
 while(($file = readdir($handle))) {
-	if (is_file($patch."/".$file)) {
+	if (is_file($patch. DIRECTORY_SEPARATOR .$file)) {
 		if ($_POST['ftype']!='') {
-		// Выводим старое имя файла,  Переименовываем выводим новое
+			// echo strtoupper(getExtension($file))." ::: ".strtoupper($_POST['ftype'])."<br>";
 			if (strtoupper(getExtension($file))==strtoupper($_POST['ftype'])) {
-				echo $patch."/".$file;
-				$lines=file($patch."/".$file);
+				echo $patch. DIRECTORY_SEPARATOR .$file;
+				$lines=file($patch. DIRECTORY_SEPARATOR .$file);
 				for ($i=0; $i<count($lines); $i++) {
 					if (strrpos($lines[$i], $_POST['SearchStr'])) {
-						echo "line ".$i." in ".$patch."/".$file.": ".$_POST['SearchStr']." found<br>";
+						echo "line ".$i." in ".$patch. DIRECTORY_SEPARATOR .$file.": ".$_POST['SearchStr']." found<br>";
 					}
 				}
 				echo "<hr>";
@@ -22,9 +23,9 @@ while(($file = readdir($handle))) {
 		}
 					
     }
-    if (is_dir($patch."/".$file) && ($file != ".") && ($file != "..")) {
+    if (is_dir($patch. DIRECTORY_SEPARATOR .$file) && ($file != ".") && ($file != "..")) {
 		/* рекусрсивно проходим по директории */
-		renameDirAndFile($patch."/".$file);  // Обходим вложенный каталог
+		renameDirAndFile($patch. DIRECTORY_SEPARATOR .$file);  // Обходим вложенный каталог
     }
 }
 closedir($handle); 
@@ -35,9 +36,9 @@ if ((!ISSET($_POST['SearchStr'])) || (trim($_POST['SearchStr'])=='')) {
 <HTML>
 <HEAD><TITLE>SCAN</TITLE></HEAD>
 <BODY>
-<FORM action=test8.php?g=x method=post>
+<FORM action="" method=post>
 	<input type=text name=SearchStr value=""> String<br>
-	<input type=text name=ftype value="*.php"> FileType<br>
+	<input type=text name=ftype value="php"> FileType<br>
 	<input type=text name=Dir value=""> Folder<br>
 	<input type=submit value=Scan>
 </FORM>
@@ -45,7 +46,8 @@ if ((!ISSET($_POST['SearchStr'])) || (trim($_POST['SearchStr'])=='')) {
 </HTML>
 <?
 } else {
-renameDirAndFile(".");
-// В качестве аргумента передаем путь(имя) до папки.
+	$cur_dir = __DIR__;
+	renameDirAndFile($cur_dir);
+	// В качестве аргумента передаем путь(имя) до папки.
 }
 ?>
