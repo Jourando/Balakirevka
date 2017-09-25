@@ -195,23 +195,54 @@ location.href='rollback_man3.php?mode=show';
 }
 if ($md==5) {
 	echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>";
+	$r0=$_FILES["filename"]["name"];
+	$r1 = 'valid csv-file';
+	$r2 = 'invalid csv-file';
+	$r3 = strtoupper($_POST['RB1']);
 ?>
 <Style>
 th {border: 1px solid #000; background: silver}
 </Style>
+<Script>
+function genlnk() {
 <?
-	echo "</HEAD><BODY>";
-	$r0=$_FILES["filename"]["name"];
-	$r1 = 'valid csv-file';
-	$r2 = 'invalid csv-file';
-	$r3 = strtoupper($_POST['RB1']);	
+echo "var a1='".$r3."'; // Dos|Win\r\n";
+echo "var a2='".$r0."'; // filename\r\n";
+echo "var a3='2'; // args\r\n";
+echo "var a4=document.getElementById('dps').selectedIndex; // раздел\r\n";
+echo "var a5=document.getElementById('dfs').selectedIndex; // способ\r\n";
+echo "a1='/test2.ru/rollback_man3.php?mode=insert&ft='+a1;\r\n";
+echo "a2=a1+'&fn='+a2+'&arg='+a3+'&dp='+a4+'&method='+a5+'&r=928762';\r\n";
+?>
+location.href='http:/'+a2+"'";	
+}
+</Script>
+<?
+	echo "</HEAD><BODY>";	
     if(is_uploaded_file($_FILES["filename"]["tmp_name"])) {
         // Если файл загружен успешно, перемещаем его из временной директории в конечную
         move_uploaded_file($_FILES["filename"]["tmp_name"], __DIR__ . DIRECTORY_SEPARATOR . $_FILES["filename"]["name"]);
 		echo "<div>[".$r0." is ".((strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV')?$r1:$r2)."]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$_POST['RB1']."</div>";
 		if (strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV') {
 				$flines = file($r0);
-				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=insert&ft=".$r3."&fn=".$r0."&arg=2&r=2441\"'> для выбора режима вставки данных</div><hr>";
+				$xfile="depart0000.a";
+				$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+				$i=0;
+				$ptmp="<label>Укажите раздел, куда направить данные <select id=dps>";
+				foreach($lines as $v) {
+					list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
+					if ($i>0) {
+						$ptmp=$ptmp."<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>";
+					} else {
+						$ptmp=$ptmp."<option value=".$mVal[$i].">".$mLable[$i]."</option>";
+					}
+					$i=$i+1;
+				}
+				$ptmp=$ptmp."</select>&nbsp;&nbsp;&nbsp;";
+				echo $ptmp;
+				$ptmp="<select id=dfs><option value=1>Добавить в начало</option><option value=2>Заменить существующие</option><option value=3>Добавить в конец</option></select>";
+				echo $ptmp;
+				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK Onclick='genlnk()'> для выбора режима вставки данных</div><hr>";
 				echo "<Table border=1>";
 ?>
 <tr>
@@ -249,24 +280,10 @@ if ($md==6) {
 if ($md==7) {
 echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>";
 echo "</HEAD><BODY>";
-$xfile="depart0000.a";
-$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-$i=0;
-$ptmp="<h5>".$_GET['fn']."</h5><label>Укажите раздел, куда направить данные <select id=dps>";
-foreach($lines as $v) {
-	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
-	if ($i>0) {
-		$ptmp=$ptmp."<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>";
-	} else {
-		$ptmp=$ptmp."<option value=".$mVal[$i].">".$mLable[$i]."</option>";
-	}
-	$i=$i+1;
-}
-$ptmp=$ptmp."</select>&nbsp;&nbsp;&nbsp;";
-echo $ptmp;
-$ptmp="<select id=dfs><option value=1>Добавить в начало</option><option value=2>Заменить существующие</option><option value=3>Добавить в конец</option></select>&nbsp;&nbsp;&nbsp;";
-$ptmp=$ptmp."<input type=button value='Направить в таблицу'> <input type=button value='Отказаться'>";
-echo $ptmp;
+echo "<hr><hr><hr>";
+	// теперь здесь разделать csv, согласно выбранному режиму и методам
+	// вернуться в меню
+echo "</BODY></HTML>";
 }
 if ($md==0) {
 ?>
