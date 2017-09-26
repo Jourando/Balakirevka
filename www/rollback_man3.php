@@ -194,12 +194,12 @@ location.href='rollback_man3.php?mode=show';
 <?
 }
 if ($md==5) {
-	echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>";
 	$r0=$_FILES["filename"]["name"];
 	$r1 = 'valid csv-file';
 	$r2 = 'invalid csv-file';
 	$r3 = strtoupper($_POST['RB1']);
 ?>
+<HTML><HEAD><meta charset="utf-8"><TITLE>Parse CSV</TITLE>
 <Style>
 th {border: 1px solid #000; background: silver}
 </Style>
@@ -217,8 +217,8 @@ echo "a2=a1+'&fn='+a2+'&arg='+a3+'&dp='+a4+'&method='+a5+'&r=928762';\r\n";
 location.href='http:/'+a2+"'";	
 }
 </Script>
-<?
-	echo "</HEAD><BODY>";	
+</HEAD><BODY>
+<?	
     if(is_uploaded_file($_FILES["filename"]["tmp_name"])) {
         // Если файл загружен успешно, перемещаем его из временной директории в конечную
         move_uploaded_file($_FILES["filename"]["tmp_name"], __DIR__ . DIRECTORY_SEPARATOR . $_FILES["filename"]["name"]);
@@ -290,11 +290,8 @@ $f=scandir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT));
 $j=count($f)-1;
 $newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
 copy($xfile, $newfile);
-// теперь здесь разделать csv, согласно выбранному режиму и методам
-// вернуться в меню
 $newfile=$_GET['fn'];
 if (file_exists($newfile)) {
-	// придется еще учитывать режимы Dos/Win
 	$lines1=file($newfile);
 	$lines2=file($xfile);
 	(strtoupper($_GET['ft'])=='DOS'?$chtype='2':$chtype='3');
@@ -313,19 +310,35 @@ if (file_exists($newfile)) {
 	for ($i=0; $i<count($lines2); $i++) {
 		list($n2[$i], $date2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $fin2[$i], $adInfo2[$i]) = explode(";", $lines2[$i]);
 	}
-
 	// здесь надо разбивать массив lines1, полученный из csv, не автоматом в другой абстрактный массив, а через list, чтобы отсечь, если в csv были лишние поля или их не хватало
 	// вар.2 - используем array_splice($inputArray, 16); - убить все элементы массива, после 16 позиции
 	// +проверка, если массив короче, то наоборот увеличиваем массив:  array_fill (0, 16-count($inputArray), " "); - дополнить нехватающую длину, забив ячейки пробелами
+	$handle=fopen($xfile, 'w');
 	if ($method=="1") {
-		echo "добавить в начало"; // порядок склеивания!
+		echo "<!-- добавить в начало -->";
+		for ($i; $i<count($lines1); $i++) {
+			fwrite($handle, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
+		}
+		for ($i; $i<count($lines2); $i++) {
+			fwrite($handle, " ".trim($n2[$i])."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
+		}
 	} elseif ($method=="2") {
-		echo "заменить";
+		echo "<!-- заменить -->";
+		for ($i; $i<count($lines1); $i++) {
+			fwrite($handle, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
+		}
 	} elseif ($method=="3") {
-		echo "добавить в конец";
+		echo "<!-- добавить в конец -->";
+		for ($i; $i<count($lines2); $i++) {
+			fwrite($handle, " ".trim($n2[$i])."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
+		}
+		for ($i; $i<count($lines1); $i++) {
+			fwrite($handle, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
+		}
 	} else {
-		echo "игнорить, ибо ".$method;
-	}	
+		echo "<!-- игнорить, ибо ".$method." -->";
+	}
+	fclose($handle);
 }
 	// удалить временный файл, загружаемый на сервер
 echo "</BODY></HTML>";
