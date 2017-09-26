@@ -297,11 +297,28 @@ if (file_exists($newfile)) {
 	// придется еще учитывать режимы Dos/Win
 	$lines1=file($newfile);
 	$lines2=file($xfile);
+	(strtoupper($_GET['ft'])=='DOS'?$chtype='2':$chtype='3');
+	for ($i=0; $i<count(lines1); $i++) {
+		if ($chtype==2) {
+			$lines1[$i]=chCode2($lines1[$i]);
+		} elseif ($chtype==3) {
+			$lines1[$i]=chCode3($lines1[$i]);
+		} else {
+			echo 'ERROR CHARSET';
+		}
+	}
+	for ($i=0; $i<count($lines1); $i++) {
+		list($n[], $date[], $vd[], $acType[], $acOwner[], $acName[], $acPlace[], $oType[], $oAud[], $oSeer[], $oPrt[], $hostDep[], $hostHead[], $hostLd[], $fin[], $adInfo[]) = explode(";", $lines1[$i]);
+	}
+	for ($i=0; $i<count($lines2); $i++) {
+		list($n[], $date[], $vd[], $acType[], $acOwner[], $acName[], $acPlace[], $oType[], $oAud[], $oSeer[], $oPrt[], $hostDep[], $hostHead[], $hostLd[], $fin[], $adInfo[]) = explode(";", $lines2[$i]);
+	}
+
 	// здесь надо разбивать массив lines1, полученный из csv, не автоматом в другой абстрактный массив, а через list, чтобы отсечь, если в csv были лишние поля или их не хватало
 	// вар.2 - используем array_splice($inputArray, 16); - убить все элементы массива, после 16 позиции
 	// +проверка, если массив короче, то наоборот увеличиваем массив:  array_fill (0, 16-count($inputArray), " "); - дополнить нехватающую длину, забив ячейки пробелами
 	if ($method=="1") {
-		echo "добавить в начало";
+		echo "добавить в начало"; // порядок склеивания!
 	} elseif ($method=="2") {
 		echo "заменить";
 	} elseif ($method=="3") {
