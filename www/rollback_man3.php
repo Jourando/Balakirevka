@@ -281,8 +281,6 @@ if ($md==6) {
 if ($md==7) {
 echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>";
 echo "</HEAD><BODY>";
-echo "<div id=status>Status: <span id=curSt>Чтение csv</span>; Current mode: <span id=cm1>hold</span></div><hr>";
-// скопировать старый *.а в олд
 $d=$_GET['dp'];
 $method=$_GET['method'];
 $xfile = 'depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'.a';
@@ -291,12 +289,6 @@ $f=scandir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT));
 $j=count($f)-1;
 $newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
 copy($xfile, $newfile);
-?>
-<SCRIPT>
-el=document.getElementById('status');
-el.innerHTML=el.innerHTML+'<br>Копирование <? echo $xfile." в ".$newfile; ?> ; <span id=cm2>dp = <? echo $d ?>, method = <? echo $method ?></span>';
-</SCRIPT>
-<?
 $newfile=$_GET['fn'];
 if (file_exists($newfile)) {
 	$lines1=file($newfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -310,14 +302,7 @@ if (file_exists($newfile)) {
 		} else {
 			echo 'ERROR CHARSET';
 		}
-	print_r($lines1[$i]); // 4 test
-	echo "<hr>";
 	}
-?>
-<SCRIPT>
-el.innerHTML=el.innerHTML+'<br>Чтение <? echo $newfile." и ".$xfile ?> в массив; <span id=cm3>CharType определен как = <? echo $chtype ?></span>';
-</SCRIPT>
-<?
 	for ($i=0; $i<count($lines1); $i++) {
 		list($n1[$i], $date1[$i], $vd1[$i], $acType1[$i], $acOwner1[$i], $acName1[$i], $acPlace1[$i], $oType1[$i], $oAud1[$i], $oSeer1[$i], $oPrt1[$i], $hostDep1[$i], $hostHead1[$i], $hostLd1[$i], $fin1[$i], $adInfo1[$i]) = explode(";", $lines1[$i]);
 	}
@@ -352,7 +337,7 @@ el.innerHTML=el.innerHTML+'<br>Чтение <? echo $newfile." и ".$xfile ?> в
 	}
 	fclose($hnd);
 	usleep(100);
-	unlink($newfile); // удалить временный файл, загружаемый на сервер
+	unlink($newfile);
 }
 echo "</BODY></HTML>";
 }
