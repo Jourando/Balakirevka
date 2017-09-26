@@ -25,5 +25,5 @@ if ((!ISSET($_POST['log'])) || (!ISSET($_POST['dep'])) || (ISSET($_POST['relog']
 	}
 	echo $str1.$str2;
 }
-echo "<hr><h6>adm tools</h6></body></html>";
+echo "<hr><h6>adm tools</h6>\r\n</body></html>";
 ?>
