@@ -206,16 +206,20 @@ th {border: 1px solid #000; background: silver}
 <Script>
 function genlnk() {
 // dp = раздел, method = метод вставки (до/вместо/после), ft = тип кодировки файла (dos/win)
+if ((document.getElementById('dps').selectedIndex==0) || (document.getElementById('dfs').selectedIndex==0)) {
+		alert('Заполнены не все поля! Укажите раздел и метод вставки данных!');
+} else {
 <?
 echo "var a1='".$r3."';\r\n";
 echo "var a2='".$r0."';\r\n";
 echo "var a3='2';\r\n";
 echo "var a4=document.getElementById('dps').selectedIndex;\r\n";
-echo "var a5=document.getElementById('dfs').selectedIndex+1;\r\n";
+echo "var a5=document.getElementById('dfs').selectedIndex;\r\n";
 echo "a1='/test2.ru/rollback_man3.php?mode=insert&ft='+a1;\r\n";
 echo "a2=a1+'&fn='+a2+'&arg='+a3+'&dp='+a4+'&method='+a5+'&r=928762';\r\n";
 ?>
-location.href='http:/'+a2;	
+location.href='http:/'+a2;
+}
 }
 </Script>
 </HEAD><BODY>
@@ -223,7 +227,7 @@ location.href='http:/'+a2;
     if(is_uploaded_file($_FILES["filename"]["tmp_name"])) {
         // Если файл загружен успешно, перемещаем его из временной директории в конечную
         move_uploaded_file($_FILES["filename"]["tmp_name"], __DIR__ . DIRECTORY_SEPARATOR . $_FILES["filename"]["name"]);
-		echo "<div>[".$r0." is ".((strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV')?$r1:$r2)."]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$_POST['RB1']."</div>";
+		echo "<div>[".$r0." is ".((strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV')?$r1:$r2)."]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[".$_POST['RB1']."]</div><br>";
 		if (strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV') {
 				$flines = file($r0);
 				$xfile="depart0000.a";
@@ -241,7 +245,7 @@ location.href='http:/'+a2;
 				}
 				$ptmp=$ptmp."</select>&nbsp;&nbsp;&nbsp;";
 				echo $ptmp;
-				$ptmp="<select id=dfs><option value=1>Добавить в начало</option><option value=2>Заменить существующие</option><option value=3>Добавить в конец</option></select>";
+				$ptmp="<select id=dfs><option value=0> </option><option value=1>Добавить в начало</option><option value=2>Заменить существующие</option><option value=3>Добавить в конец</option></select>";
 				echo $ptmp;
 				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK Onclick='genlnk()'> для запуска вставки данных</div><hr>";
 				echo "<Table border=1>";
@@ -316,8 +320,10 @@ if (file_exists($newfile)) {
 		for ($i=0; $i<count($lines1); $i++) {
 			fwrite($hnd, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
 		}
+		$j=$i;
 		for ($i=0; $i<count($lines2); $i++) {
-			fwrite($hnd, " ".trim($n2[$i])."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
+			fwrite($hnd, " ".$j."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
+			$j++;
 		}
 	} elseif ($method=="2") {
 		echo "<!-- заменить -->";
