@@ -311,8 +311,6 @@ if (file_exists($newfile)) {
 		list($n2[$i], $date2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $fin2[$i], $adInfo2[$i]) = explode(";", $lines2[$i]);
 	}
 	// здесь надо разбивать массив lines1, полученный из csv, не автоматом в другой абстрактный массив, а через list, чтобы отсечь, если в csv были лишние поля или их не хватало
-	// вар.2 - используем array_splice($inputArray, 16); - убить все элементы массива, после 16 позиции
-	// +проверка, если массив короче, то наоборот увеличиваем массив:  array_fill (0, 16-count($inputArray), " "); - дополнить нехватающую длину, забив ячейки пробелами
 	$handle=fopen($xfile, 'w');
 	if ($method=="1") {
 		echo "<!-- добавить в начало -->";
@@ -339,6 +337,8 @@ if (file_exists($newfile)) {
 		echo "<!-- игнорить, ибо ".$method." -->";
 	}
 	fclose($handle);
+	usleep(100);
+	unlink($newfile);
 }
 	// удалить временный файл, загружаемый на сервер
 echo "</BODY></HTML>";
