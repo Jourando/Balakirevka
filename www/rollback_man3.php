@@ -205,16 +205,17 @@ th {border: 1px solid #000; background: silver}
 </Style>
 <Script>
 function genlnk() {
+// dp = раздел, method = метод вставки (до/вместо/после), ft = тип кодировки файла (dos/win)
 <?
-echo "var a1='".$r3."'; // Dos|Win\r\n";
-echo "var a2='".$r0."'; // filename\r\n";
-echo "var a3='2'; // args\r\n";
-echo "var a4=document.getElementById('dps').selectedIndex; // раздел\r\n";
-echo "var a5=document.getElementById('dfs').selectedIndex+1; // способ\r\n";
+echo "var a1='".$r3."';\r\n";
+echo "var a2='".$r0."';\r\n";
+echo "var a3='2';\r\n";
+echo "var a4=document.getElementById('dps').selectedIndex;\r\n";
+echo "var a5=document.getElementById('dfs').selectedIndex+1;\r\n";
 echo "a1='/test2.ru/rollback_man3.php?mode=insert&ft='+a1;\r\n";
 echo "a2=a1+'&fn='+a2+'&arg='+a3+'&dp='+a4+'&method='+a5+'&r=928762';\r\n";
 ?>
-location.href='http:/'+a2+'\'';	
+location.href='http:/'+a2;	
 }
 </Script>
 </HEAD><BODY>
@@ -280,7 +281,7 @@ if ($md==6) {
 if ($md==7) {
 echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>";
 echo "</HEAD><BODY>";
-echo "<hr><hr><hr>";
+echo "<div id=status>Status: <span id=curSt>Чтение csv</span>; Current mode: <span id=cm1>hold</span></div><hr>";
 // скопировать старый *.а в олд
 $d=$_GET['dp'];
 $method=$_GET['method'];
@@ -290,12 +291,18 @@ $f=scandir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT));
 $j=count($f)-1;
 $newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
 copy($xfile, $newfile);
+?>
+<SCRIPT>
+el=document.getElementById('status');
+el.innerHTML=el.innerHTML+'<br>Копирование <? echo $xfile." в ".$newfile; ?> ; <span id=cm2>dp = <? echo $d ?>, method = <? echo $method ?></span>';
+</SCRIPT>
+<?
 $newfile=$_GET['fn'];
 if (file_exists($newfile)) {
-	$lines1=file($newfile);
-	$lines2=file($xfile);
+	$lines1=file($newfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	$lines2=file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 	(strtoupper($_GET['ft'])=='DOS'?$chtype='2':$chtype='3');
-	for ($i=0; $i<count(lines1); $i++) {
+	for ($i=0; $i<count($lines1); $i++) {
 		if ($chtype==2) {
 			$lines1[$i]=chCode2($lines1[$i]);
 		} elseif ($chtype==3) {
@@ -304,43 +311,47 @@ if (file_exists($newfile)) {
 			echo 'ERROR CHARSET';
 		}
 	}
+?>
+<SCRIPT>
+el.innerHTML=el.innerHTML+'<br>Чтение <? echo $newfile." и ".$xfile ?> в массив; <span id=cm3>CharType определен как = <? echo $chtype ?></span>';
+</SCRIPT>
+<?
 	for ($i=0; $i<count($lines1); $i++) {
 		list($n1[$i], $date1[$i], $vd1[$i], $acType1[$i], $acOwner1[$i], $acName1[$i], $acPlace1[$i], $oType1[$i], $oAud1[$i], $oSeer1[$i], $oPrt1[$i], $hostDep1[$i], $hostHead1[$i], $hostLd1[$i], $fin1[$i], $adInfo1[$i]) = explode(";", $lines1[$i]);
 	}
 	for ($i=0; $i<count($lines2); $i++) {
-		list($n2[$i], $date2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $fin2[$i], $adInfo2[$i]) = explode(";", $lines2[$i]);
+		list($n2[$i], $date2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $fin2[$i], $adInfo2[$i]) = explode("|", $lines2[$i]);
 	}
 	// здесь надо разбивать массив lines1, полученный из csv, не автоматом в другой абстрактный массив, а через list, чтобы отсечь, если в csv были лишние поля или их не хватало
-	$handle=fopen($xfile, 'w');
+	$hnd=fopen($xfile, 'w');
 	if ($method=="1") {
 		echo "<!-- добавить в начало -->";
 		for ($i; $i<count($lines1); $i++) {
-			fwrite($handle, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
+			fwrite($hnd, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
 		}
 		for ($i; $i<count($lines2); $i++) {
-			fwrite($handle, " ".trim($n2[$i])."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
+			fwrite($hnd, " ".trim($n2[$i])."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
 		}
 	} elseif ($method=="2") {
 		echo "<!-- заменить -->";
 		for ($i; $i<count($lines1); $i++) {
-			fwrite($handle, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
+			fwrite($hnd, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
 		}
 	} elseif ($method=="3") {
 		echo "<!-- добавить в конец -->";
 		for ($i; $i<count($lines2); $i++) {
-			fwrite($handle, " ".trim($n2[$i])."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
+			fwrite($hnd, " ".trim($n2[$i])."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
 		}
 		for ($i; $i<count($lines1); $i++) {
-			fwrite($handle, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
+			fwrite($hnd, " ".trim($n1[$i])."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
 		}
 	} else {
 		echo "<!-- игнорить, ибо ".$method." -->";
 	}
-	fclose($handle);
+	fclose($hnd);
 	usleep(100);
-	unlink($newfile);
+	unlink($newfile); // удалить временный файл, загружаемый на сервер
 }
-	// удалить временный файл, загружаемый на сервер
 echo "</BODY></HTML>";
 }
 if ($md==0) {
