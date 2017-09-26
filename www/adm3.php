@@ -1,12 +1,11 @@
 <?php
-// v.10.a.1::adm revision
+// v.10.a.3::adm revision
 echo "<html><head><title>adm tools</title></head><body>";
 if ((!ISSET($_POST['log'])) || (!ISSET($_POST['dep'])) || (ISSET($_POST['relog']))) {
 	$str1='<h3>adm tools</h3><form action="" target=_self method=post><input type=text value=0 name="dep"> : <input type=text value="Input password" name="log">';
 	$str2='<input type=submit value="Send"></form>';
 	echo $str1.$str2;
 } else {
-//	echo "--- ".$_POST['log'].":".$_POST['dep']."<br><hr>";
 	$logins=file('username.a');
 	for ($i=0; $i<count($logins); $i++) {
 		$login[$i]=explode(":", $logins[$i]);
