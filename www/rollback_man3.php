@@ -78,7 +78,7 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 			// если колонка = [список колонок, которые отдаются как числовые], то xlsWriteNumber
 			// иначе...
             xlsWriteLabel($i,$j, chCode1($array[$i][$j])); 
-			//в строку $i, в ячейку $j, записываем конвертированное в 1251 содержимое $array[$i][$j]
+			//в строку $i в ячейку $j, записываем конвертированное в 1251 содержимое $array[$i][$j]
         }
     }
     xlsEOF(); // закрываем файл
@@ -283,7 +283,8 @@ if ($md==6) {
 	include('toolmen.php');
 }
 if ($md==7) {
-echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>";
+echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>\r\n";
+echo "<Style>\r\ntd {border: 1px solid #ccc}\r\n</Style>";
 echo "</HEAD><BODY>";
 $d=$_GET['dp'];
 $method=$_GET['method'];
@@ -346,6 +347,15 @@ if (file_exists($newfile)) {
 	fclose($hnd);
 	usleep(100);
 	unlink($newfile);
+?>
+<h2>Форма для загрузки csv</h2>
+<form>
+<Table border=0><tr><td><label>Файл успешно загружен и добавлен к имеющейся таблице</label></td></tr>
+<tr><td><label>Теперь можно <input type=button value="Экспортировать раздел" Onclick="location.href='http://test2.ru/rollback_man3.php?mode=show'"> <input type=button value="Импортировать еще один" Onclick="location.href='http://test2.ru/rollback_man3.php?mode=upl'"> или <input type=button value="Вернуться в меню" Onclick="location.href='http://test2.ru/adm3.php?auser=0&arg=26'"></label></td></tr>
+<tr><td><h5>не забудьте указывать раздел!</h5></td></tr></Table>
+</form>
+<? 
+include('toolmen.php');
 }
 echo "</BODY></HTML>";
 }
