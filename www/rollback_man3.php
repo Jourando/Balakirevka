@@ -214,7 +214,7 @@ echo "var a5=document.getElementById('dfs').selectedIndex+1; // способ\r\n
 echo "a1='/test2.ru/rollback_man3.php?mode=insert&ft='+a1;\r\n";
 echo "a2=a1+'&fn='+a2+'&arg='+a3+'&dp='+a4+'&method='+a5+'&r=928762';\r\n";
 ?>
-location.href='http:/'+a2+"'";	
+location.href='http:/'+a2+'\'';	
 }
 </Script>
 </HEAD><BODY>
