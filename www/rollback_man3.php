@@ -393,12 +393,11 @@ foreach($lines as $v) {
 $ptmp=$ptmp."</select> <input type=button value=toXLS OnClick='toXls(document.getElementById(\"dps\").selectedIndex)'><input type=button value=toCSV OnClick='toCsv(document.getElementById(\"dps\").selectedIndex)'><input type=button value=toABS OnClick='toAbs(document.getElementById(\"dps\").selectedIndex)'></label>\r\n";
 echo $ptmp;
 include('toolmen.php');
-// импорт в этот же файл!!!
 ?>
 </FORM>
 </BODY></HTML>
 <?
 }
 $stf=0;
-// не объединить ли ф-ции toAbs, toXls, toCsv
+// не объединить ли ф-ции toAbs, toXls, toCsv ?
 ?>
