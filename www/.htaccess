@@ -5,3 +5,5 @@ AddDefaultCharset UTF-8
 <IfModule mod_expires.c>
         ExpiresActive On ExpiresDefault "now"
 </IfModule>
+ErrorDocument 404 /403_404.htm
+ErrorDocument 403 /403_404.htm
