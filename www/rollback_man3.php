@@ -308,10 +308,10 @@ if (file_exists($newfile)) {
 		}
 	}
 	for ($i=0; $i<count($lines1); $i++) {
-		list($n[], $date[], $vd[], $acType[], $acOwner[], $acName[], $acPlace[], $oType[], $oAud[], $oSeer[], $oPrt[], $hostDep[], $hostHead[], $hostLd[], $fin[], $adInfo[]) = explode(";", $lines1[$i]);
+		list($n1[$i], $date1[$i], $vd1[$i], $acType1[$i], $acOwner1[$i], $acName1[$i], $acPlace1[$i], $oType1[$i], $oAud1[$i], $oSeer1[$i], $oPrt1[$i], $hostDep1[$i], $hostHead1[$i], $hostLd1[$i], $fin1[$i], $adInfo1[$i]) = explode(";", $lines1[$i]);
 	}
 	for ($i=0; $i<count($lines2); $i++) {
-		list($n[], $date[], $vd[], $acType[], $acOwner[], $acName[], $acPlace[], $oType[], $oAud[], $oSeer[], $oPrt[], $hostDep[], $hostHead[], $hostLd[], $fin[], $adInfo[]) = explode(";", $lines2[$i]);
+		list($n2[$i], $date2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $fin2[$i], $adInfo2[$i]) = explode(";", $lines2[$i]);
 	}
 
 	// здесь надо разбивать массив lines1, полученный из csv, не автоматом в другой абстрактный массив, а через list, чтобы отсечь, если в csv были лишние поля или их не хватало
