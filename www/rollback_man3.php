@@ -210,7 +210,7 @@ echo "var a1='".$r3."'; // Dos|Win\r\n";
 echo "var a2='".$r0."'; // filename\r\n";
 echo "var a3='2'; // args\r\n";
 echo "var a4=document.getElementById('dps').selectedIndex; // раздел\r\n";
-echo "var a5=document.getElementById('dfs').selectedIndex; // способ\r\n";
+echo "var a5=document.getElementById('dfs').selectedIndex+1; // способ\r\n";
 echo "a1='/test2.ru/rollback_man3.php?mode=insert&ft='+a1;\r\n";
 echo "a2=a1+'&fn='+a2+'&arg='+a3+'&dp='+a4+'&method='+a5+'&r=928762';\r\n";
 ?>
@@ -242,7 +242,7 @@ location.href='http:/'+a2+"'";
 				echo $ptmp;
 				$ptmp="<select id=dfs><option value=1>Добавить в начало</option><option value=2>Заменить существующие</option><option value=3>Добавить в конец</option></select>";
 				echo $ptmp;
-				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK Onclick='genlnk()'> для выбора режима вставки данных</div><hr>";
+				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK Onclick='genlnk()'> для запуска вставки данных</div><hr>";
 				echo "<Table border=1>";
 ?>
 <tr>
@@ -281,8 +281,30 @@ if ($md==7) {
 echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>";
 echo "</HEAD><BODY>";
 echo "<hr><hr><hr>";
-	// теперь здесь разделать csv, согласно выбранному режиму и методам
-	// вернуться в меню
+// скопировать старый *.а в олд
+$d=$_GET['dp'];
+$method=$_GET['method'];
+$xfile = 'depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'.a';
+if (!file_exists('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT))) { mkdir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT), 0744, true); }
+$f=scandir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT));
+$j=count($f)-1;
+$newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
+copy($xfile, $newfile);
+// теперь здесь разделать csv, согласно выбранному режиму и методам
+// вернуться в меню
+$newfile=$_GET['fn'];
+if (file_exists($newfile)) {
+	// придется еще учитывать режимы Dos/Win
+	if ($method=="1") {
+		echo "добавить в начало";
+	} elseif ($method=="2") {
+		echo "заменить";
+	} elseif ($method=="3") {
+		echo "добавить в конец";
+	} else {
+		echo "игнорить, ибо ".$method;
+	}	
+}
 	// удалить временный файл, загружаемый на сервер
 echo "</BODY></HTML>";
 }
