@@ -1,5 +1,5 @@
 <?php
-// v.10.a.1::rollback revision
+// v.10.a.2::rollback revision
 function xlsBOF() {
     echo pack("ssssss", 0x809, 0x8, 0x0, 0x10, 0x0, 0x0);
     return;
@@ -39,6 +39,7 @@ if (ISSET($_GET['mode'])) {
 	elseif ($_GET['mode']=='load') {$md=5;}
 	elseif ($_GET['mode']=='die') {$md=6;}
 	elseif ($_GET['mode']=='insert') {$md=7;}
+	elseif ($_GET['mode']=='bkman') {$md=8;}	
 	elseif ($_GET['mode']=='show') {$md=0;}
 	else {die('<pre>wrong qwery</pre>');}
 }
