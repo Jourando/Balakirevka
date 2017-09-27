@@ -263,7 +263,7 @@ if (px==1) {
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $i=0;
-$defStr=' 0||||||||||||||||';
+$defStr=' 0||||||||||||||||';  // нужна?
 $ptmp="";
 foreach($lines as $v) {
 	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
@@ -312,6 +312,7 @@ for (j=0; j<16; j++) {
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
 postUrl(ResStr, xb, document.getElementById('hid').value);	
 }
+/*
 function ItmInsBefore() {
 var xb;
 var delim='##';
@@ -392,6 +393,7 @@ for (j=0; j<16; j++) {
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
 postUrl(ResStr, xb, document.getElementById('hid').value);
 }
+*/
 </script>
 <?
 function mkMenu() {
@@ -411,7 +413,7 @@ foreach($lines as $v) {
 	echo $resStr[$i];
 	if ((!FILE_EXISTS('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a')) || (filesize('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a')<10)) {
 		$handle = fopen('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a', 'w');
-		fwrite($handle, $defStr."\r\n");
+		fwrite($handle, $defStr);
 		fclose($handle);
 	}
 	$i=$i+1;
