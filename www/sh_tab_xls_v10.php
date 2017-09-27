@@ -292,6 +292,26 @@ document.getElementById('lusr').value=ausr;
 document.getElementById('pusr').value=apwd;
 if (alg>0) { depMod=adpt; }
 }
+function ItmInsert(px) {
+var xb;
+var delim='##';
+var act = px.toUpperCase();
+var sect=document.getElementById('dps').selectedIndex;
+var oldStrID = document.getElementById('hid').value;
+var newStr = '';
+var oldStr = '';
+var trx=document.getElementById(oldStrID);
+for (j=0; j<16; j++) {
+	oldStr+=trx.childNodes[j].innerHTML; // old
+	newStr+=document.getElementById('ext'+j).value; // new
+	if (j<15) {
+		newStr+='|';
+		oldStr+='|';
+	} 
+}
+var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
+postUrl(ResStr, xb, document.getElementById('hid').value);	
+}
 function ItmInsBefore() {
 var xb;
 var delim='##';
