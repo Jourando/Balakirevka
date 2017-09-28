@@ -1,5 +1,5 @@
 ﻿<?php
-// v.10.a.3::main revision
+// v.10.a.4::main revision
 if (ISSET($_GET['us'])==true) {
 	list($lx1, $lx2, $lx3)=explode("___0_", $_GET['us']);
 	$autologin=1;
@@ -152,8 +152,9 @@ function getUrl(xurl, cb, xmd) {
 }
 function LogIt(qStr) {
 var xb;
-// формат: Время, юзер, с какой стр., c какого объекта, какое действие, тип, успех или код ошибки
-// формат: Ф-ция, имя переменной, знач. переменной
+// формат: тип отдаваемых данных (1), Время, юзер, с какой стр., c какого объекта, какое действие, тип, успех или код ошибки
+// формат: тип отдаваемых данных (2), Ф-ция, имя переменной, знач. переменной
+// формат: тип отдаваемых данных (3), Ф-ция, что пишем, в какой файл .OR. ф-ция, какую файловую манипуляцию делаем, с каким файлом
 getUrl(logStr+qStr, xb, '0');
 }
 function a4b(atext) {
@@ -263,7 +264,6 @@ if (px==1) {
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $i=0;
-$defStr=' 0||||||||||||||||';  // нужна?
 $ptmp="";
 foreach($lines as $v) {
 	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
@@ -318,7 +318,6 @@ function mkMenu() {
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $i=0;
-$defStr=' 0||||||||||||||||';
 echo "<form autocomplete=1><fieldset name=set id=fset>\r\n";
 echo "<label>Отдел <select id=dps Onchange='depMod=this.selectedIndex'>\r\n";
 foreach($lines as $v) {
@@ -330,9 +329,13 @@ foreach($lines as $v) {
 	}
 	echo $resStr[$i];
 	if ((!FILE_EXISTS('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a')) || (filesize('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a')<10)) {
-		$handle = fopen('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a', 'w');
-		fwrite($handle, $defStr);
-		fclose($handle);
+		if (FILE_EXISTS('store/depart')) {
+			copy('store/depart', 'depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a');
+		} else {
+			$handle = fopen('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a', 'w');
+			fwrite($handle, " 0||||||||||||||||\r\n");
+			fclose($handle);
+		}
 	}
 	$i=$i+1;
 }
