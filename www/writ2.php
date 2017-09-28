@@ -1,5 +1,5 @@
 <?php
-// v.10.a.3::write revision
+// v.10.a.4::write revision
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Expires: " . date("r"));
 $tmp1=$_POST['param'];
@@ -22,33 +22,18 @@ foreach($lines as $v) {
 				$aStr[] = $lines[$i];
 			}
 		}
-		if ($act=="BEFORE") {
+		if (($act=="BEFORE") || ($act=="AFTER") || ($act=="ERASE")) {
 			if (trim($lines[$i]) == trim($oldStr)) {
-				$aStr[]=$newStr;
-				$aStr[]=$oldStr;
+				if ($act=="BEFORE") {
+					$aStr[]=$newStr;
+					$aStr[]=$oldStr;
+				} elseif ($act=="AFTER") {
+					$aStr[]=$oldStr;
+					$aStr[]=$newStr;
+				} else {
+					$j=$j-2;
+				}
 				$j=$j+1;
-			} else {
-				$sArr = explode('|', $lines[$i]);
-				$sArr[0]=$j;
-				$aStr[]=join("|", $sArr);
-			}
-		}
-		if ($act=="AFTER") {
-			if (trim($lines[$i]) == trim($oldStr)) {
-				$aStr[]=$oldStr;
-				$aStr[]=$newStr;
-				$j=$j+1;
-			} else {
-				$sArr = explode('|', $lines[$i]);
-				$sArr[0]=$j;
-				$aStr[]=join("|", $sArr);
-			}
-			// потом объединить Before и After
-		}
-		if ($act=="ERASE") {
-			if (trim($lines[$i]) == trim($oldStr)) {
-				// skip
-				$j=$j-1;
 			} else {
 				$sArr = explode('|', $lines[$i]);
 				$sArr[0]=$j;
