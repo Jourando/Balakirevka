@@ -1,0 +1,139 @@
+<script src="l/imask.min.js"></script>
+<script src="l/moment_locales.js"></script>
+<form class="form">
+              <div class="form-item">
+                <label>Type here</label>
+                <input id="moment-mask" type="text" value="">
+                <div class="desc">date: <span id="moment-value">Sat May 06 1978 09:09:00 GMT+0300</span></div>
+              </div>
+</form>
+<script>
+var element = document.getElementById('moment-mask');
+var momentFormat = 'YYYY/MM/DD HH:mm';
+var momentMask = new IMask(element, {
+  mask: Date,
+  pattern: momentFormat,
+  placeholder: {lazy: false},
+  min: new Date(1970, 0, 1),
+  max: new Date(2070, 0, 1),
+
+  format: function (date) {
+    return moment(date).format(momentFormat);
+  },
+  parse: function (str) {
+    return moment(str, momentFormat);
+  },
+
+  groups: {
+    YYYY: new IMask.MaskedPattern.Group.Range([1970, 2030]),
+    MM: new IMask.MaskedPattern.Group.Range([1, 12]),
+    DD: new IMask.MaskedPattern.Group.Range([1, 31]),
+    HH: new IMask.MaskedPattern.Group.Range([0, 23]),
+    mm: new IMask.MaskedPattern.Group.Range([0, 59])
+  }
+});
+</script>
+<script>
+function clrInput1() {
+if (trim(document.getElementById('validfrm').value=='')) {document.getElementById('validfrm').value='2000/01/31 12:00';}
+}
+function clrInput2() {
+if (trim(document.getElementById('validfrm').value=='2000/01/31 12:00')) {document.getElementById('validfrm').value='';}
+}
+function substr( f_string, f_start, f_length ) {
+	// +	 original by: Martijn Wieringa
+	if(f_start < 0) {f_start += f_string.length;}
+	if(f_length == undefined) {
+		f_length = f_string.length;
+	} else if(f_length < 0){
+		f_length += f_string.length;
+	} else {
+		f_length += f_start;
+	}
+	if(f_length < f_start) {f_length = f_start;}
+	return f_string.substring(f_start, f_length);
+}
+function isDigit(c, d, e) {
+	if (d==0) { return ((/[^[1-2]/.test(c))?false:true); }
+	if (d==1) {
+		if (e=='1') {
+			return ((/[^[9]/.test(c))?false:true);
+		} else {
+			return ((/[^[0]/.test(c))?false:true);
+		}
+	}
+	if (d==2) {	return ((/[^[0-9]/.test(c))?false:true); }
+	if (d==3) {	return ((/[^[1-9]/.test(c))?false:true); }
+	if (d==4) {	return ((/[^[0-2]/.test(c))?false:true); }
+}
+function rplc(a) {
+var b='';
+for (i=0; i<a.length; i++) {
+	console.log(i+' :: '+a[i]);
+	if (i<4) { // анализ 1х четырех символов
+		if (i==0) {
+			if (isDigit(a[i], 0, '')) {b=b+a[i];console.log(b);}	// первый 1 или 2
+			else {b=''; console.log(b);}							// иначе сбросить строку
+		} else {
+			if (i==1) { // второй символ
+				if (isDigit(a[i], 1, a[i-1])) {b=b+a[i];console.log(b);} // если первый символ=1, то 9; если 1 символ=2, то 0
+				else {
+					b=b+''; console.log(b);								 // иначе сбросить символ
+				}
+			} else {
+				if ((i==2) && ((a[i]=='/') || (a[i]=='.') || (a[i]==':') || (a[i]=='-'))) { // если 3 символ - разделитель,
+					b='20'+b+'/';															 // то подставить первые символы - 20, а в конце - разделитель /
+				} else {
+					if (isDigit(a[i], 2, '')) {b=b+a[i]; console.log(b);}					 // если не разделитель, то проверить, входит ли в 0..9
+					else {b=b+''; console.log(b);}											 // если не входит, то сбросить символ
+				}
+			}
+		}
+	}
+	if (i==3) {b=b+'/';}	// если длина строки уже 4 символа, добавить разделитель /
+	if (i==5) {													// 6й символ - месяц
+		if (isDigit(a[i], 2, '')) {b=b+a[i]; console.log(b);}		// значения от 0 до 9
+		else {b=b+'';}
+	}
+	if (i==6) {
+		if ((a[i]=='/') || (a[i]=='.') || (a[i]==':') || (a[i]=='-')) { b=substr(b, 0, -1)+'0'+a[i-1]+'/'; } // если разделитель, подставить впереди 0, число, а сзади /
+		else {
+			if (a[i-1]==0) {
+				if (a[i]>0) { 												  // если первая цифра 0, вторая должна быть > 0
+					if (isDigit(a[i], 2, '')) {b=b+a[i]+'/'; console.log(b);} // если впереди 0, принимаем любую цифру и сзади добавляем /
+					else {b=b+''; console.log(b);}
+				} else {b=b+'';}
+			}
+			if (a[i-1]==1) {
+				if (isDigit(a[i], 4, '')) {b=b+a[i]+'/'; console.log(b);} // если впереди 1, принимаем 0..2 и сзади добавляем /
+				else {b=b+''; console.log(b);}
+			}
+		}
+		if ((parseInt(a[5]+''+a[6]) < 1) || (parseInt(a[5]+''+a[6])>12)) {b=substr(b, 0, -1);}
+	}
+	if (i==8) { // любая цифра
+		if (isDigit(a[i], 2, '')) {b=b+a[i]; console.log(b);}
+		else {b=b+''; console.log(b);}
+	}
+	if (i==9) { // если равно нулю, то разрешить только число, кроме 0! если больше нуля, то разрешить любое число... но сумма символов < 31, разрешить разделитель...
+		if (a[i-1]==0) {
+			if (isDigit(a[i], 3, '')) { b=b+a[i]; }
+			else {b=b+'';}
+		} else {
+			if (isDigit(a[i], 2, '')) {b=b+a[i]; }
+			else {b=b+'';}
+		}
+		if ((parseInt(a[8]+''+a[9]) < 1) || (parseInt(a[8]+''+a[9])>31)) {b=substr(b, 0, -1);}
+	}
+	if (i==10) {b=b+' ';}
+}
+document.getElementById('validfrm').value=b;
+}
+</script>
+<form class="form">
+              <div class="valform-item">
+                <label>Type here</label>
+                <input id="validfrm" type="text" value="" Onchange=rplc(this.value) OnKeyUp=rplc(this.value) onfocus=clrInput2() onblur=clrInput1()><input type=button value=Check>
+                <div class="desc">date: <span id="frmvalue">Sat May 06 1978 09:09:00 GMT+0300</span></div>
+              </div>
+</form>

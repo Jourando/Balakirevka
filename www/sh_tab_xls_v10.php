@@ -157,6 +157,14 @@ var xb;
 // формат: тип отдаваемых данных (3), Ф-ция, что пишем, в какой файл .OR. ф-ция, какую файловую манипуляцию делаем, с каким файлом
 getUrl(logStr+qStr, xb, '0');
 }
+function repStr(d) {
+d=d.replace(/</g, "[");
+d=d.replace(/>/g, "]");
+d=d.replace(/&/g, " and ");
+d=d.replace(/\|/g, " or ");
+d=d.replace(/;/g, ",");
+return d;
+}
 function a4b(atext) {
 //charCodeAt
 var btext='';
@@ -303,7 +311,9 @@ var oldStr = '';
 var trx=document.getElementById(oldStrID);
 for (j=0; j<16; j++) {
 	oldStr+=trx.childNodes[j].innerHTML; // old
-	newStr+=document.getElementById('ext'+j).value; // new
+	newStr=newStr+repStr(document.getElementById('ext'+j).value); // new
+	console.log(newStr);
+	console.log(document.getElementById('ext'+j).value);
 	if (j<15) {
 		newStr+='|';
 		oldStr+='|';

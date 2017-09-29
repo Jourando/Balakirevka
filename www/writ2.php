@@ -1,15 +1,17 @@
 <?php
-// v.10.a.4::write revision
+// v.10.a.5::write revision
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Expires: " . date("r"));
 $tmp1=$_POST['param'];
 list($act, $d, $oldStr, $newStr) = explode("##", $tmp1);
-$xfile = 'depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'.a';
+$spd = str_pad($d, 4, "0", STR_PAD_LEFT);
+$ospd = 'oldata/'.$spd;
+$xfile = 'depart'.$spd.'.a';
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES); 
-if (!file_exists('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT))) { mkdir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT), 0744, true); }
-$f=scandir('oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT));
+if (!file_exists($ospd)) { mkdir($ospd, 0744, true); }
+$f=scandir($ospd);
 $j=count($f)-1;
-$newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
+$newfile=$ospd.'/depart'.$spd.'['.$spd.']';
 copy($xfile, $newfile);
 $i=0;
 $j=$i;
@@ -54,7 +56,7 @@ for ($i=0; $i<count($aStr); $i++) {
 }
 fclose($handle);
 // добавить MoveUp, MoveDwn, Create;
-usleep(100);
+usleep(120);
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 echo json_encode($lines);
 ?>

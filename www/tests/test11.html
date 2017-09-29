@@ -1,0 +1,9 @@
+<script>
+function repStr(d) {
+d=d.replace(/</g, "[");
+d=d.replace(/>/g, "]");
+d=d.replace(/&/g, " and ");
+return d;
+}
+</script>
+<label><input type=text id=mText value=""><input type=button value="replace" onclick='document.getElementById("mText").value=repStr(document.getElementById("mText").value)'></label>
