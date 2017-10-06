@@ -1,5 +1,6 @@
 <?php
 // v.10.a.3::rollback revision
+// менеджер откатов - через include
 function xlsBOF() {
     echo pack("ssssss", 0x809, 0x8, 0x0, 0x10, 0x0, 0x0);
     return;
@@ -309,6 +310,7 @@ if (file_exists($newfile)) {
 			echo 'ERROR CHARSET';
 		}
 	}
+	// пересчет ячеек!
 	for ($i=0; $i<count($lines1); $i++) {
 		list($n1[$i], $date1[$i], $vd1[$i], $acType1[$i], $acOwner1[$i], $acName1[$i], $acPlace1[$i], $oType1[$i], $oAud1[$i], $oSeer1[$i], $oPrt1[$i], $hostDep1[$i], $hostHead1[$i], $hostLd1[$i], $fin1[$i], $adInfo1[$i]) = explode(";", $lines1[$i]);
 	}
