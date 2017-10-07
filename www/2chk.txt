@@ -1,20 +1,22 @@
-https://ruseller.com/lessons.php?id=2043&rub=32 - поствалидация времени/даты
--------- текст про сравнение превалидации и поствалидации
--------- добавить в demo.ru
-https://learn.javascript.ru/datetime - JS doc по datetime
-http://shpargalkablog.ru/2013/11/calendar.html#input - календари
+https://ruseller.com/lessons.php?id=2043&rub=32 - ГЇГ®Г±ГІГўГ Г«ГЁГ¤Г Г¶ГЁГї ГўГ°ГҐГ¬ГҐГ­ГЁ/Г¤Г ГІГ»
+---- ГІГҐГЄГ±ГІ ГЇГ°Г® Г±Г°Г ГўГ­ГҐГ­ГЁГҐ ГЇГ°ГҐГўГ Г«ГЁГ¤Г Г¶ГЁГЁ ГЁ ГЇГ®Г±ГІГўГ Г«ГЁГ¤Г Г¶ГЁГЁ
+---- Г¤Г®ГЎГ ГўГЁГІГј Гў demo.ru
+https://learn.javascript.ru/datetime - JS doc ГЇГ® datetime
+http://shpargalkablog.ru/2013/11/calendar.html#input - ГЄГ Г«ГҐГ­Г¤Г Г°ГЁ
 http://beautifytools.com/image-to-base64-converter.php - IMG 2 Base64
 https://mind42.com/mindmap/f049a9be-1597-472d-9c30-591ad76b41ab - xls
-http://komotoz.ru/uroki/php/zagruzka_fajlov_na_server.php - загрузка на сервер
+http://komotoz.ru/uroki/php/zagruzka_fajlov_na_server.php - Г§Г ГЈГ°ГіГ§ГЄГ  Г­Г  Г±ГҐГ°ГўГҐГ°
 
 Delphi xls
 http://www.webdelphi.ru/2009/09/excel-v-delphi-svojstva-obekta-worksheet/
 http://www.webdelphi.ru/2009/08/excel-v-delphi-metody-obekta-worksheet-list/
 http://www.webdelphi.ru/2009/08/rabota-s-excel-v-delphi-osnovy-osnov/
 http://www.webdelphi.ru/2010/06/excel-v-delphi-rabota-so-svojstvami-dokumenta/
-http://www.webdelphi.ru/razrabotchiku/isxodniki-delphi/ 							- исходники
+http://www.webdelphi.ru/razrabotchiku/isxodniki-delphi/ 							- ГЁГ±ГµГ®Г¤Г­ГЁГЄГЁ
 
-https://habrahabr.ru/post/114182/ - Автоизменение высоты textarea при вводе текста
-https://habrahabr.ru/post/323264/ - Антистресс-маска
+https://habrahabr.ru/post/114182/ - ГЂГўГІГ®ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГҐ ГўГ»Г±Г®ГІГ» textarea ГЇГ°ГЁ ГўГўГ®Г¤ГҐ ГІГҐГЄГ±ГІГ 
+https://habrahabr.ru/post/323264/ - ГЂГ­ГІГЁГ±ГІГ°ГҐГ±Г±-Г¬Г Г±ГЄГ 
 https://text-mask.github.io/text-mask/ - mask
 https://unmanner.github.io/imaskjs/#demo
+
+//
