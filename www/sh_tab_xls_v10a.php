@@ -10,10 +10,11 @@ if (ISSET($_GET['us'])==true) {
 	$lx3='Пароль';
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="RU-ru">
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
 <Title>Main Tab Editor</Title>
 <style>
 body {margin: 0px; padding: 0px}
@@ -342,7 +343,7 @@ foreach($lines as $v) {
 			copy('store/depart', 'depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a');
 		} else {
 			$handle = fopen('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a', 'w');
-			fwrite($handle, " 0|||||||||||||||\r\n");
+			fwrite($handle, " 0|||||||||||||||\r\n"); // менять!
 			fclose($handle);
 		}
 	}
@@ -362,6 +363,7 @@ foreach (glob("depart*.a") as $filename) {
 		$lines[$i] = file($fArray[$i], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 		$rx[$i]="<tr id=sec".$i."hdr class=T2><td id=hdr".$i." colspan=16 class=depHdr>Отдел: ".$m1[$i]."</td></tr>\r\n";
 		echo $rx[$i];
+		// инклюд!
 		foreach($lines[$i] as $v) {
 			list($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo) = explode("|", $lines[$i][$j]);
 			$rs[$i][$j]="<tr id=sec".$i."line".$j." class=T1 name=skip Onclick='modalEdit(\"sec".$i."line".$j."\")'><td id=s".$i."r".$j."c1>".$n."</td><td id=s".$i."r".$j."c2>".$dt."</td><td id=s".$i."r".$j."c3>".$vd."</td><td id=s".$i."r".$j."c4>".$acType."</td><td id=s".$i."r".$j."c5>".$acOwner."</td><td id=s".$i."r".$j."c6>".$acName."</td><td id=s".$i."r".$j."c7>".$acPlace."</td><td id=s".$i."r".$j."c8>".$oType."</td><td id=s".$i."r".$j."c9>".$oAud."</td><td id=s".$i."r".$j."c10>".$oSeer."</td>";
