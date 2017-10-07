@@ -22,9 +22,10 @@ class TCell {
 		echo $this->height=$h;
 	}
 }
-$cell1='';
-$cell2='';
-$linearr [0] = array($cell1, $cell2);
+$cell1='<tr>';
+$cell2='</tr>';
+$cell3='</td>';
+$linearr [0] = array($cell1, $cell2, $cell3);
 $linearr[1] = array(
 	cell1 => array("cnt" => "номер", "w" => "1", "h" => "2"),
 	cell2 => array("cnt" => "отделение", "w" => "1", "h" => "2"),
@@ -55,25 +56,19 @@ $linearr[2] = array(
 	echo "<style>";
 	echo "th {border: 1px solid #333}";
 	echo "</style>";
+$tmpTR='';
 echo "<Table>";
 for ($j=1; $j<count($linearr); $j++) {
-	echo "<tr>";
-//	for ($i=1; $i<count($linearr[$j])+1; $i++) {
-//		$tmpTD="<td";
-//		if ($linearr[$j]["cell".$i]["w"] !== '1') {$tmpTD=$tmpTD+' colspan='.$linearr[$j]["cell".$i]["w"];}
-//		if ($linearr[$j]["cell".$i]["h"] !== '1') {$tmpTD=$tmpTD+' rowspan='.$linearr[$j]["cell".$i]["h"];}
-//		$tmpTD=$tmpTD.'>'.$linearr[$j]["cell".$i]["cnt"].'</td>';
-//		echo $tmpTD;
-//	}
+	$tmpTR=$tmpTR.$cell1;
 	for ($i=1; $i<count($linearr[$j])+1; $i++) {
 		$tmpTD="<th";
 		if ($linearr[$j]["cell".$i]["w"] !== '1') {$tmpTD=$tmpTD.' colspan='.$linearr[$j]["cell".$i]["w"];}
 		if ($linearr[$j]["cell".$i]["h"] !== '1') {$tmpTD=$tmpTD.' rowspan='.$linearr[$j]["cell".$i]["h"];}
-		$tmpTD=$tmpTD.'>'.$linearr[$j]["cell".$i]["cnt"].'</td>';
-		echo $tmpTD;
+		$tmpTR=$tmpTR.$tmpTD.'>'.$linearr[$j]["cell".$i]["cnt"].$cell3;
 	}
-	echo "</tr>";
+	$tmpTR=$tmpTR.$cell2;
 }
+echo $tmpTR;
 echo "</table>";
 echo "<p>--- +++ </p><hr><p>".count($linearr)."</p>";
 ?>
