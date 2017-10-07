@@ -299,7 +299,7 @@ echo "var apwd='".$lx3."';\r\n";
 document.getElementById('dps').selectedIndex=adpt;
 document.getElementById('lusr').value=ausr;
 document.getElementById('pusr').value=apwd;
-if (alg>0) { depMod=adpt; }
+if (alg>0) {depMod=adpt;}
 }
 function ItmInsert(px) {
 var xb;
@@ -331,8 +331,8 @@ Prw();
 </script>
 <Table width=100% border=0 id=mainTab>
 <?
-include ('tabhead.php');
-getContent('all', $tA);
+include ('tabhead.php'); // формируем столбцы
+getContent('all', $tA); // первично считываем, заполняем таблицу
 ?>
 </Table>
 </DIV>
