@@ -39,7 +39,7 @@ input[type=text] {resize:both;}
 function insertAfter(elem, refElem) {
   return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
-function reNew(xArr, xmid) {
+function reNew(xArr, xmid) { // исправить на нужное кол-во полей
 exploder=function(str, delim) {
 	return str.toString().split(delim.toString());
 }
@@ -105,7 +105,7 @@ function getXmlHttp(){
         return new XMLHttpRequest();
     }
 }
-function postUrl(xurl, cb, xmd) {
+function postUrl(xurl, xmd) {
 	var backdata = new Array();
 	var xmlhttp = getXmlHttp();
 	var param;
@@ -121,7 +121,7 @@ function postUrl(xurl, cb, xmd) {
     }
 	xmlhttp.send("param="+param);
 }
-function getUrl(xurl, cb, xmd) {
+function getUrl(xurl, xmd) {
 	var Rtxt='';
     var xmlhttp = getXmlHttp();
 	var dc=document.getElementById('fset');
@@ -250,7 +250,6 @@ var trx=document.getElementById(tid);
 if (trx !== null) {trx.setAttribute('name', 'skip');}
 }
 function Auth(px) {
-var xb;
 var qStr='';
 if (px==1) {
 	var xnewStr1=encodeURIComponent(document.getElementById('lusr').value);
@@ -264,7 +263,7 @@ if (px==1) {
 			qStr='';
 		}
 	}
-	getUrl(urlStr+qStr, xb, '1');
+	getUrl(urlStr+qStr, '1');
 } else {
 	var vxtp;
 	var fst=document.getElementById('fset');
