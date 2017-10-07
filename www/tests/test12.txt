@@ -1,0 +1,23 @@
+class TCell {
+	var $content;
+	var $width=1;
+	var $height=1;
+	function GetCont() {
+		echo $this->content;
+	}
+	function SetCont($cnt) {
+		echo $this->content=$cnt;
+	}
+	function GetWidth() {
+		echo $this->width;
+	}
+	function SetWidth($w) {
+		echo $this->width=$w;
+	}
+	function GetHeight() {
+		echo $this->height;
+	}
+	function SetHeight($h) {
+		echo $this->height=$h;
+	}
+}

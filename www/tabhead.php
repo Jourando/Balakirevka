@@ -1,27 +1,4 @@
 <?php
-class TCell {
-	var $content;
-	var $width=1;
-	var $height=1;
-	function GetCont() {
-		echo $this->content;
-	}
-	function SetCont($cnt) {
-		echo $this->content=$cnt;
-	}
-	function GetWidth() {
-		echo $this->width;
-	}
-	function SetWidth($w) {
-		echo $this->width=$w;
-	}
-	function GetHeight() {
-		echo $this->height;
-	}
-	function SetHeight($h) {
-		echo $this->height=$h;
-	}
-}
 $cell1='<tr>';
 $cell2='</tr>';
 $cell3='</td>';
@@ -53,11 +30,7 @@ $linearr[2] = array(
 	cell12 => array("cnt" => "ответственный", "w" => "1", "h" => "1"),
 	cell13 => array("cnt" => "организатор", "w" => "1", "h" => "1")
 	);
-	echo "<style>";
-	echo "th {border: 1px solid #333}";
-	echo "</style>";
 $tmpTR='';
-echo "<Table>";
 for ($j=1; $j<count($linearr); $j++) {
 	$tmpTR=$tmpTR.$cell1;
 	for ($i=1; $i<count($linearr[$j])+1; $i++) {
@@ -69,6 +42,4 @@ for ($j=1; $j<count($linearr); $j++) {
 	$tmpTR=$tmpTR.$cell2;
 }
 echo $tmpTR;
-echo "</table>";
-echo "<p>--- +++ </p><hr><p>".count($linearr)."</p>";
 ?>
