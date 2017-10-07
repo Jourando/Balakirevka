@@ -52,14 +52,28 @@ $linearr[2] = array(
 	cell12 => array("cnt" => "ответственный", "w" => "1", "h" => "1"),
 	cell13 => array("cnt" => "организатор", "w" => "1", "h" => "1")
 	);
+	echo "<style>";
+	echo "th {border: 1px solid #333}";
+	echo "</style>";
+echo "<Table>";
 for ($j=1; $j<count($linearr); $j++) {
+	echo "<tr>";
+//	for ($i=1; $i<count($linearr[$j])+1; $i++) {
+//		$tmpTD="<td";
+//		if ($linearr[$j]["cell".$i]["w"] !== '1') {$tmpTD=$tmpTD+' colspan='.$linearr[$j]["cell".$i]["w"];}
+//		if ($linearr[$j]["cell".$i]["h"] !== '1') {$tmpTD=$tmpTD+' rowspan='.$linearr[$j]["cell".$i]["h"];}
+//		$tmpTD=$tmpTD.'>'.$linearr[$j]["cell".$i]["cnt"].'</td>';
+//		echo $tmpTD;
+//	}
 	for ($i=1; $i<count($linearr[$j])+1; $i++) {
-//		print_r($linearr[$j]);
-//		echo "<br>";
-		echo $linearr[$j]["cell".$i]["cnt"];
-		echo $i."<br>";
+		$tmpTD="<th";
+		if ($linearr[$j]["cell".$i]["w"] !== '1') {$tmpTD=$tmpTD.' colspan='.$linearr[$j]["cell".$i]["w"];}
+		if ($linearr[$j]["cell".$i]["h"] !== '1') {$tmpTD=$tmpTD.' rowspan='.$linearr[$j]["cell".$i]["h"];}
+		$tmpTD=$tmpTD.'>'.$linearr[$j]["cell".$i]["cnt"].'</td>';
+		echo $tmpTD;
 	}
-	echo "<hr>";
+	echo "</tr>";
 }
+echo "</table>";
 echo "<p>--- +++ </p><hr><p>".count($linearr)."</p>";
 ?>
