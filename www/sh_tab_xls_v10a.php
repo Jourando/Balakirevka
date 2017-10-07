@@ -354,27 +354,6 @@ echo "<label> оператор <input type=text id=lusr value=\"Фамилия �
 echo "</fieldset></form>\r\n";
 return $mLable;
 }
-function getContent($a1, $m1) {
-$i=0;
-foreach (glob("depart*.a") as $filename) {
-    $fArray[$i]=$filename; 
-	$j=0;
-	if ($fArray[$i] !== "depart0000.a") {
-		$lines[$i] = file($fArray[$i], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-		$rx[$i]="<tr id=sec".$i."hdr class=T2><td id=hdr".$i." colspan=16 class=depHdr>Отдел: ".$m1[$i]."</td></tr>\r\n";
-		echo $rx[$i];
-		// инклюд!
-		foreach($lines[$i] as $v) {
-			list($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo) = explode("|", $lines[$i][$j]);
-			$rs[$i][$j]="<tr id=sec".$i."line".$j." class=T1 name=skip Onclick='modalEdit(\"sec".$i."line".$j."\")'><td id=s".$i."r".$j."c1>".$n."</td><td id=s".$i."r".$j."c2>".$dt."</td><td id=s".$i."r".$j."c3>".$vd."</td><td id=s".$i."r".$j."c4>".$acType."</td><td id=s".$i."r".$j."c5>".$acOwner."</td><td id=s".$i."r".$j."c6>".$acName."</td><td id=s".$i."r".$j."c7>".$acPlace."</td><td id=s".$i."r".$j."c8>".$oType."</td><td id=s".$i."r".$j."c9>".$oAud."</td><td id=s".$i."r".$j."c10>".$oSeer."</td>";
-			$rs[$i][$j]=$rs[$i][$j]."<td id=s".$i."r".$j."c11>".$oPrt."</td><td id=s".$i."r".$j."c12>".$hostDep."</td><td id=s".$i."r".$j."c13>".$hostHead."</td><td id=s".$i."r".$j."c14>".$hostLd."</td><td id=s".$i."r".$j."c15>".$fin."</td><td id=s".$i."r".$j."c16>".$adInfo."</td></tr>\r\n";
-			echo $rs[$i][$j];
-			$j=$j+1;
-		}
-	}
-	$i=$i+1;
-}
-}
 ?>
 <DIV id=mainSection>
 <? $tA=mkMenu() ?>
@@ -382,12 +361,10 @@ foreach (glob("depart*.a") as $filename) {
 Prw();
 </script>
 <Table width=100% border=0 id=mainTab>
-<tr>
-	<th rowspan=2>номер</th><th rowspan=2>дата</th><th rowspan=2>вид деятельности</th><th colspan=3>мероприятие</th><th rowspan=2>место проведения</th><th colspan=4>охват</th><th colspan=3>проводящие</th><th rowspan=2>организационно-<br>финансовое</th><th rowspan=2>доп.<br>информация</th>
-</tr><tr>
-	<th>тип</th><th>внутренние/сторонние</th><th>название</th><th>тип</th><th>целевая аудитория</th><th>зрители</th><th>выступающие/участники</th><th>отделение</th><th>нач.отделения</th><th>ответственный</th>
-</tr>
-<? getContent('all', $tA) ?>
+<?
+include ('tabhead.php');
+getContent('all', $tA);
+?>
 </Table>
 </DIV>
 </body>
