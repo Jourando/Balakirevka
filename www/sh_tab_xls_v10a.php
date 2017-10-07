@@ -91,7 +91,7 @@ modalClose('none');
 </script>
 </head>
 <body id=mBody>
-<script src=globals2.js?rev=122></script>
+<script src=globals2.js?rev=125></script>
 <script>
 function getXmlHttp(){
     try {
@@ -313,8 +313,8 @@ var trx=document.getElementById(oldStrID);
 for (j=0; j<16; j++) {
 	oldStr+=trx.childNodes[j].innerHTML; // old
 	newStr=newStr+repStr(document.getElementById('ext'+j).value); // new
-	console.log(newStr);
-	console.log(document.getElementById('ext'+j).value);
+//	console.log(newStr);
+//	console.log(document.getElementById('ext'+j).value);
 	if (j<15) {
 		newStr+='|';
 		oldStr+='|';
