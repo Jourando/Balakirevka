@@ -28,7 +28,6 @@ echo "<div id=selrb>\r\n";
 echo "<div style='overflow: scroll; width: 650px; height: 350px; padding: 5px;'>&nbsp;</div>";
 echo "<div id=hs class=hid> </div>\r\n";
 echo "</div>\r\n";
-echo "<!-- <input type=button value=1 onclick='document.getElementById(\"hs\").className=\"show\";'><input type=button value=2 onclick='document.getElementById(\"hs\").className=\"hid\";'> -->";
-// div --> radio | filename | filedate
+echo "<input type=button value=1 onclick='document.getElementById(\"hs\").className=\"show\";'><input type=button value=2 onclick='document.getElementById(\"hs\").className=\"hid\";'>";
 // список файлов... директории <- дропдаун меню
 ?>
