@@ -25,11 +25,13 @@ echo "<h4>Выбирите раздел для отката</h4>";
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $i=0;
+$mVal[0]='0';
 echo "<label>Отдел <select id=dps Onchange='depMod=this.selectedIndex; xAct(this.selectedIndex);'>\r\n";
 foreach($lines as $v) {
 	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
 	if ($i>0) {
 		$resStr[$i]="<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>\r\n";
+		$prE[] = $mVal[$i];
 	} else {
 		$resStr[$i]="<option value=".$mVal[$i].">".$mLable[$i]."</option>\r\n";
 	}
@@ -38,6 +40,16 @@ foreach($lines as $v) {
 }
 echo "</select></label>\r\n";
 echo "<br><br>\r\n";
+echo "<script>\r\n";
+echo "var Drp=new Array();\r\n";
+for ($i=1; $i<count($prE); $i++) {
+	echo "var Dpr[".$i."]=new Array();\r\n";
+	$fdir = 'oldata/'.str_pad($i.'', 4, '0', STR_PAD_LEFT)."/";
+	// сканим через glob для вкатки в JS-array
+	// $f = glob("depart*.a");
+}
+// echo "Dpr[
+echo "</script>\r\n";
 echo "<h4>Доступные варианты:</h4>\r\n";
 echo "<div id=selrb style='position: relative;'>\r\n";
 echo "<div style='overflow: scroll; width: 650px; height: 350px; padding: 5px;'>&nbsp;</div>";
