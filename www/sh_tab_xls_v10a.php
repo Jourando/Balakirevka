@@ -229,9 +229,12 @@ if (document.getElementById('dps') !== null) {
 			sxWin.appendChild(spWin);
 			var trx=document.getElementById(tid);
 			trx.setAttribute('name', 'edit');
-			for (j=0; j<16; j++) { // блджад! не 16, а количество td в строке!!!
+//			for (j=0; j<16; j++) { // блджад! не 16, а количество td в строке!!!
+			for (j=0; j<trx.childNodes.length; j++) {
+				alert(trx.childNodes.length);
 				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
 			}
+//			}
 			document.getElementById('hid').value=tid;
 			document.getElementById('ModalBody1').style.width=document.body.clientWidth+'px';
 		}
