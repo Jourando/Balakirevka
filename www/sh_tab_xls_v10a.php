@@ -220,7 +220,7 @@ if (document.getElementById('dps') !== null) {
 			var spWin=document.createElement('div');
 			stWin.className='hdLayer';
 			stWin.id='ModalHead';
-			stWin.innerHTML='Режим редактирования';
+			stWin.innerHTML=b4a('10561077107810801084003210881077107610721082109010801088108610741072108510801103');
 			spWin.className='ctLayer';
 			spWin.id='ModalCont';
 			spWin.innerHTML='<Table width=100% border=0 id=subTab>'+hdrStr+edtStr+'</Table>';
@@ -260,11 +260,8 @@ if (px==1) {
 	if (depMod>0) {
 		qStr='act=C&u='+xnewStr1+'&p='+xnewStr2+'&d='+depMod;
 	} else {
-		if ((depMod==0) && (a4b(document.getElementById('lusr').value)=='006500680077')) {
-			qStr='act=C&u='+xnewStr1+'&p='+xnewStr2+'&d=999';
-		} else {
-			qStr='';
-		}
+		if ((depMod==0) && (a4b(document.getElementById('lusr').value)=='006500680077')) {qStr='act=C&u='+xnewStr1+'&p='+xnewStr2+'&d=999';}
+		else {qStr='';}
 	}
 	getUrl(urlStr+qStr, '1');
 } else {
@@ -315,12 +312,11 @@ for (j=0; j<trx.childNodes.length; j++) { // NOT 16 !!!
 	oldStr+=trx.childNodes[j].innerHTML; // old
 	newStr=newStr+repStr(document.getElementById('ext'+j).value); // new
 	if (j<(trx.childNodes.length-1)) { // NOT 15 !!!
-		newStr+='|';
-		oldStr+='|';
-	} 
+		newStr+='|'; oldStr+='|';
+	}
 }
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
-postUrl(ResStr, document.getElementById('hid').value);	
+postUrl(ResStr, document.getElementById('hid').value);
 }
 </script>
 <DIV id=mainSection>
