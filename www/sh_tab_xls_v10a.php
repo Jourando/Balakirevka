@@ -69,7 +69,8 @@ addRows=function(tids, pids, pArr, rw) {
 	newEl.setAttribute('onclick', 'modalEdit(\''+newEl.id+'\')');
 	var trdw = exploder(tids, 'sec');
 	trdw[1]='s'+trdw[1]+'r'+rw+'c';
-	for (var i=0; i<16; i++) {
+	alert(pArr.length); // TEST
+	for (var i=0; i<pArr.length; i++) { // NOT 16 !
 			trdw[0]=trdw[0]+'<td id="'+trdw[1]+(i+1)+'">'+pArr[i]+'</td>';
 	}
 	newEl.innerHTML=trdw[0];
@@ -229,12 +230,10 @@ if (document.getElementById('dps') !== null) {
 			sxWin.appendChild(spWin);
 			var trx=document.getElementById(tid);
 			trx.setAttribute('name', 'edit');
-//			for (j=0; j<16; j++) { // блджад! не 16, а количество td в строке!!!
-			for (j=0; j<trx.childNodes.length; j++) {
-				alert(trx.childNodes.length);
+			for (j=0; j<trx.childNodes.length; j++) { // NOT 16 !!!
+//				alert(trx.childNodes.length);
 				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
 			}
-//			}
 			document.getElementById('hid').value=tid;
 			document.getElementById('ModalBody1').style.width=document.body.clientWidth+'px';
 		}
@@ -316,12 +315,12 @@ var oldStrID = document.getElementById('hid').value;
 var newStr = '';
 var oldStr = '';
 var trx=document.getElementById(oldStrID);
-for (j=0; j<16; j++) {
+for (j=0; j<trx.childNodes.length; j++) { // NOT 16 !!!
 	oldStr+=trx.childNodes[j].innerHTML; // old
 	newStr=newStr+repStr(document.getElementById('ext'+j).value); // new
 //	console.log(newStr);
 //	console.log(document.getElementById('ext'+j).value);
-	if (j<15) {
+	if (j<(trx.childNodes.length-1)) { // NOT 15 !!!
 		newStr+='|';
 		oldStr+='|';
 	} 
