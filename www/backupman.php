@@ -27,13 +27,13 @@ function xAct(a) {
 if (a>0) {
 	document.getElementById("hs").className="hid";
 	document.getElementById("ds").className="chid";
-	document.getElementById('flist').innerHTML='<PRE>      имя файла              |  дата изменения     |  размер</PRE>';
-	for (i=1; i<Drp.length; i++) {
-		for (j=0; j<Drp[i].length; j++) {
-				document.getElementById('flist').innerHTML+='<PRE OnClick="appoint(this.innerHTML)">'+Drp[i][j]+'</PRE>';
+	document.getElementById('flist').innerHTML='<PRE>       имя файла             |  дата изменения     |  размер</PRE>';
+//	for (i=1; i<Drp.length; i++) {
+		for (j=0; j<Drp[a].length; j++) {
+				document.getElementById('flist').innerHTML+='<PRE OnClick="appoint(this.innerHTML)">'+Drp[a][j]+'</PRE>';
 		}
-	}
-} else { document.getElementById("hs").className="show"; document.getElementById("ds").className="cshow";}
+//	}
+} else { document.getElementById("hs").className="show"; document.getElementById("ds").className="cshow"; document.getElementById('flist').innerHTML='&nbsp;'; document.getElementById('rbText').value='';}
 }
 </script>
 </HEAD><BODY>
@@ -75,7 +75,7 @@ echo "<div id=flist style='overflow: scroll; width: 650px; height: 350px; paddin
 echo "<div id=hs class=show> </div>\r\n";
 echo "</div>\r\n";
 echo "<form action='?actz=rb' method=post>\r\n";
-echo "<div id=ctrl style='position: relative'><label><input type=button value=RollBack style='width: 100px'> to <input id=rbText type=text readonly value='' style='width: 220px; background: lightblue;'></label>";
+echo "<div id=ctrl style='position: relative'><label><input type=button value=RollBack style='width: 120px'> to <input id=rbText type=text readonly value='' style='width: 220px; background: lightblue;'></label>";
 echo "<div id=ds class=cshow> </div></div>";
 echo "</form>";
 ?>
