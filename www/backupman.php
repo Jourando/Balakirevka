@@ -1,6 +1,23 @@
 ﻿<?php
 // v.10.a.4::backupman revision
-$m1='';
+if ($_GET['actz']=='rb') {
+	echo "<h4>Откат раздела ".$_POST['hidDpr']." к состоянию ".$_POST['rbTxt']."</h4>\r\n";
+	$spd = str_pad($_POST['hidDpr'], 4, "0", STR_PAD_LEFT);
+	// оригинал скинуть в олдата
+	$xfile='depart'.$spd.'.a';
+	$newfile='oldata/'.$spd.'/depart'.$spd.'[';
+	$f=scandir('oldata/'.$spd);
+	$j=count($f)-1;
+	$newfile=$newfile.str_pad($j, 4, "0", STR_PAD_LEFT).']';
+	echo "<!-- copy ".$xfile." to ".$newfile." -->\r\n";
+	// копирование
+	copy($xfile, $newfile);
+	// удаление
+	unlink($xfile);
+	echo "<!-- copy ".$_POST['rbTxt']." to ".$xfile." -->\r\n";
+	copy($_POST['rbTxt'], $xfile);
+	echo "<h4>успешно выполнен. Нажмите [<a href=backupman.php>сюда</a>] для возврата</h4>\r\n";
+} else {
 ?>
 <!DOCTYPE HTML>
 <HTML><HEAD>
@@ -27,13 +44,24 @@ function xAct(a) {
 if (a>0) {
 	document.getElementById("hs").className="hid";
 	document.getElementById("ds").className="chid";
+	document.getElementById('hDpr').value=a;
 	document.getElementById('flist').innerHTML='<PRE>       имя файла             |  дата изменения     |  размер</PRE>';
-//	for (i=1; i<Drp.length; i++) {
-		for (j=0; j<Drp[a].length; j++) {
-				document.getElementById('flist').innerHTML+='<PRE OnClick="appoint(this.innerHTML)">'+Drp[a][j]+'</PRE>';
-		}
-//	}
-} else { document.getElementById("hs").className="show"; document.getElementById("ds").className="cshow"; document.getElementById('flist').innerHTML='&nbsp;'; document.getElementById('rbText').value='';}
+	for (j=0; j<Drp[a].length; j++) {
+		document.getElementById('flist').innerHTML+='<PRE OnClick="appoint(this.innerHTML)">'+Drp[a][j]+'</PRE>';
+	}
+} else {
+	document.getElementById("hs").className="show";
+	document.getElementById("ds").className="cshow";
+	document.getElementById('flist').innerHTML='&nbsp;';
+	document.getElementById('rbText').value='';
+	document.getElementById('hDpr').value='';
+}
+}
+function rbRun() {
+if (document.getElementById('rbText').value !== '') {
+	var el=document.getElementsByTagName('form')[0];
+	el.submit();
+}
 }
 </script>
 </HEAD><BODY>
@@ -75,13 +103,10 @@ echo "<div id=flist style='overflow: scroll; width: 650px; height: 350px; paddin
 echo "<div id=hs class=show> </div>\r\n";
 echo "</div>\r\n";
 echo "<form action='?actz=rb' method=post>\r\n";
-echo "<div id=ctrl style='position: relative'><label><input type=button value=RollBack style='width: 120px'> to <input id=rbText type=text readonly value='' style='width: 220px; background: lightblue;'></label>";
+echo "<div id=ctrl style='position: relative'><label><input type=hidden id=hDpr name=hidDpr value=''><input type=button onClick='rbRun()' value=RollBack style='width: 120px'> to <input name=rbTxt id=rbText type=text readonly value='' style='width: 220px; background: lightblue;'></label>";
 echo "<div id=ds class=cshow> </div></div>";
 echo "</form>";
-?>
-<DIV></DIV>
-</BODY>
-</HTML>
-<?
-$m1='q';
+include('toolmen.php');
+echo "</BODY>\r\n</HTML>";
+}
 ?>
