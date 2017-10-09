@@ -69,7 +69,6 @@ addRows=function(tids, pids, pArr, rw) {
 	newEl.setAttribute('onclick', 'modalEdit(\''+newEl.id+'\')');
 	var trdw = exploder(tids, 'sec');
 	trdw[1]='s'+trdw[1]+'r'+rw+'c';
-	alert(pArr.length); // TEST
 	for (var i=0; i<pArr.length; i++) { // NOT 16 !
 			trdw[0]=trdw[0]+'<td id="'+trdw[1]+(i+1)+'">'+pArr[i]+'</td>';
 	}
@@ -77,8 +76,6 @@ addRows=function(tids, pids, pArr, rw) {
 	insertAfter(newEl, elx);
 return newEl.id;
 }
-alert(xmid); // TEST --- xmid is undef
-alert('xArr : '+xArr.length); // TEST
 var dataJs = new Array();
 for (var i = 0; i < xArr.length; i++) {
 	dataJs[i]=exploder(xArr[i], '|');
@@ -120,9 +117,7 @@ function postUrl(xurl, xmd) {
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.onreadystatechange = function(){      
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			console.log(xmlhttp.responseText); // TEST
 			backdata = JSON.parse(xmlhttp.responseText);
-			alert ('xmd = '+xmd); // TEST
 			reNew(backdata, xmd);
 		}
     }

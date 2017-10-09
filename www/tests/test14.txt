@@ -15,4 +15,3 @@ addRows=function(tids, pids, pArr, rw) {
 	insertAfter(newEl, elx);
 return newEl.id;
 }
-// xmid is undef

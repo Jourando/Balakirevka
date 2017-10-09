@@ -1,0 +1,2 @@
+text fields [1] [2] [3];
+gett allText;
