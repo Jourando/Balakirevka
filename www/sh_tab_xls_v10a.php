@@ -39,6 +39,7 @@ input[type=text] {resize:both;}
 function insertAfter(elem, refElem) {
   return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
+// ... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function reNew(xArr, xmid) { // исправить на нужное кол-во полей
 exploder=function(str, delim) {
 	return str.toString().split(delim.toString());
@@ -114,7 +115,7 @@ function postUrl(xurl, xmd) {
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.onreadystatechange = function(){      
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			// alert(xmlhttp.responseText);
+			alert(xmlhttp.responseText);
 			backdata = JSON.parse(xmlhttp.responseText);
 			reNew(backdata, xmd);
 		}
