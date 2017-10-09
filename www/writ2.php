@@ -44,9 +44,10 @@ foreach($lines as $v) {
 $handle = fopen($xfile, 'w');
 for ($i=0; $i<count($aStr); $i++) {
 	// номер дата вид деят.	мероприятие[тип, наши/сторонние, название] место_проведения охват[тип, аудитория, зрители, выст/участники] проводящие[отдел, нач.отдел, ответств] орг-фин доп.информация
-  	list($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo) = explode("|", $aStr[$i]);
+//  	list($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo) = explode("|", $aStr[$i]);  --- старая версия
+	list($n, $depart, $dStart, $dEnd, $vd, $acType, $acOwner, $acName, $acPlace, $oLvl, $oAud, $oSeer, $oPrt, $OOP, $hostHead, $hostLd, $hostOrg, $fin, $adInfo) = explode("|", $aStr[$i]);
   	$n=" ".$i;
- 	$a1 = array($n, $dt, $vd, $acType, $acOwner, $acName, $acPlace, $oType, $oAud, $oSeer, $oPrt, $hostDep, $hostHead, $hostLd, $fin, $adInfo);
+ 	$a1 = array($n, $depart, $dStart, $dEnd, $vd, $acType, $acOwner, $acName, $acPlace, $oLvl, $oAud, $oSeer, $oPrt, $OOP, $hostHead, $hostLd, $hostOrg, $fin, $adInfo);
  	$aStr[$i]=join("|", $a1)."\r\n";
   	fwrite($handle, $aStr[$i]);
 }

@@ -36,6 +36,7 @@ input[type=text] {resize:both;}
 #unplug {display: block;}
 </style>
 <script>
+var edMode=1; // расположение полей в modalEdit
 function insertAfter(elem, refElem) {
   return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
@@ -231,6 +232,8 @@ if (document.getElementById('dps') !== null) {
 				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
 			}
 			document.getElementById('hid').value=tid;
+			document.getElementById('ModalBody').style.width="100%";
+			document.getElementById('ModalBody').style.overflow="scroll";
 		}
 	}
 }
