@@ -1,4 +1,5 @@
 <?php
+// ревизия?
 function mkMenu() {
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

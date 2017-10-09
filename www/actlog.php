@@ -54,4 +54,6 @@ if ($_GET['act']=='VARL') {
 $handle = fopen($xfile, 'a');
 fwrite($handle, $a);
 fclose($handle);
+// с форматом лажа...
+// тестить
 ?>
