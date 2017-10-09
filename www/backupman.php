@@ -1,5 +1,5 @@
 ﻿<?php
-// v.10.a.3::backupman revision
+// v.10.a.4::backupman revision
 $m1='';
 ?>
 <!DOCTYPE HTML>
@@ -45,12 +45,11 @@ echo "var Drp=new Array();\r\n";
 for ($i=1; $i<count($prE)+1; $i++) {
 	echo "var Dpr[".$i."]=new Array();\r\n";
 	$fdir = 'oldata/'.str_pad($i, 4, '0', STR_PAD_LEFT)."/";
-//	if (FILE_EXISTS($fdir)) {echo "got dir";}
 	// сканим через glob для вкатки в JS-array
 	$f = glob($fdir."*");
 // echo "В последний раз файл $filename был изменен: " . date ("F d Y H:i:s.", filemtime($filename));
 	for ($j=0; $j<count($f); $j++) {
-		echo $f[$j].' + '.date("Y M D H:i:s", filemtime($fdir.$f[$j])).' + <br>\r\n';
+		echo $f[$j].' + '.date("Y M D H:i:s", filemtime($f[$j])).' + '.filesize($f[$j]).'<br>\r\n';
 	}
 }
 // echo "Dpr[
@@ -63,7 +62,6 @@ echo "</div>\r\n";
 echo "<!-- <input type=button value=1 onclick='document.getElementById(\"hs\").className=\"show\";'><input type=button value=2 onclick='document.getElementById(\"hs\").className=\"hid\";'> -->";
 echo "<div id=ctrl style='position: relative'><label><input type=button value=RollBack> to <input type=text readonly value=''></label>";
 echo "<div id=ds class=cshow> </div></div>";
-// div --> radio | filename | filedate
 // список файлов... директории <- дропдаун меню
 ?>
 <DIV></DIV>
