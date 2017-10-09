@@ -1,5 +1,5 @@
 <?php
-// v.10.a.1::tab_header revision
+// v.10.a.2::tab_header revision
 function getContent($a1, $m1) {
 $i=0;
 foreach (glob("depart*.a") as $filename) {
@@ -9,7 +9,7 @@ foreach (glob("depart*.a") as $filename) {
 		$lines[$i] = file($fArray[$i], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 		$rx[$i]="<tr id=sec".$i."hdr class=T2><td id=hdr".$i." colspan=19 class=depHdr>Отдел: ".$m1[$i]."</td></tr>\r\n";
 		echo $rx[$i];
-		foreach($lines[$i] as $v) {
+		foreach($lines[$i] as $v) { // don't use 16, use array.lenght !!!
 			list($n, $depart, $dStart, $dEnd, $vd, $acType, $acOwner, $acName, $acPlace, $oLvl, $oAud, $oSeer, $oPrt, $OOP, $hostHead, $hostLd, $hostOrg, $fin, $adInfo) = explode("|", $lines[$i][$j]);
 			$rs[$i][$j]="<tr id=sec".$i."line".$j." class=T1 name=skip Onclick='modalEdit(\"sec".$i."line".$j."\")'><td id=s".$i."r".$j."c1>".$n."</td><td id=s".$i."r".$j."c2>".$depart."</td><td id=s".$i."r".$j."c3>".$dStart."</td><td id=s".$i."r".$j."c4>".$dEnd."</td><td id=s".$i."r".$j."c5>".$vd."</td><td id=s".$i."r".$j."c6>".$acType."</td><td id=s".$i."r".$j."c7>".$acOwner."</td><td id=s".$i."r".$j."c8>".$acName."</td><td id=s".$i."r".$j."c9>".$acPlace."</td><td id=s".$i."r".$j."c10>".$oLvl."</td>";
 			$rs[$i][$j]=$rs[$i][$j]."<td id=s".$i."r".$j."c11>".$oAud."</td><td id=s".$i."r".$j."c12>".$oSeer."</td><td id=s".$i."r".$j."c13>".$oPrt."</td><td id=s".$i."r".$j."c14>".$OOP."</td><td id=s".$i."r".$j."c15>".$hostHead."</td><td id=s".$i."r".$j."c16>".$hostLd."</td><td id=s".$i."r".$j."c17>".$hostOrg."</td><td id=s".$i."r".$j."c18>".$fin."</td><td id=s".$i."r".$j."c19>".$adInfo."</td></tr>\r\n";

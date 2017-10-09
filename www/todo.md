@@ -37,3 +37,6 @@ div#ModalBody1 - режим горизонтальной правки в 1 ст�
 	list($n, $depart, $dStart, $dEnd, $vd, $acType, $acOwner, $acName, $acPlace, $oLvl, $oAud, $oSeer, $oPrt, $OOP, $hostHead, $hostLd, $hostOrg, $fin, $adInfo) = explode("|", $lines[$i][$j]);
 :: должно отдаваться 19 полей
 +теперь правим админку
++tabhead готов +
++writ2.php готов +
++main готов +
