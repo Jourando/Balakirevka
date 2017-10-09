@@ -18,5 +18,3 @@ https://habrahabr.ru/post/114182/ - Àâòîèçìåíåíèå âûñîòû text
 https://habrahabr.ru/post/323264/ - Àíòèñòðåññ-ìàñêà
 https://text-mask.github.io/text-mask/ - mask
 https://unmanner.github.io/imaskjs/#demo
-
-//
