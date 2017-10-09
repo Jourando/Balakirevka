@@ -314,8 +314,6 @@ var trx=document.getElementById(oldStrID);
 for (j=0; j<trx.childNodes.length; j++) { // NOT 16 !!!
 	oldStr+=trx.childNodes[j].innerHTML; // old
 	newStr=newStr+repStr(document.getElementById('ext'+j).value); // new
-//	console.log(newStr);
-//	console.log(document.getElementById('ext'+j).value);
 	if (j<(trx.childNodes.length-1)) { // NOT 15 !!!
 		newStr+='|';
 		oldStr+='|';
