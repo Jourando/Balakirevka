@@ -1,22 +1,19 @@
 ﻿<?php
-// v.10.a.4::backupman revision
+// v.10.a.5::backupman revision
 if ($_GET['actz']=='rb') {
 	echo "<h4>Откат раздела ".$_POST['hidDpr']." к состоянию ".$_POST['rbTxt']."</h4>\r\n";
 	$spd = str_pad($_POST['hidDpr'], 4, "0", STR_PAD_LEFT);
-	// оригинал скинуть в олдата
 	$xfile='depart'.$spd.'.a';
 	$newfile='oldata/'.$spd.'/depart'.$spd.'[';
 	$f=scandir('oldata/'.$spd);
 	$j=count($f)-1;
 	$newfile=$newfile.str_pad($j, 4, "0", STR_PAD_LEFT).']';
 	echo "<!-- copy ".$xfile." to ".$newfile." -->\r\n";
-	// копирование
 	copy($xfile, $newfile);
-	// удаление
 	unlink($xfile);
 	echo "<!-- copy ".$_POST['rbTxt']." to ".$xfile." -->\r\n";
 	copy($_POST['rbTxt'], $xfile);
-	echo "<h4>успешно выполнен. Нажмите [<a href=backupman.php>сюда</a>] для возврата</h4>\r\n";
+	echo "<h4>...успешно выполнен. Нажмите [<a href=backupman.php>сюда</a>] для возврата</h4>\r\n";
 } else {
 ?>
 <!DOCTYPE HTML>
@@ -90,7 +87,6 @@ for ($i=1; $i<count($prE)+1; $i++) {
 	echo "Drp[".$i."]=new Array();\r\n";
 	$fdir = 'oldata/'.str_pad($i, 4, '0', STR_PAD_LEFT)."/";
 	$f = glob($fdir."*");
-// echo "В последний раз файл $filename был изменен: " . date ("F d Y H:i:s.", filemtime($filename));
 	for ($j=0; $j<count($f); $j++) {
 		echo "Drp[".$i."][".$j."]='".$f[$j]." | ".date("Y/m/d H:i:s", filemtime($f[$j]))." | ".filesize($f[$j])."';\r\n";
 	}
