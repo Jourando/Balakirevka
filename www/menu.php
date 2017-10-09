@@ -18,7 +18,7 @@ foreach($lines as $v) {
 			copy('store/depart', 'depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a');
 		} else {
 			$handle = fopen('depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a', 'w');
-			fwrite($handle, " 0||||||||||||||||||\r\n");
+			fwrite($handle, " 0||||||||||||||||||\r\n"); // проверить кол-во полей
 			fclose($handle);
 		}
 	}

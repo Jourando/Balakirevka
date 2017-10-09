@@ -1,17 +1,17 @@
 ﻿<?php
-// v.10.a.2::bdman revision
+// v.10.a.3::bdman revision
 $retr=false;
 $dir = __DIR__;
 $flag=1;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="ru"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="ru">
+<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
 <style>
 input[type=submit]#ContSub, input[type=button] {width: 140px;}
 </style>
 <title>BD-man</title>
 </head>
-
 <body>
 <?
 if (($_GET['act']=="R") && ($_GET['p']=="show")) {
@@ -23,7 +23,6 @@ if (($_GET['act']=="R") && ($_GET['p']=="show")) {
 	$str5='<label>4. <input type=button value="Drop Settings" Onclick=location.href="bd_man.php?act=W&p=ds&from=self"> Сбросить список настроек</label><br>';
 	$str6='<label>5. <input type=button value="Edit Departments" Onclick=location.href="bd_man.php?act=W&p=itmr&from=me"> Редактировать список разделов</label>';
 	$str7='</div>';
-	// var_dump($fn);
 	echo $str1.$str2.$str3.$str4.$str5.$str6.$str7;
 	include('toolmen.php');
 }
@@ -51,7 +50,7 @@ if ($_GET['act']=="W") {
 		$f = glob("depart*.a");
 		for ($i=1; $i<count($f); $i++) {
 				$handle = fopen($f[$i], 'w');
-				fwrite($handle, " 0|||||||||||||||\r\n");
+				fwrite($handle, " 0|||||||||||||||\r\n"); // проверить кол-во полей. А лучше - скопировать из файла-образца!
 				fclose($handle);
 //				echo $f[$i]." was cleaned<br>";
 		}
@@ -137,10 +136,6 @@ if ($_GET['act']=="A") {
 		echo "<div></div>\r\n";	
 	}
 }
-?>
-<div>&nbsp;</div>
-</body>
-</html>
-<?
-$flag=0;
+echo "<div>&nbsp;</div>\r\n";
+echo "</body>\r\n</html>\r\n";
 ?>
