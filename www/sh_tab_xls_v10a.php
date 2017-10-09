@@ -33,6 +33,7 @@ input[type=text] {resize:both;}
 .ctLayer {background: snow;}
 .visible {display: inline-block;}
 .invisible {display: none;}
+#ModalBody1 {overflow-x: scroll;}
 #unplug {display: block;}
 </style>
 <script>
@@ -214,7 +215,7 @@ if (document.getElementById('dps') !== null) {
 			ssWin.appendChild(seWin);
 			var sxWin=document.createElement('div');
 			sxWin.className='bdLayer';
-			sxWin.id='ModalBody';
+			sxWin.id='ModalBody1';
 			seWin.appendChild(sxWin);
 			var stWin=document.createElement('div');
 			var spWin=document.createElement('div');
@@ -232,14 +233,15 @@ if (document.getElementById('dps') !== null) {
 				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
 			}
 			document.getElementById('hid').value=tid;
-			document.getElementById('ModalBody').style.width="100%";
-			document.getElementById('ModalBody').style.overflow="scroll";
+//			document.getElementById('ModalBody').style.width="100%";
+//			document.getElementById('ModalBody').style.overflow="scroll";
+			document.getElementById('ModalBody1').style.width=document.body.clientWidth+'px';
 		}
 	}
 }
 }
 function modalClose(tid) {
-var sxWin=document.getElementById('ModalBody');
+var sxWin=document.getElementById('ModalBody1');
 sxWin.removeChild(sxWin.childNodes[1]);
 sxWin.removeChild(sxWin.childNodes[0]);
 var seWin=document.getElementById('ModalCell');
