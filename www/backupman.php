@@ -42,11 +42,16 @@ echo "</select></label>\r\n";
 echo "<br><br>\r\n";
 echo "<script>\r\n";
 echo "var Drp=new Array();\r\n";
-for ($i=1; $i<count($prE); $i++) {
+for ($i=1; $i<count($prE)+1; $i++) {
 	echo "var Dpr[".$i."]=new Array();\r\n";
-	$fdir = 'oldata/'.str_pad($i.'', 4, '0', STR_PAD_LEFT)."/";
+	$fdir = 'oldata/'.str_pad($i, 4, '0', STR_PAD_LEFT)."/";
+//	if (FILE_EXISTS($fdir)) {echo "got dir";}
 	// сканим через glob для вкатки в JS-array
-	// $f = glob("depart*.a");
+	$f = glob($fdir."*");
+// echo "В последний раз файл $filename был изменен: " . date ("F d Y H:i:s.", filemtime($filename));
+	for ($j=0; $j<count($f); $j++) {
+		echo $f[$j].' + '.date("Y M D H:i:s", filemtime($fdir.$f[$j])).' + <br>\r\n';
+	}
 }
 // echo "Dpr[
 echo "</script>\r\n";
