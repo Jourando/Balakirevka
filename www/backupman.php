@@ -12,30 +12,15 @@ $m1='';
 .cshow {position: absolute; top: 0; left: 0: z-index: 5; background: rgba(128, 128, 128, 0.6); width: 660px; height: 25px;}
 .chid{}
 </style>
-<?
-echo "<script>\r\n";
-echo "var Drp=new Array();\r\n";
-for ($i=1; $i<count($prE)+1; $i++) {
-	echo "var Dpr[".$i."]=new Array();\r\n";
-	$fdir = 'oldata/'.str_pad($i, 4, '0', STR_PAD_LEFT)."/";
-	// сканим через glob для вкатки в JS-array
-	$f = glob($fdir."*");
-// echo "В последний раз файл $filename был изменен: " . date ("F d Y H:i:s.", filemtime($filename));
-	for ($j=0; $j<count($f); $j++) {
-		echo "Dpr[".$i."][".$j."]='".$f[$j]." | ".date("Y m d H:i:s", filemtime($f[$j]))." | ".filesize($f[$j])."';\r\n";
-	}
-}
-echo "</script>\r\n";
-?>
 <script>
 var depMod=0;
 function xAct(a) {
 if (a>0) {
 	document.getElementById("hs").className="hid";
 	document.getElementById("ds").className="chid";
-	for (i=1; i<Dpr.length; i++) {
-		for (j=0; j<Dpr[i].length; j++) {
-				document.getElementById('flist').innerHTML+='<div>'+Dpr[i][j]+'</div>';
+	for (i=1; i<Drp.length; i++) {
+		for (j=0; j<Drp[i].length; j++) {
+				document.getElementById('flist').innerHTML+='<div>'+Drp[i][j]+'</div>';
 		}
 	}
 } else { document.getElementById("hs").className="show"; document.getElementById("ds").className="cshow";}
@@ -61,6 +46,19 @@ foreach($lines as $v) {
 	$i=$i+1;
 }
 echo "</select></label>\r\n";
+echo "<script>\r\n";
+echo "var Drp=new Array();\r\n";
+for ($i=1; $i<count($prE)+1; $i++) {
+	echo "var Drp[".$i."]=new Array();\r\n";
+	$fdir = 'oldata/'.str_pad($i, 4, '0', STR_PAD_LEFT)."/";
+	// сканим через glob для вкатки в JS-array
+	$f = glob($fdir."*");
+// echo "В последний раз файл $filename был изменен: " . date ("F d Y H:i:s.", filemtime($filename));
+	for ($j=0; $j<count($f); $j++) {
+		echo "Drp[".$i."][".$j."]='".$f[$j]." | ".date("Y m d H:i:s", filemtime($f[$j]))." | ".filesize($f[$j])."';\r\n";
+	}
+}
+echo "</script>\r\n";
 echo "<br><br>\r\n";
 echo "<h4>Доступные варианты:</h4>\r\n";
 echo "<div id=selrb style='position: relative;'>\r\n";
