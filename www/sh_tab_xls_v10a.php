@@ -77,6 +77,8 @@ addRows=function(tids, pids, pArr, rw) {
 	insertAfter(newEl, elx);
 return newEl.id;
 }
+alert(xmid); // TEST --- xmid is undef
+alert('xArr : '+xArr.length); // TEST
 var dataJs = new Array();
 for (var i = 0; i < xArr.length; i++) {
 	dataJs[i]=exploder(xArr[i], '|');
@@ -118,8 +120,9 @@ function postUrl(xurl, xmd) {
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.onreadystatechange = function(){      
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			console.log(xmlhttp.responseText);
+			console.log(xmlhttp.responseText); // TEST
 			backdata = JSON.parse(xmlhttp.responseText);
+			alert ('xmd = '+xmd); // TEST
 			reNew(backdata, xmd);
 		}
     }
@@ -231,7 +234,6 @@ if (document.getElementById('dps') !== null) {
 			var trx=document.getElementById(tid);
 			trx.setAttribute('name', 'edit');
 			for (j=0; j<trx.childNodes.length; j++) { // NOT 16 !!!
-//				alert(trx.childNodes.length);
 				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
 			}
 			document.getElementById('hid').value=tid;
@@ -307,7 +309,6 @@ document.getElementById('pusr').value=apwd;
 if (alg>0) {depMod=adpt;}
 }
 function ItmInsert(px) {
-var xb;
 var delim='##';
 var act = px.toUpperCase();
 var sect=document.getElementById('dps').selectedIndex;
@@ -326,7 +327,7 @@ for (j=0; j<trx.childNodes.length; j++) { // NOT 16 !!!
 	} 
 }
 var ResStr=act+delim+sect+delim+encodeURIComponent(oldStr)+delim+encodeURIComponent(newStr);
-postUrl(ResStr, xb, document.getElementById('hid').value);	
+postUrl(ResStr, document.getElementById('hid').value);	
 }
 </script>
 <DIV id=mainSection>
