@@ -1,4 +1,5 @@
 <?php
+// v.10.a.1::tab_header revision
 function getContent($a1, $m1) {
 $i=0;
 foreach (glob("depart*.a") as $filename) {
