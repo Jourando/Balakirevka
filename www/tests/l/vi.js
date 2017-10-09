@@ -1,1 +1,0 @@
-vi=10a; // seems not good;
