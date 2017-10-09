@@ -20,9 +20,7 @@ foreach($lines as $v) {
 		if ($act=="REPLACE") {
 			if (trim($lines[$i]) == trim($oldStr)) {
 				$aStr[] = $newStr;
-			} else {
-				$aStr[] = $lines[$i];
-			}
+			} else {$aStr[] = $lines[$i];}
 		}
 		if (($act=="BEFORE") || ($act=="AFTER") || ($act=="ERASE")) {
 			if (trim($lines[$i]) == trim($oldStr)) {
@@ -32,9 +30,7 @@ foreach($lines as $v) {
 				} elseif ($act=="AFTER") {
 					$aStr[]=$oldStr;
 					$aStr[]=$newStr;
-				} else {
-					$j=$j-2;
-				}
+				} else {$j=$j-2;}
 				$j=$j+1;
 			} else {
 				$sArr = explode('|', $lines[$i]);
