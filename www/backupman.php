@@ -49,7 +49,7 @@ for ($i=1; $i<count($prE)+1; $i++) {
 	$f = glob($fdir."*");
 // echo "В последний раз файл $filename был изменен: " . date ("F d Y H:i:s.", filemtime($filename));
 	for ($j=0; $j<count($f); $j++) {
-		echo $f[$j].' + '.date("Y M D H:i:s", filemtime($f[$j])).' + '.filesize($f[$j]).'<br>\r\n';
+		echo "Dpr[".$i."][".$j."]='".$f[$j]." | ".date("Y m d H:i:s", filemtime($f[$j]))." | ".filesize($f[$j])."';\r\n";
 	}
 }
 // echo "Dpr[
