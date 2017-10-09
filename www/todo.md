@@ -34,3 +34,4 @@ div#ModalBody1 - режим горизонтальной правки в 1 ст�
 
 формируем:
 	list($n, $depart, $dStart, $dEnd, $vd, $acType, $acOwner, $acName, $acPlace, $oLvl, $oAud, $oSeer, $oPrt, $OOP, $hostHead, $hostLd, $hostOrg, $fin, $adInfo) = explode("|", $lines[$i][$j]);
+:: должно отдаваться 19 полей

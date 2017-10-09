@@ -117,7 +117,7 @@ function postUrl(xurl, xmd) {
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.onreadystatechange = function(){      
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			alert(xmlhttp.responseText);
+			console.log(xmlhttp.responseText);
 			backdata = JSON.parse(xmlhttp.responseText);
 			reNew(backdata, xmd);
 		}
@@ -229,12 +229,10 @@ if (document.getElementById('dps') !== null) {
 			sxWin.appendChild(spWin);
 			var trx=document.getElementById(tid);
 			trx.setAttribute('name', 'edit');
-			for (j=0; j<16; j++) {
+			for (j=0; j<16; j++) { // блджад! не 16, а количество td в строке!!!
 				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
 			}
 			document.getElementById('hid').value=tid;
-//			document.getElementById('ModalBody').style.width="100%";
-//			document.getElementById('ModalBody').style.overflow="scroll";
 			document.getElementById('ModalBody1').style.width=document.body.clientWidth+'px';
 		}
 	}
