@@ -28,7 +28,7 @@ function chCode2($inStr) {
 function chCode3($inStr) {
 	return mb_convert_encoding($inStr,"UTF-8", "Windows-1251");
 }
-function uniwrite() {
+function uniwrite($xz) {
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 	if (ISSET($_GET['f'])) {
 		$fn=$pre.$_GET['f'];
@@ -113,7 +113,7 @@ if (ISSET($_GET['mode'])) {
 	else {die('<pre>wrong qwery</pre>');}
 }
 if ($md==1) {
-
+/*
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 	if (ISSET($_GET['f'])) {
 		$fn=$pre.$_GET['f'];
@@ -154,8 +154,11 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     }
     xlsEOF(); // закрываем файл
 }
+*/
+uniwrite($md);
 }
 if ($md==2) {
+/*
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 	if (ISSET($_GET['f'])) {
 		$fn=$pre.$_GET['f'];
@@ -193,8 +196,11 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     }
 }
 exit;
+*/
+uniwrite($md);
 }
 if ($md==3) {
+/*
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 	if (ISSET($_GET['f'])) {
 		$fn=$pre.$_GET['f'];
@@ -235,6 +241,8 @@ if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
     }
 }
 exit;
+*/
+uniwrite($md);
 }
 if ($md==4) {
 	// импорт 
