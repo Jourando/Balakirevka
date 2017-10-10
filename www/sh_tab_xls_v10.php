@@ -14,8 +14,10 @@ include ('menu.php');
 <!DOCTYPE html>
 <html lang="RU-ru">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=0.65, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 <Title>Main Tab Editor</Title>
 <style>
 body {margin: 0px; padding: 0px}
@@ -34,6 +36,8 @@ input[type=text] {resize:both;}
 .visible {display: inline-block;}
 .invisible {display: none;}
 #ModalBody1 {overflow-x: scroll;}
+CapsOff{border: 1px solid #000; width: 20px; height: 20 px; color: gold; background: #fff}
+CapsOn{border: 1px solid #000; width: 20px; height: 20px; color: gold; background: #600;}
 #unplug {display: block;}
 </style>
 <script>
@@ -284,7 +288,7 @@ foreach($lines as $v) {
 $ptmp=$ptmp."vxtp=vxtp+'</select></label>';\r\n";
 echo $ptmp;
 ?>
-	fst.innerHTML=vxtp+'<label> оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Фамилия и инициалы\';}"> пароль <input id=pusr type=password value=\'Пароль\' OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Пароль\';}"> <input type=button value=Отправить Onclick=Auth(1) class=visible id=b1> <input type=button value=\'Перелогиниться\' Onclick=Auth(2) class=invisible id=b2> <input type=button value=Обновить OnClick="location.reload()"></label>';
+	fst.innerHTML=vxtp+'<label> оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Фамилия и инициалы\';}"> пароль <input id=pusr type=password value=\'Пароль\' OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Пароль\';}"> <div id=CLW class=CapsOff>&nbsp;</div> <input type=button value=Отправить Onclick=Auth(1) class=visible id=b1> <input type=button value=\'Перелогиниться\' Onclick=Auth(2) class=invisible id=b2> <input type=button value=Обновить OnClick="location.reload()"></label>';
 }	
 }
 function Prw() {
