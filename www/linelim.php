@@ -1,0 +1,3 @@
+<?php
+$linelimit=19;
+?>

@@ -113,136 +113,13 @@ if (ISSET($_GET['mode'])) {
 	else {die('<pre>wrong qwery</pre>');}
 }
 if ($md==1) {
-/*
-if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
-	if (ISSET($_GET['f'])) {
-		$fn=$pre.$_GET['f'];
-		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
-		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
-	} else {
-		$fn='depart'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT);
-		if ((ISSET($_GET['old'])) && (ISSET($_GET['back']))) {$pre='oldata/'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT).'/';}
-		else {$pre='';}
-		if (($pre !== '') && (ISSET($_GET['back']))) {
-			$fn=$pre.$fn.'['.str_pad($_GET['back'], 4, "0", STR_PAD_LEFT).']';
-		}
-		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
-		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
-	}
-	$ax = file($fn, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-	for ($i=0; $i<count($ax); $i++) {
-		$array[$i]=explode("|", $ax[$i]);
-	}
-	if (ISSET($_GET['out'])) {
-			$filename=$_GET['out'];
-	} else {
-			$filename='';
-	}
-    header("Content-Type: application/force-download");
-    header("Content-Type: application/octet-stream");
-    header("Content-Type: application/download");;
-    header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.xls'));
-    header("Content-Transfer-Encoding: binary");
-    xlsBOF(); //пишем начало файла
-    for($i=0,$counti=count($array);$i<$counti;$i++){ //количество строк
-        for($j=0,$countj=count($array[$i]);$j<$countj;$j++){ //количество ячеек
-			// если колонка = [список колонок, которые отдаются как числовые], то xlsWriteNumber
-			// иначе...
-            xlsWriteLabel($i,$j, chCode1($array[$i][$j])); 
-			//в строку $i в ячейку $j, записываем конвертированное в 1251 содержимое $array[$i][$j]
-        }
-    }
-    xlsEOF(); // закрываем файл
-}
-*/
-uniwrite($md);
+	uniwrite($md);
 }
 if ($md==2) {
-/*
-if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
-	if (ISSET($_GET['f'])) {
-		$fn=$pre.$_GET['f'];
-		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
-		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
-	} else {
-		$fn='depart'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT);
-		if ((ISSET($_GET['old'])) && (ISSET($_GET['back']))) {$pre='oldata/'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT).'/';}
-		else {$pre='';}
-		if (($pre !== '') && (ISSET($_GET['back']))) {
-			$fn=$pre.$fn.'['.str_pad($_GET['back'], 4, "0", STR_PAD_LEFT).']';
-		}
-		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
-		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
-	}
-	$ax = file($fn, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-	for ($i=0; $i<count($ax); $i++) {
-		$array[$i]=explode("|", $ax[$i]);
-	}
-	if (ISSET($_GET['out'])) {
-			$filename=$_GET['out'];
-	} else {
-			$filename='';
-	}
-    header("Content-Type: application/force-download");
-    header("Content-Type: application/octet-stream");
-    header("Content-Type: application/download");;
-    header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.csv'));
-    header("Content-Transfer-Encoding: binary");
-    for($i=0,$counti=count($array);$i<$counti;$i++){
-        for($j=0,$countj=count($array[$i]);$j<$countj;$j++){
-            echo chCode1($array[$i][$j]).";";
-        }
-		echo " \r\n";
-    }
-}
-exit;
-*/
-uniwrite($md);
+	uniwrite($md);
 }
 if ($md==3) {
-/*
-if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
-	if (ISSET($_GET['f'])) {
-		$fn=$pre.$_GET['f'];
-		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
-		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
-	} else {
-		$fn='depart'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT);
-		if ((ISSET($_GET['old'])) && (ISSET($_GET['back']))) {$pre='oldata/'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT).'/';}
-		else {$pre='';}
-		if (($pre !== '') && (ISSET($_GET['back']))) {
-			$fn=$pre.$fn.'['.str_pad($_GET['back'], 4, "0", STR_PAD_LEFT).']';
-		}
-		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
-		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
-	}
-	$ax = file($fn, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-	for ($i=0; $i<count($ax); $i++) {
-		$array[$i]=explode("|", $ax[$i]);
-	}
-	if (ISSET($_GET['out'])) {
-			$filename=$_GET['out'];
-	} else {
-			$filename='';
-	}
-    header("Content-Type: application/force-download");
-    header("Content-Type: application/octet-stream");
-    header("Content-Type: application/download");;
-    header("Content-Disposition: attachment;filename=".($filename!=''?$filename:'file.a'));
-    header("Content-Transfer-Encoding: binary");
-    for($i=0,$counti=count($array);$i<$counti;$i++){
-		for($j=0,$countj=count($array[$i]);$j<$countj;$j++){
-            if ($j<count($array[$i])-1) {
-				echo $array[$i][$j]."|";
-			} else {
-				echo $array[$i][$j]."\r\n";
-			}
-		}
-    }
-}
-exit;
-*/
-uniwrite($md);
+	uniwrite($md);
 }
 if ($md==4) {
 	// импорт 
@@ -313,7 +190,6 @@ location.href='http:/'+a2;
 </HEAD><BODY>
 <?	
     if(is_uploaded_file($_FILES["filename"]["tmp_name"])) {
-        // Если файл загружен успешно, перемещаем его из временной директории в конечную
         move_uploaded_file($_FILES["filename"]["tmp_name"], __DIR__ . DIRECTORY_SEPARATOR . $_FILES["filename"]["name"]);
 		echo "<div>[".$r0." is ".((strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV')?$r1:$r2)."]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[".$_POST['RB1']."]</div><br>";
 		if (strtoupper(pathinfo($r0, PATHINFO_EXTENSION))=='CSV') {
@@ -393,6 +269,7 @@ $j=count($f)-1;
 $newfile='oldata/'.str_pad($d, 4, "0", STR_PAD_LEFT).'/depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'['.str_pad($j, 4, "0", STR_PAD_LEFT).']';
 copy($xfile, $newfile);
 $newfile=$_GET['fn'];
+include('linelim.php');
 if (file_exists($newfile)) {
 	$lines1=file($newfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 	$lines2=file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -406,17 +283,21 @@ if (file_exists($newfile)) {
 			echo 'ERROR CHARSET';
 		}
 	}
-	// пересчет ячеек!
 	for ($i=0; $i<count($lines1); $i++) {
-//		list($n, 	  $depart,      $dStart,         $dEnd,        $vd,      $acType,      $acOwner,      $acName,      $acPlace,      $oLvl,       $oAud,      $oSeer,      $oPrt,      $OOP,          $hostHead,      $hostLd,
-// 		   $hostOrg, 	  $fin, 	 $adInfo) = explode("|", $aStr[$i]);
-		list($n1[$i], $depart1[$i], $dateStart1[$i], $dateEnd1[$i], $vd1[$i], $acType1[$i], $acOwner1[$i], $acName1[$i], $acPlace1[$i], $oType1[$i], $oAud1[$i], $oSeer1[$i], $oPrt1[$i], $hostDep1[$i], $hostHead1[$i], $hostLd1[$i], $hostOrg1[$i], $fin1[$i], $adInfo1[$i]) = explode(";", $lines1[$i]);
+//		list($n1[$i], $depart1[$i], $dateStart1[$i], $dateEnd1[$i], $vd1[$i], $acType1[$i], $acOwner1[$i], $acName1[$i], $acPlace1[$i], $oType1[$i], $oAud1[$i], $oSeer1[$i], $oPrt1[$i], $hostDep1[$i], $hostHead1[$i], $hostLd1[$i], $hostOrg1[$i], $fin1[$i], $adInfo1[$i]) = explode(";", $lines1[$i]);
+		$tdCsv[$i]=explode(";", $lines1[$i]);
+		if (count($tdCsv[$i])<$linelimit) {$tdCsv[$i]=array_pad($tdCsv[$i], $linelimit, '');}
+		if (count($tdCsv[$i])>$linelimit) {$tdCsv[$i]=array_slice($tdCsv[$i], 0, $linelimit);}
 	}
 	for ($i=0; $i<count($lines2); $i++) {
-//		list($n2[$i], $date2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $fin2[$i], $adInfo2[$i]) = explode("|", $lines2[$i]);
-		list($n2[$i], $depart2[$i], $dateStart2[$i], $dateEnd2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $hostOrg2[$i], $fin2[$i], $adInfo2[$i]) = explode("|", $lines2[$i]);
+//		list($n2[$i], $depart2[$i], $dateStart2[$i], $dateEnd2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $hostOrg2[$i], $fin2[$i], $adInfo2[$i]) = explode("|", $lines2[$i]);
+		$tdAbs[$i]=explode("|", $lines2[$i]);
+		if (count($tdAbs[$i])<$linelimit) {$tdAbs[$i]=array_pad($tdAbs[$i], $linelimit, '');}
+		if (count($tdAbs[$i])>$linelimit) {$tdAbs[$i]=array_slice($tdAbs[$i], 0, $linelimit);}
 	}
 	// здесь надо разбивать массив lines1, полученный из csv, не автоматом в другой абстрактный массив, а через list, чтобы отсечь, если в csv были лишние поля или их не хватало
+	// --- нахуй! ограничиваем через внешний файл!
+	// --- кол-во полей = linelimit!
 	$hnd=fopen($xfile, 'w');
 	if ($method=="1") {
 		echo "<!-- добавить в начало -->"; // - //
