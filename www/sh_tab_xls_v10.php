@@ -385,10 +385,12 @@ getContent('all', $tA); // первично считываем, заполняе
      * Проверить CapsLock
      */
     function checkCapsWarning() {
-      document.getElementById('CLW').innerHTML=capsLockEnabled ? '!' : '&nbsp;';
+		capsLockEnabled?(document.getElementById('CLW').innerHTML="!"; document.getElementById('CLW').className='CapsOn';):(document.getElementById('CLW').innerHTML="&nbsp;"; document.getElementById('CLW').className='CapsOff';)
+//		document.getElementById('CLW').innerHTML=capsLockEnabled ? '!' : '&nbsp;';
     }
     function removeCapsWarning() {
       document.getElementById('CLW').innerHTML = '&nbsp;';
+	  document.getElementById('CLW').className='CapsOff';
     }
   </script>
 </body>
