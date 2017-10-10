@@ -385,10 +385,10 @@ getContent('all', $tA); // первично считываем, заполняе
      * Проверить CapsLock
      */
     function checkCapsWarning() {
-      document.getElementById('capsIndicator').innerHTML=capsLockEnabled ? '!' : '&nbsp;';
+      document.getElementById('CLW').innerHTML=capsLockEnabled ? '!' : '&nbsp;';
     }
     function removeCapsWarning() {
-      document.getElementById('capsIndicator').style.display = '&nbsp;';
+      document.getElementById('CLW').innerHTML = '&nbsp;';
     }
   </script>
 </body>
