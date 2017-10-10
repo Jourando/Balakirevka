@@ -26,7 +26,7 @@ foreach($lines as $v) {
 	$i=$i+1;
 }
 echo "</select></label>\r\n";
-echo "<label> оператор <input type=text id=lusr value=\"Фамилия и инициалы\" OnFocus=this.value=\"\" OnBlur=\"if (this.value=='') {this.value='Фамилия и инициалы';}\"> пароль <input id=pusr type=password value=Пароль OnFocus=this.value=\"\" OnBlur=\"if (this.value=='') {this.value='Пароль';}\"> <div id=CLW class=CapsOff>&nbsp;</div> <input type=button value=Отправить Onclick=\"Auth(1)\" class=visible id=b1> <input type=button value=Перелогиниться Onclick=\"Auth(2)\" class=invisible id=b2> <input type=button value=Обновить OnClick=\"location.reload()\"></label>\r\n";
+echo "<label> оператор <input type=text id=lusr value=\"Фамилия и инициалы\" OnFocus=this.value=\"\" OnBlur=\"if (this.value=='') {this.value='Фамилия и инициалы';}\"> пароль <input id=pusr type=password value='Пароль' OnFocus='this.value=\"\"; checkCapsWarning(event);' OnBlur='if (this.value==\"\") {this.value=\"Пароль\"}; removeCapsWarning();' onkeyup='checkCapsWarning(event);'> <div id=CLW class=CapsOff>&nbsp;</div> <input type=button value=Отправить Onclick=\"Auth(1)\" class=visible id=b1> <input type=button value=Перелогиниться Onclick=\"Auth(2)\" class=invisible id=b2> <input type=button value=Обновить OnClick=\"location.reload()\"></label>\r\n";
 echo "</fieldset></form>\r\n";
 return $mLable;
 }
