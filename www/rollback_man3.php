@@ -335,9 +335,10 @@ if (file_exists($newfile)) {
 		echo "<!-- игнорить, ибо ".$method." -->";
 	}
 	fclose($hnd);
-	usleep(100);
+	usleep(120);
 	unlink($newfile);
 ?>
+<!-- пока работаем только с форматом csv -->
 <h2>Форма для загрузки csv</h2>
 <form>
 <Table border=0><tr><td><label>Файл успешно загружен и добавлен к имеющейся таблице</label></td></tr>
