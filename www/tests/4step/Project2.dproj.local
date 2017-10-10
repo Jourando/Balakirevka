@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject>
-	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.446,C:\Users\Joue\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Joue\Documents\Embarcadero\Studio\Projects\4step\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.446,C:\Users\Joue\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Joue\Documents\Embarcadero\Studio\Projects\4step\Unit2.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.767,C:\Users\Joue\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Joue\Documents\Embarcadero\Studio\Projects\4step\Project2.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.911,=C:\Users\Joue\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-  </Transactions>
-</BorlandProject>
