@@ -36,9 +36,9 @@ input[type=text] {resize:both;}
 .visible {display: inline-block;}
 .invisible {display: none;}
 #ModalBody1 {overflow-x: scroll;}
-CapsOff{background: #fff}
-CapsOn{background: #600;}
-#CLW {display: inline-block; text-align: center; border: 1px solid #666; width: 19px; height: 19px; color: gold;}
+.CapsOff{background: #fff}
+.CapsOn{background: #600;}
+#CLW {display: inline-block; text-align: center; border: 1px solid #666; width: 20px; height: 20px; color: gold;}
 #unplug {display: block;}
 </style>
 <script>
@@ -385,8 +385,13 @@ getContent('all', $tA); // первично считываем, заполняе
      * Проверить CapsLock
      */
     function checkCapsWarning() {
-		capsLockEnabled?(document.getElementById('CLW').innerHTML="!"; document.getElementById('CLW').className='CapsOn';):(document.getElementById('CLW').innerHTML="&nbsp;"; document.getElementById('CLW').className='CapsOff';)
-//		document.getElementById('CLW').innerHTML=capsLockEnabled ? '!' : '&nbsp;';
+		if (capsLockEnabled) {
+			document.getElementById('CLW').innerHTML="!";
+			document.getElementById('CLW').className='CapsOn';
+		} else {
+			document.getElementById('CLW').innerHTML="&nbsp;";
+			document.getElementById('CLW').className='CapsOff';
+		}
     }
     function removeCapsWarning() {
       document.getElementById('CLW').innerHTML = '&nbsp;';
