@@ -320,11 +320,15 @@ if (file_exists($newfile)) {
 	} elseif ($method=="3") {
 		echo "<!-- добавить в конец -->";
 		for ($i=0; $i<count($lines2); $i++) {
-			fwrite($hnd, " ".$i."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
+//	fwrite($hnd, " ".$i."|".$date2[$i]."|".$vd2[$i]."|".$acType2[$i]."|".$acOwner2[$i]."|".$acName2[$i]."|".$acPlace2[$i]."|".$oType2[$i]."|".$oAud2[$i]."|".$oSeer2[$i]."|".$oPrt2[$i]."|".$hostDep2[$i]."|".$hostHead2[$i]."|".$hostLd2[$i]."|".$fin2[$i]."|".$adInfo2[$i]."\r\n");
+			$tdAbs[$i][0]=' '.$i;
+			fwrite($hnd, join("|", $tdAbs[$i])."\r\n");
 		}
 		$j=$i;
 		for ($i=0; $i<count($lines1); $i++) {
-			fwrite($hnd, " ".$j."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
+//	fwrite($hnd, " ".$j."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
+			$tdCsv[$i][0]=' '.$j;
+			fwrite($hnd, join("|", $tdCsv[$i])."\r\n");
 			$j++;
 		}
 	} else {
