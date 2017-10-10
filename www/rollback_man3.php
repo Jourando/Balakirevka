@@ -329,10 +329,13 @@ if (file_exists($newfile)) {
 	}
 	// пересчет ячеек!
 	for ($i=0; $i<count($lines1); $i++) {
-		list($n1[$i], $date1[$i], $vd1[$i], $acType1[$i], $acOwner1[$i], $acName1[$i], $acPlace1[$i], $oType1[$i], $oAud1[$i], $oSeer1[$i], $oPrt1[$i], $hostDep1[$i], $hostHead1[$i], $hostLd1[$i], $fin1[$i], $adInfo1[$i]) = explode(";", $lines1[$i]);
+//		list($n, 	  $depart,      $dStart,         $dEnd,        $vd,      $acType,      $acOwner,      $acName,      $acPlace,      $oLvl,       $oAud,      $oSeer,      $oPrt,      $OOP,          $hostHead,      $hostLd,
+// 		   $hostOrg, 	  $fin, 	 $adInfo) = explode("|", $aStr[$i]);
+		list($n1[$i], $depart1[$i], $dateStart1[$i], $dateEnd1[$i], $vd1[$i], $acType1[$i], $acOwner1[$i], $acName1[$i], $acPlace1[$i], $oType1[$i], $oAud1[$i], $oSeer1[$i], $oPrt1[$i], $hostDep1[$i], $hostHead1[$i], $hostLd1[$i], $hostOrg1[$i], $fin1[$i], $adInfo1[$i]) = explode(";", $lines1[$i]);
 	}
 	for ($i=0; $i<count($lines2); $i++) {
-		list($n2[$i], $date2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $fin2[$i], $adInfo2[$i]) = explode("|", $lines2[$i]);
+//		list($n2[$i], $date2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $fin2[$i], $adInfo2[$i]) = explode("|", $lines2[$i]);
+		list($n2[$i], $depart2[$i], $dateStart2[$i], $dateEnd2[$i], $vd2[$i], $acType2[$i], $acOwner2[$i], $acName2[$i], $acPlace2[$i], $oType2[$i], $oAud2[$i], $oSeer2[$i], $oPrt2[$i], $hostDep2[$i], $hostHead2[$i], $hostLd2[$i], $hostOrg2[$i], $fin2[$i], $adInfo2[$i]) = explode("|", $lines2[$i]);
 	}
 	// здесь надо разбивать массив lines1, полученный из csv, не автоматом в другой абстрактный массив, а через list, чтобы отсечь, если в csv были лишние поля или их не хватало
 	$hnd=fopen($xfile, 'w');
