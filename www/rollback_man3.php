@@ -28,6 +28,76 @@ function chCode2($inStr) {
 function chCode3($inStr) {
 	return mb_convert_encoding($inStr,"UTF-8", "Windows-1251");
 }
+function uniwrite() {
+if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
+	if (ISSET($_GET['f'])) {
+		$fn=$pre.$_GET['f'];
+		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
+		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
+	} else {
+		$fn='depart'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT);
+		if ((ISSET($_GET['old'])) && (ISSET($_GET['back']))) {$pre='oldata/'.str_pad($_GET['d'], 4, "0", STR_PAD_LEFT).'/';}
+		else {$pre='';}
+		if (($pre !== '') && (ISSET($_GET['back']))) {
+			$fn=$pre.$fn.'['.str_pad($_GET['back'], 4, "0", STR_PAD_LEFT).']';
+		}
+		IF (!FILE_EXISTS($fn)) {$fn=$fn.".a";}
+		IF (!FILE_EXISTS($fn)) {die('no file(s) found');}
+	}
+	$ax = file($fn, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	for ($i=0; $i<count($ax); $i++) {$array[$i]=explode("|", $ax[$i]);}
+	if (ISSET($_GET['out'])) {
+			$filename=$_GET['out'];
+	} else {
+			$filename='';
+	}
+	if ($xz==1) {
+		$defname='file.xls';
+	} elseif ($xz==2) {
+		$defname='file.csv';
+	} elseif ($xz==3) {
+		$defname='file.a';
+	} else {$defname='x';}
+	if ($defname!=='x') {
+		header("Content-Type: application/force-download");
+		header("Content-Type: application/octet-stream");
+		header("Content-Type: application/download");;
+		header("Content-Disposition: attachment;filename=".($filename!=''?$filename:$defname));
+		header("Content-Transfer-Encoding: binary");
+		if ($xz==1) {
+			xlsBOF();
+			for($i=0,$counti=count($array);$i<$counti;$i++){ //количество строк
+				for($j=0,$countj=count($array[$i]);$j<$countj;$j++){ //количество ячеек
+					// если колонка = [список колонок, которые отдаются как числовые], то xlsWriteNumber
+					// иначе...
+					xlsWriteLabel($i,$j, chCode1($array[$i][$j])); //в строку $i в ячейку $j, записываем конвертированное в 1251 содержимое $array[$i][$j]
+				}
+			}
+			xlsEOF();
+		} elseif ($xz==2) {
+			for($i=0,$counti=count($array);$i<$counti;$i++){
+				for($j=0,$countj=count($array[$i]);$j<$countj;$j++){
+					echo chCode1($array[$i][$j]).";";
+				}
+				echo " \r\n";
+			}		
+		} elseif ($xz==3) {
+			for($i=0,$counti=count($array);$i<$counti;$i++){
+				for($j=0,$countj=count($array[$i]);$j<$countj;$j++){
+					if ($j<count($array[$i])-1) {
+						echo $array[$i][$j]."|";
+					} else {
+						echo $array[$i][$j]."\r\n";
+					}
+				}
+			}
+		} else {echo "unknown command";}
+	} else {
+		echo "This filetype is not supported";
+	}
+}
+exit;
+}
 $pre='';
 $md=-1;
 if (ISSET($_GET['mode'])) {
@@ -43,6 +113,7 @@ if (ISSET($_GET['mode'])) {
 	else {die('<pre>wrong qwery</pre>');}
 }
 if ($md==1) {
+
 if ((ISSET($_GET['f'])) || (ISSET($_GET['d']))) {
 	if (ISSET($_GET['f'])) {
 		$fn=$pre.$_GET['f'];
@@ -340,7 +411,7 @@ if (file_exists($newfile)) {
 	// здесь надо разбивать массив lines1, полученный из csv, не автоматом в другой абстрактный массив, а через list, чтобы отсечь, если в csv были лишние поля или их не хватало
 	$hnd=fopen($xfile, 'w');
 	if ($method=="1") {
-		echo "<!-- добавить в начало -->";
+		echo "<!-- добавить в начало -->"; // - //
 		for ($i=0; $i<count($lines1); $i++) {
 			fwrite($hnd, " ".$i."|".$date1[$i]."|".$vd1[$i]."|".$acType1[$i]."|".$acOwner1[$i]."|".$acName1[$i]."|".$acPlace1[$i]."|".$oType1[$i]."|".$oAud1[$i]."|".$oSeer1[$i]."|".$oPrt1[$i]."|".$hostDep1[$i]."|".$hostHead1[$i]."|".$hostLd1[$i]."|".$fin1[$i]."|".$adInfo1[$i]."\r\n");
 		}
@@ -384,8 +455,13 @@ echo "</BODY></HTML>";
 }
 if ($md==0) {
 ?>
-<HTML><HEAD>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
+<!DOCTYPE html>
+<HTML lang="ru-RU">
+<HEAD>
+<meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=0.65, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 <TITLE>XLS CONVERT / ROLLBACK</TITLE>
 </HEAD>
 <BODY>
@@ -432,5 +508,4 @@ include('toolmen.php');
 <?
 }
 $stf=0;
-// не объединить ли ф-ции toAbs, toXls, toCsv ?
 ?>

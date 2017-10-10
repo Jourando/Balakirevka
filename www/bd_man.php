@@ -56,7 +56,6 @@ if ($_GET['act']=="W") {
 				$handle = fopen($f[$i], 'w');
 				fwrite($handle, " 0|||||||||||||||\r\n"); // проверить кол-во полей. А лучше - скопировать из файла-образца!
 				fclose($handle);
-//				echo $f[$i]." was cleaned<br>";
 		}
 	}
 	if ($_GET['p']=="ds") {
