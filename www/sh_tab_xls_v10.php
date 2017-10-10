@@ -1,5 +1,5 @@
 ﻿<?php
-// v.10.a.4::main revision
+// v.10.a.5::main revision
 if (ISSET($_GET['us'])==true) {
 	list($lx1, $lx2, $lx3)=explode("___0_", $_GET['us']);
 	$autologin=1;

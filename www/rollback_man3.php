@@ -1,5 +1,5 @@
 <?php
-// v.10.a.4::rollback revision
+// v.10.a.5::rollback revision
 function xlsBOF() {
     echo pack("ssssss", 0x809, 0x8, 0x0, 0x10, 0x0, 0x0);
     return;
@@ -28,7 +28,6 @@ function chCode2($inStr) {
 function chCode3($inStr) {
 	return mb_convert_encoding($inStr,"UTF-8", "Windows-1251");
 }
-//где-то тут создаем массив $array[$i][$j] или читаем из файла (из базы данных), после чего начинаем формировать excel-файл
 $pre='';
 $md=-1;
 if (ISSET($_GET['mode'])) {
@@ -170,7 +169,10 @@ if ($md==4) {
 	// импорт 
 ?>
 <HTML><HEAD>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=0.65, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 <TITLE>XLS CONVERT / ROLLBACK</TITLE>
 <style>
 td {border: 1px solid #ccc}
@@ -200,7 +202,13 @@ if ($md==5) {
 	$r2 = 'invalid csv-file';
 	$r3 = strtoupper($_POST['RB1']);
 ?>
-<HTML><HEAD><meta charset="utf-8"><TITLE>Parse CSV</TITLE>
+<HTML>
+<HEAD>
+<meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=0.65, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<TITLE>Parse CSV</TITLE>
 <Style>
 th {border: 1px solid #000; background: silver}
 </Style>
@@ -249,13 +257,13 @@ location.href='http:/'+a2;
 				$ptmp="<select id=dfs><option value=0> </option><option value=1>Добавить в начало</option><option value=2>Заменить существующие</option><option value=3>Добавить в конец</option></select>";
 				echo $ptmp;
 				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK Onclick='genlnk()'> для запуска вставки данных</div><hr>";
-				echo "<Table border=1>";
+				echo "<!-- шапку ставим скриптом из global -->";
 ?>
-<tr>
-<th rowspan=2>номер</th><th rowspan=2>дата</th><th rowspan=2>вид деятельности</th><th colspan=3>мероприятие</th><th rowspan=2>место проведения</th><th colspan=4>охват</th><th colspan=3>проводящие</th><th rowspan=2>организационно-<br>финансовое</th><th rowspan=2>доп.<br>информация</th>
-</tr><tr>
-<th>тип</th><th>внутренние/сторонние</th><th>название</th><th>тип</th><th>целевая аудитория</th><th>зрители</th><th>выступающие/участники</th><th>отделение</th><th>нач.отделения</th><th>ответственный</th>
-</tr>
+<script src=globals2.js></script>
+<Table border=1>
+<script>
+document.write(hdrStr);
+</script>
 <?
 				for($i=0; $i<count($flines); $i++){
 					$array[$i]=explode(";", $flines[$i]);
@@ -284,9 +292,19 @@ if ($md==6) {
 	include('toolmen.php');
 }
 if ($md==7) {
-echo "<HTML><HEAD><meta charset=\"utf-8\"><TITLE>Parse CSV</TITLE>\r\n";
-echo "<Style>\r\ntd {border: 1px solid #ccc}\r\n</Style>";
-echo "</HEAD><BODY>";
+echo "<!DOCTYPE html>\r\n<HTML>\r\n";
+?>
+<HEAD>
+<meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=0.65, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<TITLE>Parse CSV</TITLE>
+<Style>td {border: 1px solid #ccc}
+</Style>
+</HEAD>
+<BODY>
+<?
 $d=$_GET['dp'];
 $method=$_GET['method'];
 $xfile = 'depart'.str_pad($d, 4, "0", STR_PAD_LEFT).'.a';

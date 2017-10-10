@@ -1,12 +1,16 @@
 ﻿<?php
-// v.10.a.3::bdman revision
+// v.10.a.4::bdman revision
 $retr=false;
 $dir = __DIR__;
 $flag=1;
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="ru">
-<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=0.65, user-scalable=no">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 <style>
 input[type=submit]#ContSub, input[type=button] {width: 140px;}
 </style>
