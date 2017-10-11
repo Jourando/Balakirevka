@@ -154,7 +154,6 @@ if ($_GET['act']=="Z") {
 					} else {
 						echo "add ".$f[$i]." to arch<br>\r\n";
 					}
-
 				}
 			}
 		}

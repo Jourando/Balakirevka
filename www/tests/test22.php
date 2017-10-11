@@ -14,16 +14,18 @@ var el=document.getElementById(b+'div');
 </script>
 <?
 if ($zip) {
-	echo "<DIV>Архив " . $za->filename ." содержит:<br>\r\n";
+	echo "<DIV>Архив [<a href=".$xfile." style='text-decoration: none'>".$xfile."</a>] содержит:<br>\r\n";
 	echo "Внутреннее имя ресурса: " . $zip . "<br>\r\n";
-	echo "Число доступных файлов: " . $za->numFiles . "<br>\r\n";
+	echo "Дата создания: ".date("Y/m/d H:i:s", filemtime($xfile))."<br>\r\n";
+	echo "Размер архива: ".filesize($xfile)." byte(s)<br>\r\n";
+	echo "Число доступных файлов-записей: " . $za->numFiles . "<br>\r\n";
 	echo "Статус/системный статус: " . $za->status  ."/".$za->statusSys. "<br>\r\n";
 	echo "Список комментариев: " . $za->comment . "</DIV>\r\n";
 	$k=0;
 	while ($zip_entry = zip_read($zip)) {
 		$k=$k+1;
 		echo "<PRE style='font-weight: bold; width: 460px; background: lightyellow; margin: 0px;'>";
-		echo "Название:         ".zip_entry_name($zip_entry)."\r\n";
+		echo "<u><b>Название:         ".zip_entry_name($zip_entry)."</b></u>\r\n";
 		echo "Исходный размер:  ".zip_entry_filesize($zip_entry)."\r\n";
 		echo "Сжатый размер:    ".zip_entry_compressedsize($zip_entry)."\r\n";
 		echo "Метод сжатия:     ".zip_entry_compressionmethod($zip_entry)."\r\n";
