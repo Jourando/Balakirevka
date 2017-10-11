@@ -3,16 +3,19 @@
 $za = new ZipArchive();
 $za->open('test21_php.zip');
 print_r($za);
+echo "<hr>";
 var_dump($za);
-echo "numFiles: " . $za->numFiles . "\n";
-echo "status: " . $za->status  . "\n";
-echo "statusSys: " . $za->statusSys . "\n";
-echo "filename: " . $za->filename . "\n";
+echo "<hr>";
+echo "numFiles: " . $za->numFiles . "<br>\n";
+echo "status: " . $za->status  . "<br>\n";
+echo "statusSys: " . $za->statusSys . "<br>\n";
+echo "filename: " . $za->filename . "<br>\n";
 echo "comment: " . $za->comment . "\n";
-
+echo "<hr>";
 for ($i=0; $i<$za->numFiles;$i++) {
     echo "index: $i\n";
     print_r($za->statIndex($i));
+	echo "<p>---</p>";
 }
 echo "numFile:" . $za->numFiles . "\n";
 ?>
