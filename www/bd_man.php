@@ -49,15 +49,20 @@ if ($_GET['act']=="W") {
 		$handle = fopen($xfile, 'w');
 		fwrite($handle, "0= \r\n");
 		fclose($handle);
-//		usleep(100);
-//		unlink($xfile);
 	}
 	if ($_GET['p']=="xbd") {
 		$f = glob("depart*.a");
 		for ($i=1; $i<count($f); $i++) {
-				$handle = fopen($f[$i], 'w');
-				fwrite($handle, " 0|||||||||||||||\r\n"); // проверить кол-во полей. А лучше - скопировать из файла-образца!
+			$xfile='depart'.str_pad($i, 4, "0", STR_PAD_LEFT).'.a';
+			if (FILE_EXISTS('store/depart')) {
+				unlink($xfile);
+				usleep(100);
+				copy('store/depart', $xfile);
+			} else {
+				$handle = fopen($xfile, 'w');
+				fwrite($handle, " 0||||||||||||||||||\r\n");
 				fclose($handle);
+			}
 		}
 	}
 // ------------------------------------------------------------------------------ //
