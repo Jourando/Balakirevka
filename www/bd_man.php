@@ -77,7 +77,7 @@ if ($_GET['act']=="W") {
 		echo "<h4>Редактор разделов</h4>\r\n";
 		echo "<form action=\"bd_man.php?act=W&p=itmw&lmk=233405&r=123\" method=post>\r\n";
 		$lines=file("depart0000.a");
-		echo "<textarea name=cont style=\"width: 540px; height: 400px;\">";
+		echo "<textarea name=cont style=\"width: 540px; height: 420px;\">";
 		for ($i=0; $i<count($lines); $i++) {
 			echo $lines[$i];
 		}
@@ -115,7 +115,6 @@ if ($_GET['act']=="W") {
 }
 if ($_GET['act']=="A") {
 	if ($_GET['p']=="rollback") {
-//		if ($_GET['d']=="d0") {
 			$xfile="depart0000.a";
 			$lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 			$i=0;
@@ -129,7 +128,6 @@ if ($_GET['act']=="A") {
 				$i++;
 			}
 			echo "</select></label>\r\n";
-//		}
 		echo "<div></div>\r\n";	
 	}
 }
