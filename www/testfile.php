@@ -7,7 +7,6 @@ for ($i=1; $i<count($f); $i++) {
 		if ($f[$i]!==$except) {unlink($wdir.$f[$i]); echo "del ".$f[$i]."<br>";}
 	}
 }
-print_r($f);
 }
 $tmpstr=date("l, Y.d.m H:i:s");
 $zip = new ZipArchive();
@@ -21,7 +20,6 @@ else {
 	$zip->close();
 }
 echo $tmpstr;
-// $deplimit ::
 for ($j=0; $j<$deplimit; $j++) {
 	if (is_dir('oldata/'.str_pad($j, 4, "0", STR_PAD_LEFT))) {
 		killDir('oldata/'.str_pad($j, 4, "0", STR_PAD_LEFT).'/', 'depart'.str_pad($j, 4, "0", STR_PAD_LEFT).'[0001]');
