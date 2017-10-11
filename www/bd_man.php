@@ -26,7 +26,7 @@ if (($_GET['act']=="R") && ($_GET['p']=="show")) {
 	$str4='<label>3. <input type=button value="Drop Data BD" Onclick=location.href="bd_man.php?act=W&p=xbd&from=self"> Сбросить список пользовательских документов</label><br>';
 	$str5='<label>4. <input type=button value="Drop Settings" Onclick=location.href="bd_man.php?act=W&p=ds&from=self"> Сбросить список настроек</label><br>';
 	$str6='<label>5. <input type=button value="Edit Departments" Onclick=location.href="bd_man.php?act=W&p=itmr&from=me"> Редактировать список разделов</label><br>';
-	$str7='<label>6. <input type=button value="Clean Backups" Onclick=location.href="bd_man.php?act=Z&p=arch&from=me"> Почистить старые бэкапы документов</label>';
+	$str7='<label>6. <input type=button value="Manage Backups" Onclick=location.href="bd_man.php?act=Z&p=arch&from=me"> Управлять долгосрочными бэкапами документов</label>';
 	$str8='</div>';
 	echo $str1.$str2.$str3.$str4.$str5.$str6.$str7.$str8;
 	include('toolmen.php');
@@ -133,7 +133,15 @@ if ($_GET['act']=="A") {
 	}
 }
 if ($_GET['act']=="Z") {
-// arch	
+	if ($_GET['p']=='arch') {
+		echo "<h3>Долгосрочный архив откатов</h3>\r\n";
+		$str1='<div>';
+		$str2='<label>1. <input type=button value="View | Download" Onclick=location.href="bd_man.php?act=Z&p=dl"> Просмотр и скачивание</label><br>';
+		$str3='<label>2. <input type=button value="Arch | Erase" Onclick=location.href="bd_man.php?act=Z&p=er"> Архивация и очистка</label><br>';
+		$str4='<label>3. <input type=button value="Step back" Onclick=location.href="bd_man.php?act=R&p=show&from=self"> Назад</label><br>';
+		$str5='</div>';
+		echo $str1.$str2.$str3.$str4;
+	}
 }
 echo "<div>&nbsp;</div>\r\n";
 echo "</body>\r\n</html>\r\n";
