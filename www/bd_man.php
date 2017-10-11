@@ -132,6 +132,9 @@ if ($_GET['act']=="A") {
 		echo "<div></div>\r\n";	
 	}
 }
+if ($_GET['act']=="Z") {
+// arch	
+}
 echo "<div>&nbsp;</div>\r\n";
 echo "</body>\r\n</html>\r\n";
 ?>
