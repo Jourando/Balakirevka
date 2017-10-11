@@ -1,26 +1,42 @@
 <?php
 // Пример #4 Пример использования Zip
-$zip = zip_open("test21.zip");
+$xfile='test21.zip';
+$za = new ZipArchive();
+$zip = zip_open($xfile);
+$za->open($xfile);
+echo "<div style='margin-left: 20px;'>";
+?>
+<script>
+function fcontx(b) {
+var el=document.getElementById(b+'div');
+(el.style.display=='none')?el.style.display='block':el.style.display='none';
+}
+</script>
+<?
 if ($zip) {
-	echo "<DIV>Архив " . $zip->filename ." содержит:<br>\r\n"
-	echo "Число доступных файлов: " . $zip->numFiles . "<br>\r\n";
-	echo "Статус/системный статус: " . $zip->status  ."/".$zip->statusSys. "<br>\r\n";
-	echo "Список комментариев: " . $zip->comment . "</DIV>\r\n";
-
+	echo "<DIV>Архив " . $za->filename ." содержит:<br>\r\n";
+	echo "Внутреннее имя ресурса: " . $zip . "<br>\r\n";
+	echo "Число доступных файлов: " . $za->numFiles . "<br>\r\n";
+	echo "Статус/системный статус: " . $za->status  ."/".$za->statusSys. "<br>\r\n";
+	echo "Список комментариев: " . $za->comment . "</DIV>\r\n";
+	$k=0;
 	while ($zip_entry = zip_read($zip)) {
-		echo "<PRE>";
-		echo "Название:         ".zip_entry_name($zip_entry)."\n";
-		echo "Исходный размер:  ".zip_entry_filesize($zip_entry)."\n";
-		echo "Сжатый размер:    ".zip_entry_compressedsize($zip_entry)."\n";
-		echo "Метод сжатия:     ".zip_entry_compressionmethod($zip_entry)."\n";
-		echo "</PRE><DIV style='width: 350px; height: 200px; overflow: scroll;'>\n";
+		$k=$k+1;
+		echo "<PRE style='font-weight: bold; width: 460px; background: lightyellow; margin: 0px;'>";
+		echo "Название:         ".zip_entry_name($zip_entry)."\r\n";
+		echo "Исходный размер:  ".zip_entry_filesize($zip_entry)."\r\n";
+		echo "Сжатый размер:    ".zip_entry_compressedsize($zip_entry)."\r\n";
+		echo "Метод сжатия:     ".zip_entry_compressionmethod($zip_entry)."\r\n";
+		echo "Содержимое: [<a href=# id=xc".$k." onclick=fcontx(this.id) style='text-decoration: none'>Показать</a>]";
+		echo "</PRE><DIV id=xc".$k."div style='width: 460px; height: 200px; overflow: scroll; background: lightblue; margin: 0px; border-bottom: 1px solid #333; display: none'>\r\n";
 		if (zip_entry_open($zip, $zip_entry, "r")) {
 			$buf = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
-			echo "Содержимое файла: ".$buf."\n";
+			echo $buf."\r\n";
 			zip_entry_close($zip_entry);
 		}
 		echo "</DIV>\n";
 	}
 	zip_close($zip);
 }
+echo "</div>";
 ?>
