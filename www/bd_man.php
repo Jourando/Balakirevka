@@ -49,6 +49,8 @@ if ($_GET['act']=="W") {
 		$handle = fopen($xfile, 'w');
 		fwrite($handle, "0= \r\n");
 		fclose($handle);
+//		usleep(100);
+//		unlink($xfile);
 	}
 	if ($_GET['p']=="xbd") {
 		$f = glob("depart*.a");
@@ -58,6 +60,7 @@ if ($_GET['act']=="W") {
 				fclose($handle);
 		}
 	}
+// ------------------------------------------------------------------------------ //
 	if ($_GET['p']=="ds") {
 		list($tmpStr, $trash)=file('wrkspace.a');
 		$rd="rd='sh_tab_xls_v';";

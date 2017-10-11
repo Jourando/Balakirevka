@@ -1,5 +1,14 @@
 ﻿<?php
 // v.10.a.5::backupman revision
+?>
+<!DOCTYPE HTML>
+<HTML><HEAD>
+<TITLE>ROLLBACK CONTROL</TITLE>
+<meta name="viewport" content="width=device-width, initial-scale=0.65, maximum-scale=0.65, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<?
 if ($_GET['actz']=='rb') {
 	echo "<h4>Откат раздела ".$_POST['hidDpr']." к состоянию ".$_POST['rbTxt']."</h4>\r\n";
 	$spd = str_pad($_POST['hidDpr'], 4, "0", STR_PAD_LEFT);
@@ -16,10 +25,6 @@ if ($_GET['actz']=='rb') {
 	echo "<h4>...успешно выполнен. Нажмите [<a href=backupman.php>сюда</a>] для возврата</h4>\r\n";
 } else {
 ?>
-<!DOCTYPE HTML>
-<HTML><HEAD>
-<TITLE>ROLLBACK CONTROL</TITLE>
-<meta charset="utf-8">
 <style>
 .show {position: absolute; top: 0; left: 0; z-index: 3; background: rgba(128, 128, 128, 0.6); width: 660px; height: 360px;}
 .hid {}
@@ -102,7 +107,7 @@ echo "<form action='?actz=rb' method=post>\r\n";
 echo "<div id=ctrl style='position: relative'><label><input type=hidden id=hDpr name=hidDpr value=''><input type=button onClick='rbRun()' value=RollBack style='width: 120px'> to <input name=rbTxt id=rbText type=text readonly value='' style='width: 220px; background: lightblue;'></label>";
 echo "<div id=ds class=cshow> </div></div>";
 echo "</form>";
+}
 include('toolmen.php');
 echo "</BODY>\r\n</HTML>";
-}
 ?>

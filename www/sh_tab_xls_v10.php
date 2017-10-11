@@ -46,7 +46,6 @@ var edMode=1; // расположение полей в modalEdit
 function insertAfter(elem, refElem) {
   return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
-// ... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function reNew(xArr, xmid) { // исправить на нужное кол-во полей
 exploder=function(str, delim) {
 	return str.toString().split(delim.toString());
@@ -336,12 +335,7 @@ getContent('all', $tA); // первично считываем, заполняе
 </Table>
 </DIV>
 <script>
-    /* Текущее состояние CapsLock
-	- null : неизвестно
-	- true/false : CapsLock включен/выключен
-	*/
 var capsLockEnabled = null;
-
 function getChar(event) {
 if (event.which == null) {
 	if (event.keyCode < 32) return null;
