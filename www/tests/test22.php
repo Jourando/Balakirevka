@@ -10,8 +10,8 @@ echo "<div style='margin-left: 20px;'>";
 function fcontx(b) {
 var el=document.getElementById(b+'div');
 (el.style.display=='none')?el.style.display='block':el.style.display='none';
-}
-</script>
+} 
+</script> 
 <?
 if ($zip) {
 	echo "<DIV>Архив [<a href=".$xfile." style='text-decoration: none'>".$xfile."</a>] содержит:<br>\r\n";
@@ -41,4 +41,5 @@ if ($zip) {
 	zip_close($zip);
 }
 echo "</div>";
+// лажа
 ?>

@@ -11,4 +11,5 @@ $zip->addFile("test1.php","test2.php");
 echo "numfiles: " . $zip->numFiles . "\n";
 echo "status:" . $zip->status . "\n";
 $zip->close();
+// блок
 ?>

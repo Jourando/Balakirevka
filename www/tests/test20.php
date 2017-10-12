@@ -18,4 +18,5 @@ for ($i=0; $i<$za->numFiles;$i++) {
 	echo "<p>---</p>";
 }
 echo "numFile:" . $za->numFiles . "\n";
+// варианты
 ?>
