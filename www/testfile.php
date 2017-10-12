@@ -54,13 +54,13 @@ echo "<Table>\r\n";
 echo "<tr><td>\r\n";
 for ($i=1; $i<count($f); $i++) {
 	if (($f[$i]!=='.') && ($f[$i]!=='..')) {
-		echo "<div style='background: lightblue;'>".$f[$i]."</div>";
+		echo "<div style='background: lightblue;'>".$f[$i]."</div>\r\n";
 		$xfile=$wdir.$f[$i];
 		$za = new ZipArchive();
 		$zip = zip_open($xfile);
 		$za->open($xfile);
 		if ($zip) {
-			$strX1[$i]="<DIV>Архив [<a href=".$xfile." style='text-decoration: none'>".$xfile."</a>] содержит:<br>Внутреннее имя ресурса: ".$zip."<br>Дата создания: ".date("Y/m/d H:i:s", filemtime($xfile))."<br>Размер архива: ".filesize($xfile)." byte(s)<br>Число доступных файлов-записей: ".$za->numFiles."<br>Статус/системный статус: ".$za->status."/".$za->statusSys."<br>Список комментариев: ".$za->comment."</DIV>";
+			$strX1[$i]="<DIV>Архив [<a href=".$xfile." style='text-decoration: none'>".$xfile."</a>] содержит:<br>Внутреннее имя ресурса: ".$zip."<br>Дата создания: ".date("Y/m/d H:i:s", filemtime($xfile))."<br>Размер архива: ".filesize($xfile)." byte(s)<br>Число доступных файлов-записей: ".$za->numFiles."<br>Статус/системный статус: ".$za->status."/".$za->statusSys."<br>Список комментариев: ".$za->comment."</DIV>\r\n";
 			$k=0;
 			while ($zip_entry = zip_read($zip)) {
 				$k=$k+1;			
@@ -70,7 +70,7 @@ for ($i=1; $i<count($f); $i++) {
 					zip_entry_close($zip_entry);
 					$strX2[$i]=$buf;
 				}
-				$strX3[$i]="</DIV>\r\n</div>\r\n";
+				$strX3[$i]="</DIV>\r\n<div></div>\r\n";
 			}
 			zip_close($zip);
 		}		
