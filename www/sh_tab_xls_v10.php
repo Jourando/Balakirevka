@@ -44,42 +44,46 @@ input[type=text] {resize:both;}
 <script>
 var edMode=1; // расположение полей в modalEdit
 function insertAfter(elem, refElem) {
-return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+  return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
 function reNew(xArr, xmid) {
 exploder=function(str, delim) {
-return str.toString().split(delim.toString());
+	return str.toString().split(delim.toString());
 }
 killRows=function(tids) {
-var elx = new Array();
-var elx=document.getElementById('mainTab').getElementsByTagName("tr");
-var s;
-for (var j = 0; j<elx.length; j++) {
-	s=elx[j].id;
-	if (s.indexOf(tids+'line') != -1) {
-		while (s.indexOf(tids+'line') != -1) {
-			(element=document.getElementById(s)).parentNode.removeChild(element);
-			s=elx[j].id;
+	var elx = new Array();
+	var elx=document.getElementById('mainTab').getElementsByTagName("tr");
+	var s;
+	for (var j = 0; j<elx.length; j++) {
+		s=elx[j].id;
+		if (s.indexOf(tids+'line') != -1) {
+			while (s.indexOf(tids+'line') != -1) {
+				(element=document.getElementById(s)).parentNode.removeChild(element);
+				s=elx[j].id;
+			}
 		}
 	}
 }
-}
 addRows=function(tids, pids, pArr, rw) {
-var elx=document.getElementById(pids);
-var newEl=document.createElement('tr');
-newEl.id=tids+'line'+rw;
-newEl.className='T1';
-newEl.setAttribute('name', 'skip');
-newEl.setAttribute('onclick', 'modalEdit(\''+newEl.id+'\')');
-var trdw = exploder(tids, 'sec');
-trdw[1]='s'+trdw[1]+'r'+rw+'c';
-for (var i=0; i<pArr.length; i++) {trdw[0]=trdw[0]+'<td id="'+trdw[1]+(i+1)+'">'+pArr[i]+'</td>';}
-newEl.innerHTML=trdw[0];
-insertAfter(newEl, elx);
+	var elx=document.getElementById(pids);
+	var newEl=document.createElement('tr');
+	newEl.id=tids+'line'+rw;
+	newEl.className='T1';
+	newEl.setAttribute('name', 'skip');
+	newEl.setAttribute('onclick', 'modalEdit(\''+newEl.id+'\')');
+	var trdw = exploder(tids, 'sec');
+	trdw[1]='s'+trdw[1]+'r'+rw+'c';
+	for (var i=0; i<pArr.length; i++) {
+			trdw[0]=trdw[0]+'<td id="'+trdw[1]+(i+1)+'">'+pArr[i]+'</td>';
+	}
+	newEl.innerHTML=trdw[0];
+	insertAfter(newEl, elx);
 return newEl.id;
 }
 var dataJs = new Array();
-for (var i = 0; i < xArr.length; i++) {dataJs[i]=exploder(xArr[i], '|');}
+for (var i = 0; i < xArr.length; i++) {
+	dataJs[i]=exploder(xArr[i], '|');
+}
 var tmpId=exploder(xmid, 'line');
 killRows(tmpId[0]);
 for (var k = 0; k<xArr.length; k++) {
@@ -227,7 +231,7 @@ if (document.getElementById('dps') !== null) {
 			sxWin.appendChild(spWin);
 			var trx=document.getElementById(tid);
 			trx.setAttribute('name', 'edit');
-			for (j=0; j<trx.childNodes.length; j++) { // NOT 16 !!!
+			for (j=0; j<trx.childNodes.length; j++) {
 				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
 			}
 			document.getElementById('hid').value=tid;
@@ -266,7 +270,7 @@ if (px==1) {
 } else {
 	var vxtp;
 	var fst=document.getElementById('fset');
-	vxtp='<label>Отдел <select id=dps Onchange="depMod=this.selectedIndex">';
+	vxtp='<nobr><label>Отдел <select id=dps Onchange="depMod=this.selectedIndex">';
 <?
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -284,7 +288,7 @@ foreach($lines as $v) {
 $ptmp=$ptmp."vxtp=vxtp+'</select></label>';\r\n";
 echo $ptmp;
 ?>
-	fst.innerHTML=vxtp+'<label> оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Фамилия и инициалы\';}"> пароль <input id=pusr type=password value=\'Пароль\' OnFocus=\'this.value=""; checkCapsWarning(event);\' OnBlur=\'if (this.value=="") {this.value="Пароль"}; removeCapsWarning();\' onkeyup=\'checkCapsWarning(event);\'> <div id=CLW class=CapsOff ALT="проверьте CapsLock">&nbsp;</div> <input type=button value=Отправить Onclick=Auth(1) class=visible id=b1> <input type=button value=\'Перелогиниться\' Onclick=Auth(2) class=invisible id=b2> <input type=button value=Обновить OnClick="location.reload()"></label>';
+	fst.innerHTML=vxtp+'<label> оператор <input type=text id=lusr value="Фамилия и инициалы" OnFocus=this.value="" OnBlur="if (this.value==\'\') {this.value=\'Фамилия и инициалы\';}"></label> <label>пароль <input id=pusr type=password value=\'Пароль\' OnFocus=\'this.value=""; checkCapsWarning(event);\' OnBlur=\'if (this.value=="") {this.value="Пароль"}; removeCapsWarning();\' onkeyup=\'checkCapsWarning(event);\'></label> <div id=CLW class=CapsOff ALT="проверьте CapsLock">&nbsp;</div> <input type=button value=Отправить Onclick=Auth(1) class=visible id=b1> <input type=button value=\'Перелогиниться\' Onclick=Auth(2) class=invisible id=b2> <input type=button value=Обновить OnClick="location.reload()"></nobr>';
 }	
 }
 function Prw() {
