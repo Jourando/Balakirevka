@@ -44,46 +44,42 @@ input[type=text] {resize:both;}
 <script>
 var edMode=1; // расположение полей в modalEdit
 function insertAfter(elem, refElem) {
-  return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
-function reNew(xArr, xmid) { // исправить на нужное кол-во полей
+function reNew(xArr, xmid) {
 exploder=function(str, delim) {
-	return str.toString().split(delim.toString());
+return str.toString().split(delim.toString());
 }
 killRows=function(tids) {
-	var elx = new Array();
-	var elx=document.getElementById('mainTab').getElementsByTagName("tr");
-	var s;
-	for (var j = 0; j<elx.length; j++) {
-		s=elx[j].id;
-		if (s.indexOf(tids+'line') != -1) {
-			while (s.indexOf(tids+'line') != -1) {
-				(element=document.getElementById(s)).parentNode.removeChild(element);
-				s=elx[j].id;
-			}
+var elx = new Array();
+var elx=document.getElementById('mainTab').getElementsByTagName("tr");
+var s;
+for (var j = 0; j<elx.length; j++) {
+	s=elx[j].id;
+	if (s.indexOf(tids+'line') != -1) {
+		while (s.indexOf(tids+'line') != -1) {
+			(element=document.getElementById(s)).parentNode.removeChild(element);
+			s=elx[j].id;
 		}
 	}
 }
+}
 addRows=function(tids, pids, pArr, rw) {
-	var elx=document.getElementById(pids);
-	var newEl=document.createElement('tr');
-	newEl.id=tids+'line'+rw;
-	newEl.className='T1';
-	newEl.setAttribute('name', 'skip');
-	newEl.setAttribute('onclick', 'modalEdit(\''+newEl.id+'\')');
-	var trdw = exploder(tids, 'sec');
-	trdw[1]='s'+trdw[1]+'r'+rw+'c';
-	for (var i=0; i<pArr.length; i++) { // NOT 16 !
-			trdw[0]=trdw[0]+'<td id="'+trdw[1]+(i+1)+'">'+pArr[i]+'</td>';
-	}
-	newEl.innerHTML=trdw[0];
-	insertAfter(newEl, elx);
+var elx=document.getElementById(pids);
+var newEl=document.createElement('tr');
+newEl.id=tids+'line'+rw;
+newEl.className='T1';
+newEl.setAttribute('name', 'skip');
+newEl.setAttribute('onclick', 'modalEdit(\''+newEl.id+'\')');
+var trdw = exploder(tids, 'sec');
+trdw[1]='s'+trdw[1]+'r'+rw+'c';
+for (var i=0; i<pArr.length; i++) {trdw[0]=trdw[0]+'<td id="'+trdw[1]+(i+1)+'">'+pArr[i]+'</td>';}
+newEl.innerHTML=trdw[0];
+insertAfter(newEl, elx);
 return newEl.id;
 }
 var dataJs = new Array();
-for (var i = 0; i < xArr.length; i++) {
-	dataJs[i]=exploder(xArr[i], '|');
-}
+for (var i = 0; i < xArr.length; i++) {dataJs[i]=exploder(xArr[i], '|');}
 var tmpId=exploder(xmid, 'line');
 killRows(tmpId[0]);
 for (var k = 0; k<xArr.length; k++) {
@@ -178,9 +174,9 @@ var btext='';
 var ctext='';
 for (i=0; i<atext.length; i++) {
 	ctext=''+atext.charCodeAt(i);
-	if (ctext.length==1) { btext=btext+'000'+ctext; }
-	else if (ctext.length==2) { btext=btext+'00'+ctext; }
-	else if (ctext.length==3) { btext=btext+'0'+ctext; }
+	if (ctext.length==1) {btext=btext+'000'+ctext;}
+	else if (ctext.length==2) {btext=btext+'00'+ctext;}
+	else if (ctext.length==3) {btext=btext+'0'+ctext;}
 	else {btext=btext+ctext;}
 }
 return btext;
@@ -311,10 +307,10 @@ var oldStrID = document.getElementById('hid').value;
 var newStr = '';
 var oldStr = '';
 var trx=document.getElementById(oldStrID);
-for (j=0; j<trx.childNodes.length; j++) { // NOT 16 !!!
+for (j=0; j<trx.childNodes.length; j++) {
 	oldStr+=trx.childNodes[j].innerHTML; // old
 	newStr=newStr+repStr(document.getElementById('ext'+j).value); // new
-	if (j<(trx.childNodes.length-1)) { // NOT 15 !!!
+	if (j<(trx.childNodes.length-1)) {
 		newStr+='|'; oldStr+='|';
 	}
 }
