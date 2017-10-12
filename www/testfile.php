@@ -7,7 +7,8 @@ $f=scandir($wdir);
 function fcontx(b, a) {
 var addStr='';
 if (a==1) {addStr='div';}
-else {addStr='block';}
+else if (a==2) {addStr='block';}
+else if (a==3) {(addStr='file')}
 var el=document.getElementById(b+addStr);
 (el.style.display=='none')?el.style.display='block':el.style.display='none';
 }
@@ -17,7 +18,7 @@ var el=document.getElementById(b+addStr);
 <?
 for ($i=1; $i<count($f); $i++) {
 	if (($f[$i]!=='.') && ($f[$i]!=='..')) {
-		echo "<div style='background: lightblue; border: 1px solid #000; cursor: pointer'>".$f[$i]."</div>\r\n";
+		echo "<div style='background: lightblue; border: 1px solid #000; cursor: pointer' id=n".$i." Onclick='fcontx(this.id, 3)'>".$f[$i]."</div>\r\n";
 	}
 }
 ?>
@@ -30,7 +31,7 @@ for ($i=1; $i<count($f); $i++) {
 		$zip = zip_open($xfile);
 		$za->open($xfile);
 		if ($zip) {
-			echo "<DIV>Архив [<a href=".$xfile." style='text-decoration: none'>".$xfile."</a>] содержит:<br>Внутреннее имя ресурса: ".$zip."<br>Дата создания: ".date("Y/m/d H:i:s", filemtime($xfile))."<br>Размер архива: ".filesize($xfile)." byte(s)<br>Число доступных файлов-записей: ".$za->numFiles."<br>Статус/системный статус: ".$za->status."/".$za->statusSys."<br>Список комментариев: ".$za->comment."<br>[<a href=# id=zip".$i." onclick='fcontx(this.id, 2)' style='text-decoration: none'>Подробнее</a>]</DIV>\r\n";
+			echo "<DIV id=n".$i."file style='display: none'>Архив [<a href=".$xfile." style='text-decoration: none'>".$xfile."</a>] содержит:<br>Внутреннее имя ресурса: ".$zip."<br>Дата создания: ".date("Y/m/d H:i:s", filemtime($xfile))."<br>Размер архива: ".filesize($xfile)." byte(s)<br>Число доступных файлов-записей: ".$za->numFiles."<br>Статус/системный статус: ".$za->status."/".$za->statusSys."<br>Список комментариев: ".$za->comment."<br>[<a href=# id=zip".$i." onclick='fcontx(this.id, 2)' style='text-decoration: none'>Подробнее</a>]</DIV>\r\n";
 			$k=0;
 			echo "<div id=zip".$i."block style='display: none'>\r\n";
 			while ($zip_entry = zip_read($zip)) {					
