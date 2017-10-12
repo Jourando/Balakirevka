@@ -10,7 +10,7 @@ var el=document.getElementById(b+'div');
 }
 </script>
 <Table>
-<tr><td>
+<tr><td valign=top>
 <?
 for ($i=1; $i<count($f); $i++) {
 	if (($f[$i]!=='.') && ($f[$i]!=='..')) {
