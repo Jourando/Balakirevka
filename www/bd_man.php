@@ -13,6 +13,7 @@ $flag=1;
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 <style>
 input[type=submit]#ContSub, input[type=button] {width: 140px;}
+.delBtn, .eyeBtn {height:26px; width:32px;display: inline-block;border: 1px solid #333;padding: 0px;margin: 0px;cursor: pointer}
 .delBtn {background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAaCAIAAABZ+cloAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVEhLrZaxcsIwDIYDGyusdKMLxzuwMjPRY+qx8wLtkAFegJ1j6pWJJ2HkupStXcvKmCqVamRHkh3gu9whEfv/bTmx0yiK4vTwmP3R/vrE4Ea4YOOn28MEud3DqSNN+v0nuF2XavdwBsgV89BG5q1BQLqNoVCWSBNKLJc9vnIGmGvtOt9HiiqI5QX4iC8GiGjz8b6hiNF/eqbIJ6hH+BSJ5apqJaoDoQGgeThRTX01m1LEEAwAre7chgM11LrIBsPRfjzYUhIDWr4uW9CFch/ZAEnxiLaxDBYvZ/H5QeAWXNAGLvpLwjIAtPUEjFscyyAqoa05RzXYHSYUxbA9BAN4mUV1LDolPsZoQgNtR3LSdT28vSiqzhErU90FyKCWtCPFwzpwUl40rTLORj4ygfStwvZQz+Q8zylJYL5+o8gHdO722SLWuTTga3C1uiOUyrJf4mirjZa/T+kAAAAASUVORK5CYII=');}
 </style>
 <title>BD-man</title>
@@ -200,7 +201,7 @@ var el=document.getElementById(b+addStr);
 <?
 		for ($i=1; $i<count($f); $i++) {
 			if (($f[$i]!=='.') && ($f[$i]!=='..')) {
-				echo "<div style='background: lightblue; border: 1px solid #000; padding: 0px; margin: 0px;'>".$f[$i]."&nbsp;&nbsp;&nbsp;<img src=eye.png style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=n".$i." Onclick='fcontx(this.id, 3)'> <div class=delBtn style='height:26px; width:32px; display: inline-block; border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer;' Onclick=location.href='http://test2.ru/bd_man.php?act=Z&p=xx&f=".$f[$i]."' id=d".$i."> </div></div>\r\n";
+				echo "<div style='background: lightblue; border: 1px solid #000; padding: 0px; margin: 0px;'>".$f[$i]."&nbsp;&nbsp;&nbsp;<div class=eyeBtn> </div> <img src=eye.png style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=n".$i." Onclick='fcontx(this.id, 3)'> <div class=delBtn Onclick=location.href='http://test2.ru/bd_man.php?act=Z&p=xx&f=".$f[$i]."' id=d".$i."> </div></div>\r\n";
 				// http://javascript.ru/files/upload/ui/offset/final.js
 			}
 		}
