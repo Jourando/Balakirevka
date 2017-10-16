@@ -13,6 +13,7 @@ $flag=1;
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 <style>
 input[type=submit]#ContSub, input[type=button] {width: 140px;}
+.delBtn {background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAaCAIAAABZ+cloAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVEhLrZaxcsIwDIYDGyusdKMLxzuwMjPRY+qx8wLtkAFegJ1j6pWJJ2HkupStXcvKmCqVamRHkh3gu9whEfv/bTmx0yiK4vTwmP3R/vrE4Ea4YOOn28MEud3DqSNN+v0nuF2XavdwBsgV89BG5q1BQLqNoVCWSBNKLJc9vnIGmGvtOt9HiiqI5QX4iC8GiGjz8b6hiNF/eqbIJ6hH+BSJ5apqJaoDoQGgeThRTX01m1LEEAwAre7chgM11LrIBsPRfjzYUhIDWr4uW9CFch/ZAEnxiLaxDBYvZ/H5QeAWXNAGLvpLwjIAtPUEjFscyyAqoa05RzXYHSYUxbA9BAN4mUV1LDolPsZoQgNtR3LSdT28vSiqzhErU90FyKCWtCPFwzpwUl40rTLORj4ygfStwvZQz+Q8zylJYL5+o8gHdO722SLWuTTga3C1uiOUyrJf4mirjZa/T+kAAAAASUVORK5CYII=');}
 </style>
 <title>BD-man</title>
 </head>
@@ -199,7 +200,7 @@ var el=document.getElementById(b+addStr);
 <?
 		for ($i=1; $i<count($f); $i++) {
 			if (($f[$i]!=='.') && ($f[$i]!=='..')) {
-				echo "<div style='background: lightblue; border: 1px solid #000; padding: 0px; margin: 0px;'>".$f[$i]."&nbsp;&nbsp;&nbsp;<img src=eye.png style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=n".$i." Onclick='fcontx(this.id, 3)'> <img src=del.png Onclick=location.href='http://test2.ru/bd_man.php?act=Z&p=xx&f=".$f[$i]."' style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=d".$i."></div>\r\n";
+				echo "<div style='background: lightblue; border: 1px solid #000; padding: 0px; margin: 0px;'>".$f[$i]."&nbsp;&nbsp;&nbsp;<img src=eye.png style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=n".$i." Onclick='fcontx(this.id, 3)'> <div class=delBtn style='height:26px; width:32px; display: inline-block' Onclick=location.href='http://test2.ru/bd_man.php?act=Z&p=xx&f=".$f[$i]."'> </div> <img src=del.png Onclick=location.href='http://test2.ru/bd_man.php?act=Z&p=xx&f=".$f[$i]."' style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=d".$i."></div>\r\n";
 				// http://javascript.ru/files/upload/ui/offset/final.js
 			}
 		}
@@ -254,4 +255,11 @@ location.href='http://test2.ru/bd_man.php?act=Z&p=dl';
 }
 echo "<div>&nbsp;</div>\r\n";
 echo "</body>\r\n</html>\r\n";
+/*
+del
+
+
+eye
+url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAaCAIAAABZ+cloAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ/SURBVEhLpVY9j2lRFL1vKolGR0mpkCj9BD9BSadV0rySTqlQML+BhGgIhYiEBBmiEImWREGYjMSsa53Zc9yvmZe3imudc/dZa59t33Ovcf8/rNdrxVzwYrhjPp9Pp1MLxxWck+CHw4HcDV4GsVjs/f2duuDn8xkEV3AQzONuIpEwQ5+NdTgY6IljPXUBn88nVwDzVL/dbjSjsRWqVPf7bDabTCbkw+EQ/OPjg7zX64XDYcaD1Go1BGOewYg8nU7CcYucePqTqUuONW9vb61WS6TtwK1Op6M7CReYBvbcQbylLbA4AbIVtQM992636yidzWaLxaIauAALUUB9K4Y08ng8dssa0ozR4WaGLkCKKggGzP2fpC2wO8GDjTAYDMwSwTAQCKibD6RSqcvlwvW/h+5ED0walUpFzX3BI2s8Iv1+Xw2cYPf4g8pst1tOQdruRywWi9FotN/vsTOsTCaT8Xhc3XtGqVTK5/PkiHy5Xq8clMtlN3VgtVrtdjuog2NJs9nkvB2hUEgKjsiX4/HIQS6Xi0Qi9XqdQwuCwaBiDzim3263oZDJZETThKUH5M+xAy3x94FGo6GmvuDRhGYXLZfLdDqt5h7g88LFPwLqHk1oyFNnb+ff2CDAoo6s9beQgQcYPzg4N5uN3QNwtHGsifS3fvCYJeImeOSCO3aI2HiUW08cgjztTQNuApByAY67cUS1WmXF9cSRLrk6TQFdHcAQh4m3zevrKyJ1XXQaCYB5KHwbyD4A3QycRSsUCtQFWG6RE6KbEd8GAtiKOuooXFSk1rouKw7oiQIOBjqQjrxv7fkK4fuV3IIfvovwreD3+znEQ+5GEBONRsmfYBif308PWgoE+2sAAAAASUVORK5CYII=')
+*/
 ?>
