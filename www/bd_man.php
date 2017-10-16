@@ -199,7 +199,7 @@ var el=document.getElementById(b+addStr);
 <?
 		for ($i=1; $i<count($f); $i++) {
 			if (($f[$i]!=='.') && ($f[$i]!=='..')) {
-				echo "<div style='background: lightblue; border: 1px solid #000; cursor: pointer' id=n".$i." Onclick='fcontx(this.id, 3)'>".$f[$i]."</div>\r\n";
+				echo "<div style='background: lightblue; border: 1px solid #000; padding: 0px; margin: 0px;'>".$f[$i]."&nbsp;&nbsp;&nbsp;<img src=eye.png style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=n".$i." Onclick='fcontx(this.id, 3)'><img src=del.png></div>\r\n";
 			}
 		}
 		echo "</td><td>\r\n";
@@ -234,6 +234,7 @@ var el=document.getElementById(b+addStr);
 </td></tr>
 </Table>
 <?	
+	include('toolmen.php');
 	}
 }
 echo "<div>&nbsp;</div>\r\n";
