@@ -203,10 +203,9 @@ var el=document.getElementById(b+addStr);
 		for ($i=1; $i<count($f); $i++) {
 			if (($f[$i]!=='.') && ($f[$i]!=='..')) {
 				echo "<div style='background: lightblue; border: 1px solid #000; padding: 0px; margin: 0px;'>".$f[$i]."&nbsp;&nbsp;&nbsp;<div class=eyeBtn id=n".$i." Onclick='fcontx(this.id, 3)'> </div> <div class=delBtn Onclick=location.href='http://test2.ru/bd_man.php?act=Z&p=xx&f=".$f[$i]."' id=d".$i."> </div></div>\r\n";
-				// http://javascript.ru/files/upload/ui/offset/final.js
 			}
 		}
-		echo "</td><td>\r\n";
+		echo "</td><td valign=top>\r\n";
 		for ($i=1; $i<count($f); $i++) {
 			if (($f[$i]!=='.') && ($f[$i]!=='..')) {
 				$xfile=$wdir.$f[$i];
