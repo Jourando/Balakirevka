@@ -179,7 +179,7 @@ if ($_GET['act']=="Z") {
 			echo "<div style='border: 1px solid #999; width: 540px; background: #000; text-align: center;'><label><input type=button value='Продолжить' onclick=location.href='bd_man.php?act=Z&p=arch&from=me'></label></div>\r\n";
 		}
 	} elseif ($_GET['p']=='dl') {
-		$wdir = 'oldata/LONG/';
+		$wdir='oldata/LONG/';
 		include('linelim.php');
 		$f=scandir($wdir);
 ?>
@@ -199,7 +199,8 @@ var el=document.getElementById(b+addStr);
 <?
 		for ($i=1; $i<count($f); $i++) {
 			if (($f[$i]!=='.') && ($f[$i]!=='..')) {
-				echo "<div style='background: lightblue; border: 1px solid #000; padding: 0px; margin: 0px;'>".$f[$i]."&nbsp;&nbsp;&nbsp;<img src=eye.png style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=n".$i." Onclick='fcontx(this.id, 3)'><img src=del.png></div>\r\n";
+				echo "<div style='background: lightblue; border: 1px solid #000; padding: 0px; margin: 0px;'>".$f[$i]."&nbsp;&nbsp;&nbsp;<img src=eye.png style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=n".$i." Onclick='fcontx(this.id, 3)'> <img src=del.png Onclick=location.href='http://test2.ru/bd_man.php?act=Z&p=xx&f=".$f[$i]."' style='border: 1px solid #333; padding: 0px; margin: 0px; cursor: pointer' id=d".$i."></div>\r\n";
+				// http://javascript.ru/files/upload/ui/offset/final.js
 			}
 		}
 		echo "</td><td>\r\n";
@@ -235,6 +236,20 @@ var el=document.getElementById(b+addStr);
 </Table>
 <?	
 	include('toolmen.php');
+	} elseif ($_GET['p']=='xx') {
+		if (ISSET($_GET['f'])) {
+			$wdir='oldata/LONG/';
+			if (FILE_EXISTS($wdir.$_GET['f'])) {
+				unlink($wdir.$_GET['f']);
+				usleep(100);
+			}
+?>
+<br>
+<script>
+location.href='http://test2.ru/bd_man.php?act=Z&p=dl';
+</script>
+<?
+		}
 	}
 }
 echo "<div>&nbsp;</div>\r\n";
