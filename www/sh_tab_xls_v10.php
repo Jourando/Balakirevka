@@ -1,5 +1,6 @@
 ﻿<?php
 // v.10.a.5::main revision
+$stmm=1;
 if (ISSET($_GET['us'])==true) {
 	list($lx1, $lx2, $lx3)=explode("___0_", $_GET['us']);
 	$autologin=1;
@@ -375,3 +376,6 @@ function removeCapsWarning() {
 </script>
 </body>
 </html>
+<?
+$stmm=0;
+?>
