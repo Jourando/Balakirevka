@@ -1,5 +1,5 @@
 ﻿<?php
-// v.10.a.5::bdman revision
+// v.10.a.6::bdman revision
 $retr=false;
 $dir = __DIR__;
 $flag=1;

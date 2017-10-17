@@ -1,5 +1,5 @@
 ﻿<?php
-// v.10.a.3::auth revision
+// v.10.a.4::auth revision
 $ResStr="";
 $xFrom="";
 if (($_GET['act']=="R") || ($_GET['act']=="W") || ($_GET['act']=="D")) {

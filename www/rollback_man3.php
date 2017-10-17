@@ -1,5 +1,5 @@
 <?php
-// v.10.a.5::rollback revision
+// v.10.a.6::rollback revision
 function xlsBOF() {
     echo pack("ssssss", 0x809, 0x8, 0x0, 0x10, 0x0, 0x0);
     return;
