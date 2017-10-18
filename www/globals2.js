@@ -57,7 +57,8 @@ hdrStr+='<tr><th>'+yth[1]+'</th><th>'+yth[2]+'</th><th>'+yth[3]+'</th><th>'+yth[
 edtStr='<tr>';
 for (xI=0; xI<19; xI++) {
 	edtStr+='<td id=et'+xI+'><input type=text id=ext'+xI+' size='+esize[xI]+' style="width: 96%"';
-	if (xI=0) {edtStr+=' readonly';}
+	if (xI==0) {edtStr+=' readonly';}
+	if ((xI==2) || (xI==3)) {edtStr+=' id=inpTxt'+xI+' Onfocus="showHint(this.id)"';}
 	edtStr+='></td>';
 }
 edtStr+='</tr>';
