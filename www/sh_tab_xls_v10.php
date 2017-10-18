@@ -48,7 +48,11 @@ input[type=text] {resize:both;}
 td.norm, td.today, td.holiday {cursor: pointer;}
 #clock{font-family:Tahoma, sans-serif; font-size:20px; font-weight:bold; color:#00c;}
 table.mainTab {background-color: #fff;}
-#allClock {background: navy; padding: 2px; width: 480px; z-index: 9; position: absolute;}
+#allClock {background: navy;padding: 2px;width: 480px;z-index: 9;position: absolute;}
+#myCanvas {mardin: 0px;padding: 0px;}
+#mTime {text-align: center;position: relative;z-index: 10;left: 0;right: 0;bottom: 5px;background: rgba(235, 235, 255, 0.5);}
+#mTime input[type=number] {width: 45px;}
+#xtimer1 {width: 140px;border: 1px solid #333;height: 210px;}
 .clockHide {display: none;}
 .clockShow {display: block;}
 .divBtn {display: inline-block; border: 1px solid #000; text-align: center; width: 60px; background: #999; color: #eee; cursor: pointer;}
@@ -554,12 +558,11 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 </script>
 </td><td>
 <script src=clock.js></script>
-<Table id="xtimer1" style="width: 140px; border: 1px solid #333; height: 210px">
+<Table id="xtimer1">
 <tr><td>
-	<!-- <label>Текущее время:<br><input type=radio name=gr1 value=analog checked>аналоговый вид<br><input type=radio name=gr1 value=digit>цифровой вид</label> -->
 	<div id='clock' style="display: none">Текущее время</div>
-	<canvas height='180' width='180' id='myCanvas' style="mardin: 0px; padding: 0px;"></canvas>
-<div id=mTime style="text-align: center; position: relative; z-index: 10; left: 0; right: 0; bottom: 5px; background: rgba(235, 235, 255, 0.5);"><input type="number" value="0" min="0" max="23" size="2" style="width: 45px;" OnChange="selectedDT('', 4);"> : <input type="number" value="0" min="0" max="59" size="2" style="width: 45px;" OnChange="selectedDT('', 4);"></div></td></tr>
+	<canvas height='180' width='180' id='myCanvas'></canvas>
+<div id=mTime><input type="number" value="0" min="0" max="23" size="2" OnChange="selectedDT('', 4);"> : <input type="number" value="0" min="0" max="59" size="2" OnChange="selectedDT('', 4);"></div></td></tr>
 </Table>
 </td>
 </tr><tr>
@@ -568,7 +571,6 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 </TABLE>
 <input type=hidden id=hdate value="0"><input type=hidden id=caller value="">
 </div>
-<!-- закрываем input -->
 </div>
 <script>
 window.setInterval(
