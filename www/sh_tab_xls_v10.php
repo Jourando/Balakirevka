@@ -307,6 +307,8 @@ if (document.getElementById('dps') !== null) {
 				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
 			}
 			document.getElementById('hid').value=tid;
+			// console.log(document.getElementById('hid').value);
+			document.getElementById('ext1').value=depMod;
 			document.getElementById('ModalBody1').style.width=document.body.clientWidth+'px';
 		}
 	}
