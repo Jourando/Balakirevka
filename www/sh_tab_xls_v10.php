@@ -154,6 +154,8 @@ function getUrl(xurl, xmd) {
 				} else {
 					document.getElementById('fset').innerHTML='<label>Ошибка авторизации: '+Rtxt+' <input type=button value=Отправить Onclick=Auth(1) class=invisible id=b1><input type=button value=Перелогиниться Onclick=Auth(2) class=visible id=b2></label>';		
 				}
+			} else if (parseInt(xmd)==0) {
+				
 			}
             // xmlhttp.status,
             // xmlhttp.getAllResponseHeaders(),
