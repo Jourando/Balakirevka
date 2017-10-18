@@ -43,6 +43,11 @@ input[type=text] {resize:both;}
 </style>
 <script>
 var edMode=1; // расположение полей в modalEdit
+function trim(str, charlist) {
+charlist = !charlist?' \\s\xA0':charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
+var re = new RegExp('^[' + charlist + ']+|[' + charlist + ']+$', 'g');
+return str.replace(re, '');
+}
 function insertAfter(elem, refElem) {
   return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
@@ -257,9 +262,15 @@ if (trx !== null) {trx.setAttribute('name', 'skip');}
 }
 function Auth(px) {
 var qStr='';
+var xnewStr1=document.getElementById('lusr').value;
+var xnewStr2=document.getElementById('pusr').value;
+if ((a4b(xnewStr1)=='106010721084108010831080110300321080003210801085108010941080107210831099') || (trim(xnewStr1)=='') || trim(xnewStr2)=='') {
+	alert('Одно из обязательных полей не заполнено!');
+	return false;
+}
 if (px==1) {
-	var xnewStr1=encodeURIComponent(document.getElementById('lusr').value);
-	var xnewStr2=encodeURIComponent(document.getElementById('pusr').value);
+	xnewStr1=encodeURIComponent(xnewStr1);
+	xnewStr2=encodeURIComponent(xnewStr2);
 	if (depMod>0) {
 		qStr='act=C&u='+xnewStr1+'&p='+xnewStr2+'&d='+depMod;
 	} else {
