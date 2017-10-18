@@ -20,6 +20,21 @@ logger
 1.формат: тип отдаваемых данных (1), Время, юзер, с какой стр., c какого объекта, какое действие, тип, успех или код ошибки
 2.формат: тип отдаваемых данных (2), Ф-ция, имя переменной, знач. переменной
 3.формат: тип отдаваемых данных (3), Ф-ция, что пишем, в какой файл .OR. ф-ция, какую файловую манипуляцию делаем, с каким файлом
+// &act=ACTL&u=[username]&doc=[page]&obj=[object]&e=[action]&t=[event]&c=[code] --> actlog
+// &act=VARL&f=[function_name]&doc=[page]&v1=[var_name]&v2=[var_value] --> varlog
+// &act=FILEL&u=[username]&doc=[page]&fa=[fileact: CreateFile, Read, Write, DeleteFile, MakeDir, ScanDir, RenameFile, RenameDir, Drop, Zip, Echo]
+// (CreateFile) CF	&fn1=[filename]
+// (ReadFile) RF	&fn1=[filename]&v2=[read_string]
+// (WriteFile) WF	&fn1=[filename]&v2=[write_string]
+// (DeleteFile) DF	&fn1=[filename]
+// (MakeDir) MD		&fn1=[dirname]
+// (ScanDir) SD		&fn1=[dirname]
+// (MoveFile, RenameFile) MF	&fn1=[old_filename]&fn2=[new_filename]
+// (MoveDir, RenameDir) RD		&fn1=[old_dir]&fn2=[new_dir]
+// (Drop) DBD		&fn1=[bd_name]
+// (Compress) ZIP	&fn1=[filelist]&fn2=[zip.arch]&fn3=[workdir]
+// (Comment) ECHO	&v1=[string]
+// (Operation Result) OPR		&v1=[result_code]&v2=[result_string]
 
 сделать 2 строчный режим ввода
 сделать вертикальный режим ввода

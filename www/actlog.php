@@ -16,6 +16,21 @@ $fnc = 'noname';
 $u_var = 'undefined';
 $u_val = 'undefined';
 $fa = 'ECHO';
+// &act=ACTL&u=[username]&doc=[page]&obj=[object]&e=[action]&t=[event]&c=[code] --> actlog
+// &act=VARL&f=[function_name]&doc=[page]&v1=[var_name]&v2=[var_value] --> varlog
+// &act=FILEL&u=[username]&doc=[page]&fa=[fileact: CreateFile, Read, Write, DeleteFile, MakeDir, ScanDir, RenameFile, RenameDir, Drop, Zip, Echo]
+// (CreateFile) CF	&fn1=[filename]
+// (ReadFile) RF	&fn1=[filename]&v2=[read_string]
+// (WriteFile) WF	&fn1=[filename]&v2=[write_string]
+// (DeleteFile) DF	&fn1=[filename]
+// (MakeDir) MD		&fn1=[dirname]
+// (ScanDir) SD		&fn1=[dirname]
+// (MoveFile, RenameFile) MF	&fn1=[old_filename]&fn2=[new_filename]
+// (MoveDir, RenameDir) RD		&fn1=[old_dir]&fn2=[new_dir]
+// (Drop) DBD		&fn1=[bd_name]
+// (Compress) ZIP	&fn1=[filelist]&fn2=[zip.arch]&fn3=[workdir]
+// (Comment) ECHO	&v1=[string]
+// (Operation Result) OPR		&v1=[result_code]&v2=[result_string]
 if ($_GET['act']=='ACTL') {		// act log
 	$tm = date("d m Y H:i:s");	// act time
 	if (ISSET($_GET['u'])) {	// actor (user)
@@ -56,8 +71,8 @@ if ($_GET['act']=='VARL') {		// var log
 	}
 	$a = "{variable ".$u_var."=".$u_val." -- from function ".$fnc." from ".$pg."}\r\n";
 }
-if ($_GET['act']=='FILEL') {	// file log
-	if (ISSET($_GET['fa'])) {	// file action: CreateFile, Read, Write, DeleteFile, MakeDir, ScanDir, RenameFile, RenameDir, Drop, Zip, Echo
+if ($_GET['act']=='FILEL') {		// file log
+	if (ISSET($_GET['fa'])) {		// file action: CreateFile, Read, Write, DeleteFile, MakeDir, ScanDir, RenameFile, RenameDir, Drop, Zip, Echo
 		if (ISSET($_GET['u'])) {	// actor (user)
 			$usr = $_GET['u'];
 		}
@@ -108,6 +123,11 @@ if ($_GET['act']=='FILEL') {	// file log
 		} elseif (strtoupper($fa)=="ECHO") {
 			(ISSET($_GET['v1'])?$a=$_GET['v1']:$a='?')
 			$a=$usr." @ ".$tm." from ".$pg." : action Comment [".$a."]\r\n";
+		} elseif (strtoupper($fa)=="OPR") {
+			(ISSET($_GET['v1'])?$a=$_GET['v1']:$a='0')
+			$a="Operation result: [code: ".$a."]";
+			(ISSET($_GET['v2'])?$a=$_GET['v2']:$a='')
+			$a=$a."[Resolved as '".$a."']\r\n";
 		} else {
 			$a=$usr." @ ".$tm." from ".$pg." : action Do unknown action, it seems like an error\r\n";
 		}
