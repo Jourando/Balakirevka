@@ -57,7 +57,7 @@ if ($_GET['act']=='VARL') {		// var log
 	$a = "{variable ".$u_var."=".$u_val." -- from function ".$fnc." from ".$pg."}\r\n";
 }
 if ($_GET['act']=='FILEL') {	// file log
-	if (ISSET($_GET['fa'])) {	// file action: CreateFile, Read, Write, DeleteFile, MakeDir, ScanDir, RenameFile, MoveFile, Zip, Echo
+	if (ISSET($_GET['fa'])) {	// file action: CreateFile, Read, Write, DeleteFile, MakeDir, ScanDir, RenameFile, RenameDir, Drop, Zip, Echo
 		if (ISSET($_GET['u'])) {	// actor (user)
 			$usr = $_GET['u'];
 		}
@@ -71,11 +71,12 @@ if ($_GET['act']=='FILEL') {	// file log
 			$a=$usr." @ ".$tm." from ".$pg." : action CreateFile [".$a."]\r\n";
 		} elseif ((strtoupper($fa)=="READFILE") || (strtoupper($fa)=="READ") || (strtoupper($fa)=="RF")) {
 			(ISSET($_GET['fn1'])?$a=$_GET['fn1']:$a='?')
-			$a=$usr." @ ".$tm." from ".$pg." : action ReadFile [".$a."]\r\n";
+			(ISSET($_GET['v2'])?$u_val=$_GET['u_val']:$u_val='{empty}')
+			$a=$usr." @ ".$tm." from ".$pg." : action ReadFile [".$a."], datastring: ".$u_val."\r\n";
 		} elseif ((strtoupper($fa)=="WRITEFILE") || (strtoupper($fa)=="WRITE") || (strtoupper($fa)=="WF")) {
 			(ISSET($_GET['fn1'])?$a=$_GET['fn1']:$a='?')
 			(ISSET($_GET['v2'])?$u_val=$_GET['u_val']:$u_val='{empty}')
-			$a=$usr." @ ".$tm." from ".$pg." : action WriteFile [".$a."] datastring: ".$u_val."\r\n";
+			$a=$usr." @ ".$tm." from ".$pg." : action WriteFile [".$a."], datastring: ".$u_val."\r\n";
 		} elseif ((strtoupper($fa)=="DELETEFILE") || (strtoupper($fa)=="DELFILE") || (strtoupper($fa)=="DELETE") || (strtoupper($fa)=="DEL") || (strtoupper($fa)=="DF")) {
 			(ISSET($_GET['fn1'])?$a=$_GET['fn1']:$a='?')
 			$a=$usr." @ ".$tm." from ".$pg." : action DeleteFile [".$a."]\r\n";
@@ -88,12 +89,31 @@ if ($_GET['act']=='FILEL') {	// file log
 		} elseif ((strtoupper($fa)=="SCANDIR") || (strtoupper($fa)=="SD")) {
 			(ISSET($_GET['fn1'])?$a=$_GET['fn1']:$a='?')
 			$a=$usr." @ ".$tm." from ".$pg." : action ScanDirectory [".$a."]\r\n";
+		} elseif ((strtoupper($fa)=="MOVEFILE") || (strtoupper($fa)=="MOVE") || (strtoupper($fa)=="RENAMEFILE") || (strtoupper($fa)=="RENAME") || (strtoupper($fa)=="MF")) {
+			(ISSET($_GET['fn1'])?$a=$_GET['fn1']:$a='?')
+			(ISSET($_GET['fn2'])?$u_val=$_GET['fn2']:$u_val='?')
+			$a=$usr." @ ".$tm." from ".$pg." : action MoveFile or RenameFile [".$a."] to [".$u_val."]\r\n";
+		} elseif ((strtoupper($fa)=="MOVEDIR") || (strtoupper($fa)=="RENAMEDIR") || (strtoupper($fa)=="RD")) {
+			(ISSET($_GET['fn1'])?$a=$_GET['fn1']:$a='?')
+			(ISSET($_GET['fn2'])?$u_val=$_GET['fn2']:$u_val='?')
+			$a=$usr." @ ".$tm." from ".$pg." : action MoveDir or RenameDir [".$a."] to [".$u_val"]\r\n";
+		} elseif ((strtoupper($fa)=="DROP") || (strtoupper($fa)=="DBD")) {
+			(ISSET($_GET['fn1'])?$a=$_GET['fn1']:$a='?')
+			$a=$usr." @ ".$tm." from ".$pg." : action Drop BD [".$a."] to EmptyRec\r\n";
+		} elseif (strtoupper($fa)=="ZIP") {
+			(ISSET($_GET['fn1'])?$a=$_GET['fn1']:$a='?')			// массив файлов
+			(ISSET($_GET['fn2'])?$u_val=$_GET['fn2']:$u_val='?') 	// имя зипа
+			(ISSET($_GET['fn3'])?$u_var=$_GET['fn3']:$u_var='?') 	// директория
+			$a=$usr." @ ".$tm." from ".$pg." : action Compress [".$a."] to [".$u_val"], working directory is [".$u_var."]\r\n";
+		} elseif (strtoupper($fa)=="ECHO") {
+			(ISSET($_GET['v1'])?$a=$_GET['v1']:$a='?')
+			$a=$usr." @ ".$tm." from ".$pg." : action Comment [".$a."]\r\n";
+		} else {
+			$a=$usr." @ ".$tm." from ".$pg." : action Do unknown action, it seems like an error\r\n";
 		}
-		
 	}
 }
 $handle = fopen($xfile, 'a');
 fwrite($handle, $a);
 fclose($handle);
-// с форматом лажа...
 ?>
