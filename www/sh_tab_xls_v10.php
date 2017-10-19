@@ -302,7 +302,6 @@ if (document.getElementById('dps') !== null) {
 				document.getElementById('ext'+j).value=trx.childNodes[j].innerHTML;
 			}
 			document.getElementById('hid').value=tid;
-			// console.log(document.getElementById('hid').value);
 			document.getElementById('ext1').value=depMod;
 			document.getElementById('ModalBody1').style.width=document.body.clientWidth+'px';
 		}
@@ -408,8 +407,8 @@ Prw();
 </script>
 <!-- переделать пиктограммы на нормальные -->
 <div id=btnPanel style="border: 1px solid #000">
-	<img src=chk_time.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0>
-	<img src=chk_place.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0>
+	<img src=chk_time1.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0>
+	<img src=chk_place1.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0>
 </div>
 <Table width=100% border=0 id=mainTab>
 <?
@@ -492,7 +491,6 @@ if (b==1) { // current day
 els=document.getElementById('mTime').getElementsByTagName('input');
 var hh=toNx(els[0].value, 2);
 var mn=toNx(els[1].value, 2);
-// console.log(YY+'/'+MM+'/'+DD+' '+hh+':'+mn);
 document.getElementById('curDTx').value=YY+'/'+MM+'/'+DD+' '+hh+':'+mn;
 }
 </script>
