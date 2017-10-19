@@ -1,5 +1,5 @@
 ﻿<?php
-// v.10.a.6::main revision
+// v.10.a.7::main revision
 if (ISSET($_GET['us'])==true) {
 	list($lx1, $lx2, $lx3)=explode("___0_", $_GET['us']);
 	$autologin=1;
@@ -81,7 +81,6 @@ killRows=function(tids) {
 		if (s.indexOf(tids+'line') != -1) {
 			while (s.indexOf(tids+'line') != -1) {
 				(element=document.getElementById(s)).parentNode.removeChild(element);
-				console.log(j);
 				s=elx[j].id;
 			}
 		}
@@ -109,7 +108,7 @@ for (var i = 0; i < xArr.length; i++) {
 }
 var tmpId=exploder(xmid, 'line');
 killRows(tmpId[0]);
-for (var k = 0; k<xArr.length; k++) { // - test: проверить значения в цикле; в ф-ции проверить id строк
+for (var k = 0; k<xArr.length; k++) {
 	if (k==0) {
 		tmpId[1]=addRows(tmpId[0], tmpId[0]+'hdr', dataJs[k], k); // вставляемый, папа, контент, номер элемента п/п; 1 раз вставляем за папой, остальные - за предыдущим вставленным id
 	} else {
@@ -120,13 +119,8 @@ modalClose('none');
 }
 function getOffset(c) {
 var elem=document.getElementById(c);
-if (elem.getBoundingClientRect) {
-		// "правильный" вариант
-		return getOffsetRect(elem);
-} else {
-		// пусть работает хоть как-то
-		return getOffsetSum(elem);
-}
+if (elem.getBoundingClientRect) {return getOffsetRect(elem);} // "правильный" вариант
+else {return getOffsetSum(elem);} // пусть работает хоть как-то
 }
 function getOffsetSum(elem) {
 var top=0, left=0;
