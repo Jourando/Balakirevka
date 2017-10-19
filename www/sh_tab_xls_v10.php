@@ -81,7 +81,9 @@ killRows=function(tids) {
 		if (s.indexOf(tids+'line') != -1) {
 			while (s.indexOf(tids+'line') != -1) {
 				(element=document.getElementById(s)).parentNode.removeChild(element);
-				s=elx[j].id;
+				s=elx[j].id; // глюк здесь?
+				// есть вероятность, что цикл долистывает до конца и пытается выйти за пределы
+				// поставить проверку на null? на существование elx[j]?
 			}
 		}
 	}
