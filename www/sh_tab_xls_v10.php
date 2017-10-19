@@ -81,6 +81,7 @@ killRows=function(tids) {
 		if (s.indexOf(tids+'line') != -1) {
 			while (s.indexOf(tids+'line') != -1) {
 				(element=document.getElementById(s)).parentNode.removeChild(element);
+				console.log(j);
 				s=elx[j].id; // глюк здесь?
 				// есть вероятность, что цикл долистывает до конца и пытается выйти за пределы
 				// поставить проверку на null? на существование elx[j]?
@@ -422,6 +423,10 @@ Prw();
 <?
 include ('tabhead.php'); // формируем столбцы
 getContent('all', $tA); // первично считываем, заполняем таблицу
+include('linelim.php');
+echo "<tr id=stop>";
+echo "<td colspan=".$linelimit." style='background: silver'>&nbsp;</td>";
+echo "</tr>\r\n";
 ?>
 </Table>
 </DIV>
