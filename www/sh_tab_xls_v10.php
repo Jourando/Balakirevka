@@ -108,7 +108,7 @@ for (var i = 0; i < xArr.length; i++) {
 }
 var tmpId=exploder(xmid, 'line');
 killRows(tmpId[0]);
-for (var k = 0; k<xArr.length; k++) {
+for (var k = 0; k<xArr.length; k++) { // - test: проверить значения в цикле; в ф-ции проверить id строк
 	if (k==0) {
 		tmpId[1]=addRows(tmpId[0], tmpId[0]+'hdr', dataJs[k], k); // вставляемый, папа, контент, номер элемента п/п; 1 раз вставляем за папой, остальные - за предыдущим вставленным id
 	} else {
