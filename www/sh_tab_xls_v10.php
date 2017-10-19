@@ -329,14 +329,14 @@ document.body.removeChild(mdWin);
 var trx=document.getElementById(tid);
 if (trx !== null) {trx.setAttribute('name', 'skip');}
 }
-function Auth(px) {
+function Auth(px) {	// устранить косяк с выставлением 1 раздела
 var qStr='';
 var xnewStr1='';
 var xnewStr2='';
 if ((document.getElementById('lusr') !== null) && (document.getElementById('pusr') !== null)) {
 	xnewStr1=document.getElementById('lusr').value;
 	xnewStr2=document.getElementById('pusr').value;
-	if ((a4b(xnewStr1)=='106010721084108010831080110300321080003210801085108010941080107210831099') || (trim(xnewStr1)=='') || trim(xnewStr2)=='') {
+	if ((a4b(xnewStr1)=='106010721084108010831080110300321080003210801085108010941080107210831099') || (trim(xnewStr1)=='') || (trim(xnewStr2)=='')) {
 		alert('Одно из обязательных полей не заполнено!');
 		return false;
 	}
