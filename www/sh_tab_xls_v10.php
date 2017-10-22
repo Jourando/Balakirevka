@@ -20,13 +20,13 @@ include ('menu.php');
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 <Title>Main Tab Editor</Title>
 <style>
-body {margin: 0px; padding: 0px}
-th {border: 1px solid #000; background: silver}
+body {margin: 0px; padding: 0px;}
+th {border: 1px solid #060; background: #599874;}
 input[type=text] {resize:both;}
-.T1 {background: snow}
+.T1 {background: #efefef;}
 .T1:hover {background: lightblue;}
 .T2 {font-weight: bold}
-.depHdr {color: white; background: black; padding-left: 150px;}
+.depHdr {color: #000; background: #9c9; padding-left: 150px;}
 .upLayer {background: rgba(202, 202, 202, 0.5); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 3;}
 .xxLayer {width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 5; display: table; text-align: center; vertical-align: middle;}
 .xeLayer {width: 100%; height: 100%; display: table-cell; text-align: center; vertical-align: middle;}
@@ -407,8 +407,8 @@ Prw();
 </script>
 <!-- переделать пиктограммы на нормальные(?) -->
 <div id=btnPanel style="border: 1px solid #000">
-	<img src=chk_time1.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0>
-	<img src=chk_place1.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0>
+	<img src=chk_time.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0>
+	<img src=chk_place.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0>
 </div>
 <Table width=100% border=0 id=mainTab>
 <?
