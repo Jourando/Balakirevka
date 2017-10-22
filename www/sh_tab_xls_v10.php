@@ -407,8 +407,8 @@ Prw();
 </script>
 <!-- переделать пиктограммы на нормальные(?) -->
 <div id=btnPanel style="border: 1px solid #000">
-	<img src=chk_time.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0>
-	<img src=chk_place.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0>
+	<img src=chk_time1.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0>
+	<img src=chk_place1.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0>
 </div>
 <Table width=100% border=0 id=mainTab>
 <?
