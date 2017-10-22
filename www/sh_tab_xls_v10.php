@@ -35,7 +35,7 @@ input[type=text] {resize:both;}
 .ctLayer {background: #efefef;}
 .visible {display: inline-block;}
 .invisible {display: none;}
-#stop {background-color: #000; color: #bbb; height: 40px;}
+#stop {background-color: #242; color: #bbb; height: 40px;}
 #btnPanel {border: 1px solid #000; background-color: lightyellow;}
 #ModalBody1 {overflow-x: scroll;}
 .CapsOff{background: #fff}
@@ -422,7 +422,7 @@ include ('tabhead.php'); // формируем столбцы
 getContent('all', $tA); // первично считываем, заполняем таблицу
 include('linelim.php');
 echo "<tr id=stop>";
-echo "<td colspan=".$linelimit." class=MainTabFinal>&nbsp;</td>";
+echo "<td colspan=".$linelimit." class=MainTabFinal>&copy;2017, Msk</td>";
 echo "</tr>\r\n";
 ?>
 </Table>
