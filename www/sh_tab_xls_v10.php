@@ -35,6 +35,8 @@ input[type=text] {resize:both;}
 .ctLayer {background: #efefef;}
 .visible {display: inline-block;}
 .invisible {display: none;}
+#stop {background-color: #000; color: #bbb; height: 40px;}
+#btnPanel {border: 1px solid #000; background-color: lightyellow;}
 #ModalBody1 {overflow-x: scroll;}
 .CapsOff{background: #fff}
 .CapsOn{background: #600;}
@@ -409,7 +411,8 @@ postUrl(ResStr, document.getElementById('hid').value);
 Prw();
 </script>
 <!-- переделать пиктограммы на нормальные(?) -->
-<div id=btnPanel style="border: 1px solid #000">
+<div id=btnPanel>
+<!--	// заменить на table // -->
 	<img src=chk_time1.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0>
 	<img src=chk_place1.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0>
 </div>
@@ -419,7 +422,7 @@ include ('tabhead.php'); // формируем столбцы
 getContent('all', $tA); // первично считываем, заполняем таблицу
 include('linelim.php');
 echo "<tr id=stop>";
-echo "<td colspan=".$linelimit." style='background: silver'>&nbsp;</td>";
+echo "<td colspan=".$linelimit." class=MainTabFinal>&nbsp;</td>";
 echo "</tr>\r\n";
 ?>
 </Table>
