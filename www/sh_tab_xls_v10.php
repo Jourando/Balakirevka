@@ -308,6 +308,9 @@ if (document.getElementById('dps') !== null) {
 	}
 }
 }
+function modalLogWrn() {
+	// логины, сообщ. об успешном/неуспешном логине и варнинги
+}
 function modalClose(tid) {
 var sxWin=document.getElementById('ModalBody1');
 sxWin.removeChild(sxWin.childNodes[1]);
