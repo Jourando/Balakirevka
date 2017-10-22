@@ -405,7 +405,7 @@ postUrl(ResStr, document.getElementById('hid').value);
 <script>
 Prw();
 </script>
-<!-- переделать пиктограммы на нормальные -->
+<!-- переделать пиктограммы на нормальные(?) -->
 <div id=btnPanel style="border: 1px solid #000">
 	<img src=chk_time1.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0>
 	<img src=chk_place1.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0>
