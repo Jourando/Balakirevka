@@ -32,7 +32,7 @@ input[type=text] {resize:both;}
 .xeLayer {width: 100%; height: 100%; display: table-cell; text-align: center; vertical-align: middle;}
 .bdLayer {display: block; background: #fff; border: 1px solid #000;}
 .hdLayer {background: lightblue; font-weight: bold; padding-left: 50px; height: 20px;}
-.ctLayer {background: snow;}
+.ctLayer {background: #efefef;}
 .visible {display: inline-block;}
 .invisible {display: none;}
 #ModalBody1 {overflow-x: scroll;}
