@@ -61,6 +61,7 @@ form.lgfrm {width: 100%; background: #599874;}
 .clockShow {display: block;}
 .divBtn {display: inline-block; border: 1px solid #000; text-align: center; width: 60px; background: #999; color: #eee; cursor: pointer;}
 .xBtn {position: absolute; top: 0; right: 0; z-index: 14; width: 20px; height: 20px; border: 1px solid #333; color: #fff; background-color: #900; font-face: Arial; font-size: 18px; padding: 0; margin: 0; text-align: center; cursor: pointer}
+#floatTip {position: absolute; z-index: 3; width: 250px; display: none; border: 1px solid #000; padding: 4px; font-family: sans-serif; font-size: 9pt;color: #333; background: #ffe5ff;}
 </style>
 <script>
 var edMode=1; // расположение полей в modalEdit
@@ -454,9 +455,50 @@ Prw();
 </script>
 <!-- переделать пиктограммы на нормальные(?) -->
 <div id=btnPanel>
+<script>
+var Str1="Проверка даты и времени<br>Строки, содержащие ошибку будут выделены цветом";
+var Str2="Проверка места проведения<br>Строки, содержащие ошибку будут выделены цветом"
+document.onmousemove = moveTip;
+function moveTip(e) {
+  floatTipStyle = document.getElementById("floatTip").style;
+  w = 250; // Ширина подсказки
+  // Для браузера IE6-8
+  if (document.all)  { 
+    x = event.clientX + document.body.scrollLeft;
+    y = event.clientY + document.body.scrollTop;
+  // Для остальных браузеров
+  } else   { 
+    x = e.pageX; // Координата X курсора
+    y = e.pageY; // Координата Y курсора
+  }
+  // Показывать слой справа от курсора 
+  if ((x + w + 10) < document.body.clientWidth) { 
+    floatTipStyle.left = x + 'px';
+  // Показывать слой слева от курсора
+  } else { 
+    floatTipStyle.left = x - w + 'px';
+  }
+  // Положение от  верхнего края окна браузера
+  floatTipStyle.top = y + 20 + 'px';
+}
+function toolTip(msg) {
+  floatTipStyle = document.getElementById("floatTip").style;
+  if (msg) {
+    // Выводим текст подсказки
+    document.getElementById("floatTip").innerHTML = msg;
+    // Показываем подсказку
+    floatTipStyle.display = "block";
+  } else { 
+    // Прячем подсказку
+    floatTipStyle.display = "none";
+  } 
+}
+</Script>
 <!--	// заменить на table // -->
-	<img src=chk_time1.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0>
-	<img src=chk_place1.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0>
+<!--	<Table border=3 onMouseOver="toolTip(Str1)" onMouseOut="toolTip()" class=btnTab><tr><td class=btnTd>Время</td></tr></Table> -->
+	<img src=chk_time1.png alt="Проверка корректности времени и дат" title="Проверка корректности времени и дат" border=0 onMouseOver="toolTip(Str1)" onMouseOut="toolTip()">
+	<img src=chk_place1.png alt="Проверка корректности выборв мест" title="Проверка корректности выбора мест" border=0 onMouseOver="toolTip(Str2)" onMouseOut="toolTip()">
+	<div id="floatTip"></div>
 </div>
 <Table width=100% border=0 id=mainTab>
 <?
