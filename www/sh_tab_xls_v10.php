@@ -312,8 +312,14 @@ if (document.getElementById('dps') !== null) {
 	}
 }
 }
+function modalWarnP() {
+	
+}
 function modalLogWrn() {
-	// логины, сообщ. об успешном/неуспешном логине и варнинги
+// логины, сообщ. об успешном/неуспешном логине и варнинги
+if ((document.getElementById('dps') !== null) && (document.getElementById('dps').disabled==true)) {
+
+}
 }
 function modalClose(tid) {
 var sxWin=document.getElementById('ModalBody1');
