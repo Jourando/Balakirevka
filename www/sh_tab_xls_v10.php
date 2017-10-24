@@ -463,19 +463,13 @@ var Str1="Проверка даты и времени<br>Строки, соде�
 var Str2="Проверка места проведения<br>Строки, содержащие ошибку, будут выделены цветом"
 document.onmousemove = moveTip;
 function moveTip(e) {
-  floatTipStyle = document.getElementById("floatTip").style;
-  w = 250; // Ширина подсказки
-  if (document.all)  {x = event.clientX + document.body.scrollLeft; y = event.clientY + document.body.scrollTop;}
-  else {x=e.pageX; y=e.pageY;}
-	// Показывать слой справа от курсора 
-  if ((x + w + 10) < document.body.clientWidth) { 
-    floatTipStyle.left = x + 'px';
-	// Показывать слой слева от курсора
-  } else { 
-    floatTipStyle.left = x - w + 'px';
-  }
-	// Положение от  верхнего края окна браузера
-  floatTipStyle.top = y + 20 + 'px';
+floatTipStyle = document.getElementById("floatTip").style;
+var w=250; // Ширина подсказки
+if (document.all)  {x = event.clientX + document.body.scrollLeft; y = event.clientY + document.body.scrollTop;}
+else {x=e.pageX; y=e.pageY;}
+if ((x + w + 10) < document.body.clientWidth) {floatTipStyle.left=x+'px';} // Показывать слой справа от курсора
+else {floatTipStyle.left=x-w+'px';} // Показывать слой слева от курсора
+floatTipStyle.top=y+20+'px'; // Положение от  верхнего края окна браузера
 }
 function toolTip(msg) {
 floatTipStyle = document.getElementById("floatTip").style;
