@@ -312,13 +312,38 @@ if (document.getElementById('dps') !== null) {
 	}
 }
 }
-function modalWarnP() {
-	
+function modalWarnP(str) {
+			var mdWin=document.createElement('div');
+			mdWin.className='upLayer';
+			mdWin.id='ModalBack';
+			document.body.appendChild(mdWin);
+			var ssWin=document.createElement('div');
+			ssWin.className='xxLayer';
+			ssWin.id='ModalFore';
+			document.body.appendChild(ssWin);
+			var seWin=document.createElement('div');
+			seWin.className='xeLayer';
+			seWin.id='ModalCell';
+			ssWin.appendChild(seWin);
+			var sxWin=document.createElement('div');
+			sxWin.className='bdLayer';
+			sxWin.id='ModalBody1';
+			seWin.appendChild(sxWin);
+			var stWin=document.createElement('div');
+			var spWin=document.createElement('div');
+			stWin.className='hdLayer';
+			stWin.id='ModalHead';
+			stWin.innerHTML='Warning';
+			spWin.className='ctLayer';
+			spWin.id='ModalCont';
+			spWin.innerHTML=str;
+			sxWin.appendChild(stWin);
+			sxWin.appendChild(spWin);	
 }
 function modalLogWrn() {
 // логины, сообщ. об успешном/неуспешном логине и варнинги
 if ((document.getElementById('dps') !== null) && (document.getElementById('dps').disabled==true)) {
-
+	modalWarnP('<div class=sq1>Добро пожаловать!<br>Вы вошли как '+document.getElementById('lusr').value+'.<br>Вам доступен для редактирования раздел ['+document.getElementById('dps').selectedIndex+'].<div><input type=button value=OK Onclick=modalClose("none")>');
 }
 }
 function modalClose(tid) {
