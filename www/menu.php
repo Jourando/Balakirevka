@@ -1,5 +1,5 @@
 <?php
-// v.10.a.2::tab_menu revision
+// v.10.a.3::tab_menu revision
 function mkMenu() {
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
