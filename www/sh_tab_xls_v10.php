@@ -123,8 +123,8 @@ modalClose('none');
 }
 function getOffset(c) {
 var elem=document.getElementById(c);
-if (elem.getBoundingClientRect) {return getOffsetRect(elem);} // "правильный" вариант
-else {return getOffsetSum(elem);} // пусть работает хоть как-то
+if (elem.getBoundingClientRect) {return getOffsetRect(elem);}
+else {return getOffsetSum(elem);}
 }
 function getOffsetSum(elem) {
 var top=0, left=0;
@@ -215,8 +215,10 @@ function getUrl(xurl, xmd) {
 					document.getElementById('b1').className='invisible';
 					document.getElementById('b2').className='visible';
 					depMod=j;
+					modalLogWrn(1, 'Успешная авторизация');
 				} else {
-					document.getElementById('fset').innerHTML='<label>Ошибка авторизации: '+Rtxt+' <input type=button value=Отправить Onclick=Auth(1) class=invisible id=b1><input type=button value=Перелогиниться Onclick=Auth(2) class=visible id=b2></label>';		
+					document.getElementById('fset').innerHTML='<label>Ошибка авторизации: '+Rtxt+' <input type=button value=Отправить Onclick=Auth(1) class=invisible id=b1><input type=button value=Перелогиниться Onclick=Auth(2) class=visible id=b2></label>';
+					modalLogWrn(2, 'Ошибка авторизации');					
 				}
 			} else if (parseInt(xmd)==0) {
 				
@@ -312,7 +314,7 @@ if (document.getElementById('dps') !== null) {
 	}
 }
 }
-function modalWarnP(str) {
+function modalWarnP(str1, str2) {
 			var mdWin=document.createElement('div');
 			mdWin.className='upLayer';
 			mdWin.id='ModalBack';
@@ -333,17 +335,23 @@ function modalWarnP(str) {
 			var spWin=document.createElement('div');
 			stWin.className='hdLayer';
 			stWin.id='ModalHead';
-			stWin.innerHTML='Warning';
+			stWin.innerHTML=str2;
 			spWin.className='ctLayer';
 			spWin.id='ModalCont';
-			spWin.innerHTML=str;
+			spWin.innerHTML=str1;
 			sxWin.appendChild(stWin);
 			sxWin.appendChild(spWin);	
 }
-function modalLogWrn() {
+function modalLogWrn(a, b) {
 // логины, сообщ. об успешном/неуспешном логине и варнинги
-if ((document.getElementById('dps') !== null) && (document.getElementById('dps').disabled==true)) {
-	modalWarnP('<div class=sq1>Добро пожаловать!<br>Вы вошли как '+document.getElementById('lusr').value+'.<br>Вам доступен для редактирования раздел ['+document.getElementById('dps').selectedIndex+'].<div><input type=button value=OK Onclick=modalClose("none")>');
+if (a==1) {
+	if ((document.getElementById('dps') !== null) && (document.getElementById('dps').disabled==true)) {
+		modalWarnP('<div class=sq1>Добро пожаловать!<br>Вы вошли как '+document.getElementById('lusr').value+'.<br>Вам доступен для редактирования раздел ['+document.getElementById('dps').selectedIndex+'].<div><input type=button value=OK Onclick=modalClose("none")>', b);
+	}
+} else if (a==2) {
+	modalWarnP('<div class=sq1>Здравствуйте!<br>Системе не удалось авторизовать вас.<br>Попробуйте ввести данные еще раз или обратитесь к администратору.<br>При вводе обратите внимание на правильность выбранного раздела.</div><input type=button value=OK Onclick=modalClose("none")>', b);
+} else if (a==3) {
+	modalWarnP('<div class=sq1>Здравствуйте!<br>Системе не удалось авторизовать вас.<br>Не все обязательные поля были заполнены:<br>необходимо выбрать раздел, ввести правильные логин и пароль.</div><input type=button value=OK Onclick=modalClose("none")>', b);
 }
 }
 function modalClose(tid) {
@@ -361,7 +369,7 @@ document.body.removeChild(mdWin);
 var trx=document.getElementById(tid);
 if (trx !== null) {trx.setAttribute('name', 'skip');}
 }
-function Auth(px) {	// устранить косяк с выставлением 1 раздела
+function Auth(px) {
 var qStr='';
 var xnewStr1='';
 var xnewStr2='';
@@ -369,7 +377,7 @@ if ((document.getElementById('lusr') !== null) && (document.getElementById('pusr
 	xnewStr1=document.getElementById('lusr').value;
 	xnewStr2=document.getElementById('pusr').value;
 	if ((a4b(xnewStr1)=='106010721084108010831080110300321080003210801085108010941080107210831099') || (trim(xnewStr1)=='') || (trim(xnewStr2)=='')) {
-		alert('Одно из обязательных полей не заполнено!');
+		modalLogWrn(3, 'Ошибка авторизации');
 		return false;
 	}
 }
@@ -385,6 +393,7 @@ if (px==1) {
 	getUrl(urlStr+qStr, '1');
 } else {
 	var vxtp;
+	// warn о разрыве сессии
 	var fst=document.getElementById('fset');
 	vxtp='<nobr><label>Отдел <select id=dps Onchange="depMod=this.selectedIndex">';
 <?
@@ -397,7 +406,7 @@ foreach($lines as $v) {
 	if ($i>0) {
 		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">[".$mVal[$i]."] ".$mLable[$i]."</option>';\r\n";
 	} else {
-		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i].">".$mLable[$i]."</option>';\r\n";
+		$ptmp=$ptmp."vxtp=vxtp+'<option value=".$mVal[$i]." selected>".$mLable[$i]."</option>';\r\n";
 	}
 	$i=$i+1;
 }
