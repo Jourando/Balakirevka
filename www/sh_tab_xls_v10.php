@@ -36,9 +36,9 @@ input[type=text] {resize:both;}
 .visible {display: inline-block;}
 .invisible {display: none;}
 #stop {background-color: #242; color: #9c9; height: 40px;}
-#btnPanel {border: 1px solid #000; background-color: lightyellow;}
+#btnPanel {border: 1px solid #000; background-color: rgb(255, 255, 224);}
 #ModalBody1 {overflow-x: scroll;}
-.CapsOff{background: #fff}
+.CapsOff{background: #eee;}
 .CapsOn{background: #600;}
 #CLW {display: inline-block; text-align: center; border: 1px solid #666; width: 20px; height: 20px; color: gold;}
 #unplug {display: block;}
@@ -55,6 +55,8 @@ table.mainTab {background-color: #fff;}
 #mTime {text-align: center;position: relative;z-index: 10;left: 0;right: 0;bottom: 5px;background: rgba(235, 235, 255, 0.5);}
 #mTime input[type=number] {width: 45px;}
 #xtimer1 {width: 140px;border: 1px solid #333;height: 210px;}
+form.lgfrm {width: 100%; background: #599874;}
+#dps, #lusr, #pusr {background: rgb(255, 255, 224); color: rgb(0, 0, 224);}
 .clockHide {display: none;}
 .clockShow {display: block;}
 .divBtn {display: inline-block; border: 1px solid #000; text-align: center; width: 60px; background: #999; color: #eee; cursor: pointer;}

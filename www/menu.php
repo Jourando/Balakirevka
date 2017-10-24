@@ -4,7 +4,7 @@ function mkMenu() {
 $xfile="depart0000.a";
 $lines = file($xfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $i=0;
-echo "<form autocomplete=1><fieldset name=set id=fset>\r\n";
+echo "<form class=lgfrm autocomplete=1><fieldset name=set id=fset>\r\n";
 echo "<nobr><label>Отдел <select id=dps Onchange='depMod=this.selectedIndex'>\r\n";
 foreach($lines as $v) {
 	list($mVal[$i], $mLable[$i])=explode("=", $lines[$i]);
