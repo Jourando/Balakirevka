@@ -242,10 +242,11 @@ function getUrl(xurl, xmd) {
 function dat2numstr(a) {
 // a is 0000?00?00 00?00 // dig:16
 var b='';
-for (var d=0; d<a.length; d++) {
+for (var d=0; d<a.length-1; d++) {
 	if ((d==0) || (d==1) || (d==2) || (d==3) || (d==5) || (d==6) || (d==8) || (d==9) || (d==11) || (d==12) || (d==14) || (d==15)) b=b+a[d];
 }
 console.log(a.length+' ::: '+b);
+return b;
 }
 function LogIt(qStr) {
 // формат: тип отдаваемых данных (1), Время, юзер, с какой стр., c какого объекта, какое действие, тип, успех или код ошибки;
@@ -264,11 +265,10 @@ for (var li=0; li<els1.length; li++) {
 	els2=els1[li].getElementsByTagName('td');
 //	console.log(li+' has '+els2.length+' td');
 	if (els2.length==lnlm) {
-		p1=els2[2].innerHTML;
-		p2=els2[3].innerHTML;
+		p1=dat2numstr(els2[2].innerHTML);
+		p2=dat2numstr(els2[3].innerHTML);
 		console.log(p1+' --- '+p2);
 	}
-//	console.log(lnlm);
 }
 }
 function ChechPlace() {
