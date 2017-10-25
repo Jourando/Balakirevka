@@ -36,6 +36,7 @@ logger
 // (Comment) ECHO				&v1=[string]
 // (Operation Result) OPR		&v1=[result_code]&v2=[result_string]
 3.формат: ошибка js (4),  URL, текст сообщения, номер строки с ошибкой
+// &act=ERRL&doc=[page]&v1=[error_message]&v2=[line number]
 
 сделать 2 строчный режим ввода
 сделать вертикальный режим ввода

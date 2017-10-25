@@ -79,7 +79,7 @@ if ($_GET['act']=='FILEL') {		// file log
 		$tm = date("d m Y H:i:s");	// act time
 		if (ISSET($_GET['doc'])) {	// page
 			$pg = $_GET['doc'];
-		}		
+		}
 		$fa=$_GET['fa'];
 		if ((strtoupper($fa)=="CREATEFILE") || (strtoupper($fa)=="CF")) {
 			(ISSET($_GET['fn1'])?$a=$_GET['fn1']:$a='?')
@@ -132,6 +132,13 @@ if ($_GET['act']=='FILEL') {		// file log
 			$a=$usr." @ ".$tm." from ".$pg." : action Do unknown action, it seems like an error\r\n";
 		}
 	}
+}
+if ($_GET['act']=='ERRL') { // error log
+	$tm = date("d m Y H:i:s");	// act time
+	if (ISSET($_GET['doc'])) {	// page
+		$pg = $_GET['doc'];
+	}
+	$a="System met an error at ".$tm." at page ".$pg.": ".$_GET['v1']." at line ".$_GET['v2'].";\r\n";
 }
 $handle = fopen($xfile, 'a');
 fwrite($handle, $a);
