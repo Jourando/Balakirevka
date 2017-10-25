@@ -245,7 +245,14 @@ function LogIt(qStr) {
 getUrl(logStr+qStr, '0');
 }
 function CheckTime() {
+var el=document.getElementById('mainTab');
+var els1=el.getElementsByTagName('tr');
+console.log(els1.length);
+var els2;
+for (var li=0; li<els1; li++) {
+	els2=els1.getElementsByTagName('td');
 	
+}
 }
 function ChechPlace() {
 	
