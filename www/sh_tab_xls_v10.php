@@ -171,6 +171,7 @@ showHint();
 </script>
 </head>
 <body id=mBody>
+<!-- window.onerror = myErrHandler(msg, url, lno); -->
 <script src=globals2.js?rev=125></script>
 <script>
 function getXmlHttp(){
