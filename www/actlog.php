@@ -5,7 +5,7 @@ $mc=0;
 // формат: Ф-ция, имя переменной, знач. переменной
 // ------ // 
 $a="";
-$xfile = 'actlog.txt';
+$xfile = 'log/actlog.txt';
 $usr = 'guest';
 $pg = '-';
 $obj = '-';
@@ -52,9 +52,6 @@ if ($_GET['act']=='ACTL') {		// act log
 		$code = $_GET['c'];
 	}
 	$a = $usr." @ ".$tm." from ".$pg." : action ".$exc." on obj ".$obj." via ".$type."... Result code is ".$code."\r\n";
-//	$handle = fopen($xfile, 'a');
-//	fwrite($handle, $a);
-//	fclose($handle);
 }
 if ($_GET['act']=='VARL') {		// var log
 	if (ISSET($_GET['f'])) {	// function name
