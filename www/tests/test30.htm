@@ -1,11 +1,16 @@
 <script>
-a='199912010808'; //1999.12.01 08:08
-b='200012011215'; //2000.12.01 12:15
-if (a>b) {
-	document.write(a);
-} else {
-	document.write(b);
+function testX() {
+x1=parseInt(document.getElementById('data1').value);
+x2=parseInt(document.getElementById('data2').value);
+if (x1>x2) {
+	document.getElementById('x1').innerHTML=x1;
+	document.getElementById('x2').innerHTML=x1+7;
+	document.getElementById('x3').innerHTML=x2;
+	document.getElementById('x4').innerHTML=x2*2;
 }
 </script>
 <input type=text id=data1><input type=text id=data2><input type=button value=run>
-<div id=x></div>
+<div id=x1></div>
+<div id=x2></div>
+<div id=x3></div>
+<div id=x4></div>
