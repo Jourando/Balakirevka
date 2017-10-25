@@ -1,0 +1,9 @@
+<script>
+a='199912010808'; //1999.12.01 08:08
+b='200012011215'; //2000.12.01 12:15
+if (a>b) {
+	document.write(a);
+} else {
+	document.write(b);
+}
+</script>
