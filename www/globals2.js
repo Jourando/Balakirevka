@@ -1,4 +1,4 @@
-// v.10.a.5::global revision
+// v.10.a.6::global revision
 rd='sh_tab_xls_v';
 urlStr='http://test2.ru/auth.php?';
 datStr='http://test2.ru/writ2.php?';

@@ -48,7 +48,7 @@ input[type=text] {resize:both;}
 #calendar3 tbody td:nth-child(n+6), #calendar3 .holiday {color: rgb(231, 140, 92);}
 #calendar3 tbody td.today {outline: 3px solid red;}
 td.norm, td.today, td.holiday {cursor: pointer;}
-#clock{font-family:Tahoma, sans-serif; font-size:20px; font-weight:bold; color:#00c;}
+#clock{font-family:Tahoma, sans-serif;font-size:20px;font-weight:bold;color:#00c;}
 table.mainTab {background-color: #fff;}
 #allClock {background: navy;padding: 2px;width: 480px;z-index: 9;position: absolute;}
 #myCanvas {mardin: 0px;padding: 0px;}
@@ -59,9 +59,9 @@ form.lgfrm {width: 100%; background: #599874;}
 #dps, #lusr, #pusr {background: rgb(255, 255, 224); color: rgb(0, 0, 224);}
 .clockHide {display: none;}
 .clockShow {display: block;}
-.divBtn {display: inline-block; border: 1px solid #000; text-align: center; width: 60px; background: #999; color: #eee; cursor: pointer;}
-.xBtn {position: absolute; top: 0; right: 0; z-index: 14; width: 20px; height: 20px; border: 1px solid #333; color: #fff; background-color: #900; font-face: Arial; font-size: 18px; padding: 0; margin: 0; text-align: center; cursor: pointer}
-#floatTip {position: absolute; z-index: 3; width: 250px; display: none; border: 1px solid #000; padding: 4px; font-family: sans-serif; font-size: 9pt;color: #333; background: #ffe5ff;}
+.divBtn {display: inline-block;border: 1px solid #000;text-align: center;width: 60px;background: #999;color: #eee;cursor: pointer;}
+.xBtn {position: absolute;top: 0;right: 0;z-index: 14;width: 20px;height: 20px;border: 1px solid #333;color: #fff;background-color: #900;font-face: Arial;font-size: 18px;padding: 0;margin: 0;text-align: center;cursor: pointer}
+#floatTip {position: absolute;z-index: 9;width: 250px;display: none;border: 1px solid #000;padding: 4px;font-family: sans-serif;font-size: 9pt;color: #333;background: #ffe5ff;}
 .btnTab {display: inline-block; background-color: #fff;}
 .btnTd {background-color: silver; color: navy; cursor: pointer;}
 .btnTd:hover {backgroubd-color: #999; color: #900;}

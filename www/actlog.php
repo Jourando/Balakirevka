@@ -1,5 +1,5 @@
 <?php
-// v.10.a.3::log revision
+// v.10.a.4::log revision
 $mc=0;
 $a="";
 $xfile = 'log/actlog.txt';
