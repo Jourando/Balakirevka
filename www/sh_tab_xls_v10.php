@@ -66,6 +66,7 @@ form.lgfrm {width: 100%; background: #599874;}
 .btnTd {background-color: silver; color: navy; cursor: pointer;}
 .btnTd:hover {backgroubd-color: #999; color: #900;}
 </style>
+<!-- проверку дат можно реализовывать через склейку до integer -->
 <script>
 var edMode=1; // расположение полей в modalEdit
 function trim(str, charlist) {
@@ -133,7 +134,8 @@ else {return getOffsetSum(elem);}
 function getOffsetSum(elem) {
 var top=0, left=0;
 while(elem) {
-top=top+parseInt(elem.offsetTop); left=left+parseInt(elem.offsetLeft);
+top=top+parseInt(elem.offsetTop);
+left=left+parseInt(elem.offsetLeft);
 elem = elem.offsetParent;
 }
 return {top: top, left: left}

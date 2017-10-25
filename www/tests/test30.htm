@@ -1,3 +1,8 @@
+<html>
+<head>
+<title>test long number</title>
+</head>
+<body>
 <script>
 function testX() {
 x1=parseInt(document.getElementById('data1').value);
@@ -7,10 +12,17 @@ if (x1>x2) {
 	document.getElementById('x2').innerHTML=x1+7;
 	document.getElementById('x3').innerHTML=x2;
 	document.getElementById('x4').innerHTML=x2*2;
+} else {
+	document.getElementById('x1').innerHTML=x1+'<'+x2;
+}
+return true;
 }
 </script>
-<input type=text id=data1><input type=text id=data2><input type=button value=run>
+<h3>long num check out</h3>
+<input type=text id=data1><input type=text id=data2><input type=button value=run onclick=testX()>
 <div id=x1></div>
 <div id=x2></div>
 <div id=x3></div>
 <div id=x4></div>
+</body>
+</html>
