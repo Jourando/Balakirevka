@@ -9,7 +9,8 @@ if (ISSET($_GET['us'])==true) {
 	$lx2='Фамилия и инициалы';
 	$lx3='Пароль';
 }
-include ('menu.php');
+include('menu.php');
+include('linelim.php');
 ?>
 <!DOCTYPE html>
 <html lang="RU-ru">
@@ -245,13 +246,21 @@ function LogIt(qStr) {
 getUrl(logStr+qStr, '0');
 }
 function CheckTime() {
+<?
+echo "var lnlm=".$linelimit.";";
+?>
 var el=document.getElementById('mainTab');
 var els1=el.getElementsByTagName('tr');
-console.log(els1.length);
 var els2;
-for (var li=0; li<els1; li++) {
-	els2=els1.getElementsByTagName('td');
-	
+for (var li=0; li<els1.length; li++) {
+	els2=els1[li].getElementsByTagName('td');
+	console.log(li+' has '+els2.length+' td');
+	if (els2.length==lnlm) {
+		p1=els2[2].innerHTML;
+		p2=els2[3].innerHTML;
+		console.log(p1+' --- '+p2);
+	}
+	console.log(lnlm);
 }
 }
 function ChechPlace() {
@@ -508,7 +517,6 @@ if (msg) {
 <?
 include ('tabhead.php'); // формируем столбцы
 getContent('all', $tA); // первично считываем, заполняем таблицу
-include('linelim.php');
 echo "<tr id=stop>";
 echo "<td colspan=".$linelimit." class=MainTabFinal>&nbsp;&nbsp;&nbsp;&copy;&nbsp;2017, Msk</td>";
 echo "</tr>\r\n";
