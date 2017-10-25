@@ -357,7 +357,7 @@ if (a==1) {
 } else if (a==3) {
 	modalWarnP('<div class=sq1>Здравствуйте!<br>Системе не удалось авторизовать вас.<br>Не все обязательные поля были заполнены:<br>необходимо выбрать раздел, ввести правильные логин и пароль.</div><input type=button value=OK Onclick=modalClose("none")>', b);
 } else if (a==4) {
-	modalWarnP('<div class=sq1>Предупреждение:<br>Текущая сессия разорвана.<br>Если вам надо продолжить работу, авторизуйтесь заново.</div><input type=button value=OK Onclick=modalClose("none")>', b);
+	modalWarnP('<div class=sq1>Внимание! Текущая сессия разорвана.<br>Если вам надо продолжить работу, авторизуйтесь заново.</div><input type=button value=OK Onclick=modalClose("none")>', b);
 }
 }
 function modalClose(tid) {
@@ -401,8 +401,6 @@ if (px==1) {
 	var vxtp;
 	if (!document.getElementById('lerror')) { 
 		modalLogWrn(4, 'Предупреждение');
-	} else {
-		console.log(document.getElementById('lerror').innerHTML); // test
 	}
 	var fst=document.getElementById('fset');
 	vxtp='<nobr><label>Отдел <select id=dps Onchange="depMod=this.selectedIndex">';
