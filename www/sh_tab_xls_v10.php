@@ -244,6 +244,12 @@ function LogIt(qStr) {
 // формат: тип отдаваемых данных (3), Ф-ция, что пишем, в какой файл .OR. ф-ция, какую файловую манипуляцию делаем, с каким файлом;
 getUrl(logStr+qStr, '0');
 }
+function CheckTime() {
+	
+}
+function ChechPlace() {
+	
+}
 function repStr(d) {
 d=d.replace(/</g, "[");
 d=d.replace(/>/g, "]");
