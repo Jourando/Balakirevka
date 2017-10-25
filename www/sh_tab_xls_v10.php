@@ -221,7 +221,7 @@ function getUrl(xurl, xmd) {
 					depMod=j;
 					modalLogWrn(1, 'Успешная авторизация');
 				} else {
-					document.getElementById('fset').innerHTML='<label>Ошибка авторизации: '+Rtxt+' <input type=button value=Отправить Onclick=Auth(1) class=invisible id=b1><input type=button value=Перелогиниться Onclick=Auth(2) class=visible id=b2></label>';
+					document.getElementById('fset').innerHTML='<label id=lerror>Ошибка авторизации: '+Rtxt+' <input type=button value=Отправить Onclick=Auth(1) class=invisible id=b1><input type=button value=Перелогиниться Onclick=Auth(2) class=visible id=b2></label>';
 					modalLogWrn(2, 'Ошибка авторизации');					
 				}
 			} else if (parseInt(xmd)==0) {
@@ -356,6 +356,8 @@ if (a==1) {
 	modalWarnP('<div class=sq1>Здравствуйте!<br>Системе не удалось авторизовать вас.<br>Попробуйте ввести данные еще раз или обратитесь к администратору.<br>При вводе обратите внимание на правильность выбранного раздела.</div><input type=button value=OK Onclick=modalClose("none")>', b);
 } else if (a==3) {
 	modalWarnP('<div class=sq1>Здравствуйте!<br>Системе не удалось авторизовать вас.<br>Не все обязательные поля были заполнены:<br>необходимо выбрать раздел, ввести правильные логин и пароль.</div><input type=button value=OK Onclick=modalClose("none")>', b);
+} else if (a==4) {
+	modalWarnP('<div class=sq1>Предупреждение:<br>Текущая сессия разорвана.<br>Если вам надо продолжить работу, авторизуйтесь заново.</div><input type=button value=OK Onclick=modalClose("none")>', b);
 }
 }
 function modalClose(tid) {
@@ -397,7 +399,11 @@ if (px==1) {
 	getUrl(urlStr+qStr, '1');
 } else {
 	var vxtp;
-	// warn о разрыве сессии
+	if (!document.getElementById('lerror')) { 
+		modalLogWrn(4, 'Предупреждение');
+	} else {
+		console.log(document.getElementById('lerror').innerHTML); // test
+	}
 	var fst=document.getElementById('fset');
 	vxtp='<nobr><label>Отдел <select id=dps Onchange="depMod=this.selectedIndex">';
 <?
@@ -456,7 +462,6 @@ postUrl(ResStr, document.getElementById('hid').value);
 <script>
 Prw();
 </script>
-<!-- переделать пиктограммы на нормальные(?) -->
 <div id=btnPanel>
 <script>
 var Str1="Проверка даты и времени<br>Строки, содержащие ошибку, будут выделены цветом";
