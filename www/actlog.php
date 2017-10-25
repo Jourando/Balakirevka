@@ -1,9 +1,6 @@
 <?php
-// v.10.a.1::log revision
+// v.10.a.2::log revision
 $mc=0;
-// формат: Время, юзер, с какой стр., c какого объекта, какое действие, тип, успех или код ошибки
-// формат: Ф-ция, имя переменной, знач. переменной
-// ------ // 
 $a="";
 $xfile = 'log/actlog.txt';
 $usr = 'guest';
@@ -135,7 +132,7 @@ if ($_GET['act']=='ERRL') { // error log
 	if (ISSET($_GET['doc'])) {	// page
 		$pg = $_GET['doc'];
 	}
-	$a="System met an error at ".$tm." at page ".$pg.": ".$_GET['v1']." at line ".$_GET['v2'].";\r\n";
+	$a="@System met an error at ".$tm." at page ".$pg.": ".$_GET['v1']." at line ".$_GET['v2'].";\r\n";
 }
 $handle = fopen($xfile, 'a');
 fwrite($handle, $a);
