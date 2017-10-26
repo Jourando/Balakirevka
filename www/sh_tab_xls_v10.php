@@ -245,7 +245,6 @@ var b='';
 for (var d=0; d<a.length-1; d++) {
 	if ((d==0) || (d==1) || (d==2) || (d==3) || (d==5) || (d==6) || (d==8) || (d==9) || (d==11) || (d==12) || (d==14) || (d==15)) b=b+a[d];
 }
-console.log(a.length+' ::: '+b);
 return b;
 }
 function LogIt(qStr) {
@@ -253,6 +252,14 @@ function LogIt(qStr) {
 // формат: тип отдаваемых данных (2), Ф-ция, имя переменной, знач. переменной;
 // формат: тип отдаваемых данных (3), Ф-ция, что пишем, в какой файл .OR. ф-ция, какую файловую манипуляцию делаем, с каким файлом;
 getUrl(logStr+qStr, '0');
+}
+function ClrChkErr() {
+var el=document.getElementById('mainTab');
+var els1=el.getElementsByTagName('tr');
+for (var li=1; li<els1.length-1; li++) {
+		if (els1[li].className=='T3') {els1[li].className='T1';}
+}
+return true;
 }
 function CheckTime() {
 <?
@@ -266,7 +273,6 @@ for (var li=1; li<els1.length-1; li++) {
 	if (els2.length==lnlm) {
 		p1=dat2numstr(els2[2].innerHTML);
 		p2=dat2numstr(els2[3].innerHTML);
-		console.log(els1[li].className);
 		if (p1>p2) {els1[li].className='T3';}
 	}
 }
@@ -496,8 +502,9 @@ Prw();
 </script>
 <div id=btnPanel>
 <script>
+var Str0="Сбросить все ошибки и выделение цветом<br>Все строки таблиц вернутся к исходному виду";
 var Str1="Проверка даты и времени<br>Строки, содержащие ошибку, будут выделены цветом";
-var Str2="Проверка места проведения<br>Строки, содержащие ошибку, будут выделены цветом"
+var Str2="Проверка места проведения<br>Строки, содержащие ошибку, будут выделены цветом";
 document.onmousemove = moveTip;
 function moveTip(e) {
 floatTipStyle = document.getElementById("floatTip").style;
@@ -518,7 +525,8 @@ if (msg) {
 }
 }
 </Script>
-	<Table border=3 onMouseOver="toolTip(Str1)" onMouseOut="toolTip()" class=btnTab><tr><td class=btnTd>Время</td></tr></Table>
+	<Table border=3 onMouseOver="toolTip(Str0)" onMouseOut="toolTip()" class=btnTab Onclick=ClrChkErr()><tr><td class=btnTd>Сброс</td></tr></Table>
+	<Table border=3 onMouseOver="toolTip(Str1)" onMouseOut="toolTip()" class=btnTab Onclick=CheckTime()><tr><td class=btnTd>Время</td></tr></Table>
 	<Table border=3 onMouseOver="toolTip(Str2)" onMouseOut="toolTip()" class=btnTab><tr><td class=btnTd>Место</td></tr></Table>
 	<div id="floatTip"></div>
 </div>
