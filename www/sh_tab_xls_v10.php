@@ -28,6 +28,7 @@ input[type=text] {resize:both;}
 .T1:hover {background: lightblue;}
 .T2 {font-weight: bold}
 .T3 {background: rgb(232, 139, 139);}
+.RO {background: #eee;}
 .depHdr {color: #000; background: #9c9; padding-left: 150px;}
 .upLayer {background: rgba(202, 202, 202, 0.5); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 3;}
 .xxLayer {width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 5; display: table; text-align: center; vertical-align: middle;}
