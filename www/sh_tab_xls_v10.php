@@ -280,6 +280,7 @@ if (em==1) {
 	hdrStr+='<td id=et18><input type=text id=ext18 style="width: 96%"></td></tr>';
 	var edtStr='<tr><td colspan=10><label>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></label></td></tr>';
 }
+// режим 3 - вертикаль - сюда же
 return hdrStr+edtStr; 
 }
 function dat2numstr(a) {
