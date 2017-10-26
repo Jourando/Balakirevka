@@ -278,7 +278,7 @@ for (var li=1; li<els1.length-1; li++) {
 }
 return true;
 }
-function ChechPlace() {
+function CheckPlace() {
 <?
 echo "var lnlm=".$linelimit.";";
 ?>
@@ -547,7 +547,7 @@ if (msg) {
 </Script>
 	<Table border=3 onMouseOver="toolTip(Str0)" onMouseOut="toolTip()" class=btnTab Onclick=ClrChkErr()><tr><td class=btnTd>Сброс</td></tr></Table>
 	<Table border=3 onMouseOver="toolTip(Str1)" onMouseOut="toolTip()" class=btnTab Onclick=CheckTime()><tr><td class=btnTd>Время</td></tr></Table>
-	<Table border=3 onMouseOver="toolTip(Str2)" onMouseOut="toolTip()" class=btnTab><tr><td class=btnTd>Место</td></tr></Table>
+	<Table border=3 onMouseOver="toolTip(Str2)" onMouseOut="toolTip()" class=btnTab Onclick=CheckPlace()><tr><td class=btnTd>Место</td></tr></Table>
 	<div id="floatTip"></div>
 </div>
 <Table width=100% border=0 id=mainTab>
