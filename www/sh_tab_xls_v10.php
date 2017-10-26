@@ -27,6 +27,7 @@ input[type=text] {resize:both;}
 .T1 {background: #efefef;}
 .T1:hover {background: lightblue;}
 .T2 {font-weight: bold}
+.T3 {background: rgb(232, 139, 139);}
 .depHdr {color: #000; background: #9c9; padding-left: 150px;}
 .upLayer {background: rgba(202, 202, 202, 0.5); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 3;}
 .xxLayer {width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 5; display: table; text-align: center; vertical-align: middle;}
@@ -52,7 +53,7 @@ td.norm, td.today, td.holiday {cursor: pointer;}
 #clock{font-family:Tahoma, sans-serif;font-size:20px;font-weight:bold;color:#00c;}
 table.mainTab {background-color: #fff;}
 #allClock {background: navy;padding: 2px;width: 480px;z-index: 9;position: absolute;}
-#myCanvas {mardin: 0px;padding: 0px;}
+#myCanvas {margin: 0px;padding: 0px;}
 #mTime {text-align: center;position: relative;z-index: 10;left: 0;right: 0;bottom: 5px;background: rgba(235, 235, 255, 0.5);}
 #mTime input[type=number] {width: 45px;}
 #xtimer1 {width: 140px;border: 1px solid #333;height: 210px;}
@@ -65,7 +66,7 @@ form.lgfrm {width: 100%; background: #599874;}
 #floatTip {position: absolute;z-index: 9;width: 250px;display: none;border: 1px solid #000;padding: 4px;font-family: sans-serif;font-size: 9pt;color: #333;background: #ffe5ff;}
 .btnTab {display: inline-block; background-color: #fff;}
 .btnTd {background-color: silver; color: navy; cursor: pointer;}
-.btnTd:hover {backgroubd-color: #999; color: #900;}
+.btnTd:hover {background-color: #999; color: #900;}
 </style>
 <!-- проверку дат можно реализовывать через склейку до integer -->
 <script>
@@ -265,9 +266,8 @@ for (var li=1; li<els1.length-1; li++) {
 	if (els2.length==lnlm) {
 		p1=dat2numstr(els2[2].innerHTML);
 		p2=dat2numstr(els2[3].innerHTML);
-//		console.log(p1+' --- '+p2);
-		console.log(els2[2].className+' ----- '+els2[3].className);
 		console.log(els1[li].className);
+		if (p1>p2) {els1[li].className='T3';}
 	}
 }
 return true;
