@@ -364,7 +364,7 @@ if (document.getElementById('dps') !== null) {
 			stWin.innerHTML=b4a('10561077107810801084003210881077107610721082109010801088108610741072108510801103');
 			spWin.className='ctLayer';
 			spWin.id='ModalCont';
-			spWin.innerHTML='<Table width=100% border=0 id=subTab>'+hdrStr+edtStr+'</Table>';
+			spWin.innerHTML='<Table width=100% border=0 id=subTab>'+edTab(edMode)+'</Table>';
 			sxWin.appendChild(stWin);
 			sxWin.appendChild(spWin);
 			var trx=document.getElementById(tid);
