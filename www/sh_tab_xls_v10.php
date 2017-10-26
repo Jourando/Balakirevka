@@ -279,7 +279,19 @@ for (var li=1; li<els1.length-1; li++) {
 return true;
 }
 function ChechPlace() {
-	
+<?
+echo "var lnlm=".$linelimit.";";
+?>
+var el=document.getElementById('mainTab');
+var els1=el.getElementsByTagName('tr');
+var els2;
+for (var li=1; li<els1.length-1; li++) {
+	els2=els1[li].getElementsByTagName('td');
+	if (els2.length==lnlm) {
+	// если текущая ячейка "место" совпала с ячейкой "место" цикла, то проверяем диапазон "время"	
+	}
+}
+return true;
 }
 function repStr(d) {
 d=d.replace(/</g, "[");
