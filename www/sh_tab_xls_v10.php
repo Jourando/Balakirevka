@@ -64,6 +64,7 @@ form.lgfrm {width: 100%; background: #599874;}
 .clockShow {display: block;}
 .divBtn {display: inline-block;border: 1px solid #000;text-align: center;width: 60px;background: #999;color: #eee;cursor: pointer;}
 .xBtn {position: absolute;top: 0;right: 0;z-index: 14;width: 20px;height: 20px;border: 1px solid #333;color: #fff;background-color: #900;font-face: Arial;font-size: 18px;padding: 0;margin: 0;text-align: center;cursor: pointer}
+.split {display: inline-block; width: 5px; height: 33px; background: #333;}
 #floatTip {position: absolute;z-index: 9;width: 250px;display: none;border: 1px solid #000;padding: 4px;font-family: sans-serif;font-size: 9pt;color: #333;background: #ffe5ff;}
 .btnTab {display: inline-block; background-color: #fff;}
 .btnTd {background-color: silver; color: navy; cursor: pointer;}
@@ -242,10 +243,12 @@ function getUrl(xurl, xmd) {
     xmlhttp.send(null);
 }
 function edTab(em){
+var hdrStr='';
+var edtStr='';
 if (em==1) {
-	var hdrStr='<tr><th rowspan=2>'+xth[1]+'</th><th rowspan=2>'+xth[2]+'</th><th colspan=2>'+xth[3]+'</th><th rowspan=2>'+xth[4]+'</th><th colspan=3>'+xth[5]+'</th><th rowspan=2>'+xth[6]+'</th><th colspan=4>'+xth[7]+'</th><th colspan=4>'+xth[8]+'</th><th rowspan=2>'+xth[9]+'</th><th rowspan=2>'+xth[10]+'</th></tr>';
+	hdrStr='<tr><th rowspan=2>'+xth[1]+'</th><th rowspan=2>'+xth[2]+'</th><th colspan=2>'+xth[3]+'</th><th rowspan=2>'+xth[4]+'</th><th colspan=3>'+xth[5]+'</th><th rowspan=2>'+xth[6]+'</th><th colspan=4>'+xth[7]+'</th><th colspan=4>'+xth[8]+'</th><th rowspan=2>'+xth[9]+'</th><th rowspan=2>'+xth[10]+'</th></tr>';
 	hdrStr+='<tr><th>'+yth[1]+'</th><th>'+yth[2]+'</th><th>'+yth[3]+'</th><th>'+yth[4]+'</th><th>'+yth[5]+'</th><th>'+yth[6]+'</th><th>'+yth[7]+'</th><th>'+yth[8]+'</th><th>'+yth[9]+'</th><th>'+yth[10]+'</th><th>'+yth[11]+'</th><th>'+yth[12]+'</th><th>'+yth[13]+'</th></tr>';
-	var edtStr='<tr>';
+	edtStr='<tr>';
 	for (xI=0; xI<19; xI++) {
 		edtStr+='<td id=et'+xI+'><input type=text id=ext'+xI+' size='+esize[xI]+' style="width: 96%"';
 		if ((xI==0) || (xI==1)) {edtStr+=' readonly class=RO';}
@@ -255,7 +258,7 @@ if (em==1) {
 	edtStr+='</tr>';
 	edtStr+='<tr><td colspan=19><label>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></label></td></tr>';
 } else if (em==2) {
-	var hdrStr='<tr><th rowspan=2>'+xth[1]+'</th><th rowspan=2>'+xth[2]+'</th><th colspan=2>'+xth[3]+'</th><th rowspan=2>'+xth[4]+'</th><th colspan=3>'+xth[5]+'</th><th rowspan=2 colspan=2>'+xth[6]+'</th></tr>';
+	hdrStr='<tr><th rowspan=2>'+xth[1]+'</th><th rowspan=2>'+xth[2]+'</th><th colspan=2>'+xth[3]+'</th><th rowspan=2>'+xth[4]+'</th><th colspan=3>'+xth[5]+'</th><th rowspan=2 colspan=2>'+xth[6]+'</th></tr>';
 	hdrStr+='<tr><th>'+yth[1]+'</th><th>'+yth[2]+'</th><th>'+yth[3]+'</th><th>'+yth[4]+'</th><th>'+yth[5]+'</th></tr>';
 	hdrStr+='<tr><td id=et0><input type=text id=ext0 style="width: 96%" readonly class=RO></td>';
 	hdrStr+='<td id=et1><input type=text id=ext1 style="width: 96%" readonly class=RO></td>';
@@ -266,7 +269,7 @@ if (em==1) {
 	hdrStr+='<td id=et6><input type=text id=ext6 style="width: 96%"></td>';
 	hdrStr+='<td id=et7><input type=text id=ext7 style="width: 96%"></td>';
 	hdrStr+='<td id=et8 colspan=2><input type=text id=ext8 style="width: 96%"></td></tr>';
-	hdrStr+='<tr><th colspan=4>'+xth[7]+'</th><th colspan=4>'+xth[8]+'</th><th rowspan=2>'+xth[9]+'</th><th rowspan=2>'+xth[10]+'</th></tr>'; // <------------------ поплыли колонки
+	hdrStr+='<tr><th colspan=4>'+xth[7]+'</th><th colspan=4>'+xth[8]+'</th><th rowspan=2>'+xth[9]+'</th><th rowspan=2>'+xth[10]+'</th></tr>';
 	hdrStr+='<tr><th>'+yth[6]+'</th><th>'+yth[7]+'</th><th>'+yth[8]+'</th><th>'+yth[9]+'</th><th>'+yth[10]+'</th><th>'+yth[11]+'</th><th>'+yth[12]+'</th><th>'+yth[13]+'</th></tr>';
 	hdrStr+='<tr><td id=et9><input type=text id=ext9 style="width: 96%"></td>';
 	hdrStr+='<td id=et10><input type=text id=ext10 style="width: 96%"></td>';
@@ -278,9 +281,29 @@ if (em==1) {
 	hdrStr+='<td id=et16><input type=text id=ext16 style="width: 96%"></td>';
 	hdrStr+='<td id=et17><input type=text id=ext17 style="width: 96%"></td>';
 	hdrStr+='<td id=et18><input type=text id=ext18 style="width: 96%"></td></tr>';
-	var edtStr='<tr><td colspan=10><label>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></label></td></tr>';
+	edtStr='<tr><td colspan=10><label>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></label></td></tr>';
+} else if (em==3) {
+	hdrStr='<tr><th rowspan=2>'+xth[1]+'</th><th rowspan=2>'+xth[2]+'</th><th colspan=2>'+xth[3]+'</th></tr>';
+	hdrStr+='<tr><th>'+yth[1]+'</th><th>'+yth[2]+'</th></tr>';
+	hdrStr+='<tr><td id=et0><input type=text id=ext0 style="width: 96%" readonly class=RO></td><td id=et1><input type=text id=ext1 style="width: 96%" readonly class=RO></td>';
+	hdrStr+='<td id=et2><input type=text id=ext2 style="width: 96%" id=inpTxt2 Onfocus="showHint(this.id)"></td><td id=et3><input type=text id=ext3 style="width: 96%" id=inpTxt3 Onfocus="showHint(this.id)"></td></tr>';
+	hdrStr+='<tr><th rowspan=2>'+xth[4]+'</th><th colspan=3>'+xth[5]+'</th></tr>';
+	hdrStr+='<tr><th>'+yth[3]+'</th><th>'+yth[4]+'</th><th>'+yth[5]+'</th></tr>';
+	hdrStr+='<tr><td id=et4><input type=text id=ext4 style="width: 96%" id=inpTxt4></td><td id=et5><input type=text id=ext5 style="width: 96%"></td>';
+	hdrStr+='<td id=et6><input type=text id=ext6 style="width: 96%"></td><td id=et7><input type=text id=ext7 style="width: 96%"></td></tr>';
+	hdrStr+='<tr><th colspan=4>'+xth[6]+'</th></tr>';
+	hdrStr+='<tr><td id=et8 colspan=4><input type=text id=ext8 style="width: 96%"></td></tr>';
+	hdrStr+='<tr><th colspan=4>'+xth[7]+'</th></tr>';
+	hdrStr+='<tr><th>'+yth[6]+'</th><th>'+yth[7]+'</th><th>'+yth[8]+'</th><th>'+yth[9]+'</th></tr>';
+	hdrStr+='<tr><td id=et9><input type=text id=ext9 style="width: 96%"></td><td id=et10><input type=text id=ext10 style="width: 96%"></td>'; // 9-10
+	hdrStr+='<td id=et11><input type=text id=ext11 style="width: 96%"></td><td id=et12><input type=text id=ext12 style="width: 96%"></td></tr>'; // 11-12
+	hdrStr+='<tr><th colspan=4>'+xth[8]+'</th></tr>';
+	hdrStr+='<tr><th>'+yth[10]+'</th><th>'+yth[11]+'</th><th>'+yth[12]+'</th><th>'+yth[13]+'</th></tr>';
+	hdrStr+='<tr><td id=et13><input type=text id=ext13 style="width: 96%"></td><td id=et14><input type=text id=ext14 style="width: 96%"></td><td id=et15><input type=text id=ext15 style="width: 96%"></td><td id=et16><input type=text id=ext16 style="width: 96%"></td></tr>';
+	hdrStr+='<tr><th colspan=2>'+xth[9]+'</th><th colspan=2>'+xth[10]+'</th></tr>';
+	hdrStr+='<tr><td id=et17 colspan=2><input type=text id=ext17 style="width: 96%"></td><td id=et18 colspan=2><input type=text id=ext18 style="width: 96%"></td></tr>';
+	edtStr='<tr><td colspan=4><label>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></label></td></tr>';
 }
-// режим 3 - вертикаль - сюда же
 return hdrStr+edtStr; 
 }
 function dat2numstr(a) {
@@ -320,6 +343,11 @@ for (var li=1; li<els1.length-1; li++) {
 	}
 }
 return true;
+}
+function ChEdtMode() {
+ edMode=edMode+1;
+ if (edMode>3) {edMode=1;}
+ document.getElementById('E1').innerHTML='Редактор '+edMode; 
 }
 function CheckPlace() {
 <?
@@ -568,6 +596,7 @@ Prw();
 var Str0="Сбросить все ошибки и выделение цветом<br>Все строки таблиц вернутся к исходному виду";
 var Str1="Проверка даты и времени<br>Строки, содержащие ошибку, будут выделены цветом";
 var Str2="Проверка места проведения<br>Строки, содержащие ошибку, будут выделены цветом";
+var Str3="Переключить режим редактора:<br>- в одну строку (редактор1)<br>- в две строки (редактор2)<br>- многострочный (редактор3)";
 document.onmousemove = moveTip;
 function moveTip(e) {
 floatTipStyle = document.getElementById("floatTip").style;
@@ -591,6 +620,8 @@ if (msg) {
 	<Table border=3 onMouseOver="toolTip(Str0)" onMouseOut="toolTip()" class=btnTab Onclick=ClrChkErr()><tr><td class=btnTd>Сброс</td></tr></Table>
 	<Table border=3 onMouseOver="toolTip(Str1)" onMouseOut="toolTip()" class=btnTab Onclick=CheckTime()><tr><td class=btnTd>Время</td></tr></Table>
 	<Table border=3 onMouseOver="toolTip(Str2)" onMouseOut="toolTip()" class=btnTab Onclick=CheckPlace()><tr><td class=btnTd>Место</td></tr></Table>
+	<div class=split></div>
+	<Table border=3 onMouseOver="toolTip(Str3)" onMouseOut="toolTip()" class=btnTab Onclick=ChEdtMode()><tr><td id=E1 class=btnTd>Редактор 1</td></tr></Table>
 	<div id="floatTip"></div>
 </div>
 <Table width=100% border=0 id=mainTab>
