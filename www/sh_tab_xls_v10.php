@@ -256,7 +256,7 @@ if (em==1) {
 		edtStr+='></td>';
 	}
 	edtStr+='</tr>';
-	edtStr+='<tr><td colspan=19><label>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></label></td></tr>';
+	edtStr+='<tr><td colspan=19><p>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></p></td></tr>';
 } else if (em==2) {
 	hdrStr='<tr><th rowspan=2>'+xth[1]+'</th><th rowspan=2>'+xth[2]+'</th><th colspan=2>'+xth[3]+'</th><th rowspan=2>'+xth[4]+'</th><th colspan=3>'+xth[5]+'</th><th rowspan=2 colspan=2>'+xth[6]+'</th></tr>';
 	hdrStr+='<tr><th>'+yth[1]+'</th><th>'+yth[2]+'</th><th>'+yth[3]+'</th><th>'+yth[4]+'</th><th>'+yth[5]+'</th></tr>';
@@ -281,7 +281,7 @@ if (em==1) {
 	hdrStr+='<td id=et16><input type=text id=ext16 style="width: 96%"></td>';
 	hdrStr+='<td id=et17><input type=text id=ext17 style="width: 96%"></td>';
 	hdrStr+='<td id=et18><input type=text id=ext18 style="width: 96%"></td></tr>';
-	edtStr='<tr><td colspan=10><label>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></label></td></tr>';
+	edtStr='<tr><td colspan=10><p>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></p></td></tr>';
 } else if (em==3) {
 	hdrStr='<tr><th rowspan=2>'+xth[1]+'</th><th rowspan=2>'+xth[2]+'</th><th colspan=2>'+xth[3]+'</th></tr>';
 	hdrStr+='<tr><th>'+yth[1]+'</th><th>'+yth[2]+'</th></tr>';
@@ -302,7 +302,7 @@ if (em==1) {
 	hdrStr+='<tr><td id=et13><input type=text id=ext13 style="width: 96%"></td><td id=et14><input type=text id=ext14 style="width: 96%"></td><td id=et15><input type=text id=ext15 style="width: 96%"></td><td id=et16><input type=text id=ext16 style="width: 96%"></td></tr>';
 	hdrStr+='<tr><th colspan=2>'+xth[9]+'</th><th colspan=2>'+xth[10]+'</th></tr>';
 	hdrStr+='<tr><td id=et17 colspan=2><input type=text id=ext17 style="width: 96%"></td><td id=et18 colspan=2><input type=text id=ext18 style="width: 96%"></td></tr>';
-	edtStr='<tr><td colspan=4><label>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></label></td></tr>';
+	edtStr='<tr><td colspan=4><p>Вставить строку <input type=button value=Перед Onclick=ItmInsert("before")> <input type=button value=Вместо Onclick=ItmInsert("replace")> <input type=button value=После Onclick=ItmInsert("after")> текущей, <input type=button value=Удалить Onclick=ItmInsert("erase")> всю строку или <input type=button value=Закрыть Onclick=modalClose(document.getElementById(\'hid\').value)> без сохранения <input type=hidden value=x id=hid></p></td></tr>';
 }
 return hdrStr+edtStr; 
 }
