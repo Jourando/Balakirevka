@@ -2,7 +2,7 @@
 // v.10.a.5::adm revision
 echo "<html><head><title>adm tools</title></head><body>";
 if ((!ISSET($_POST['log'])) || (!ISSET($_POST['dep'])) || (ISSET($_POST['relog']))) {
-	$str1='<h3>adm tools</h3><form action="" target=_self method=post><input type=text value=0 name="dep"> : <input type=text value="Input password" name="log">';
+	$str1='<h3>adm tools</h3><form action="" target=_self method=post><input type=text value=0 name="dep" OnClick=this.value=""> : <input type=text value="Input password" name="log" OnClick=this.value="">';
 	$str2='<input type=submit value="Send"></form>';
 	echo $str1.$str2;
 } else {

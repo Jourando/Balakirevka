@@ -764,7 +764,7 @@ window.setInterval(
 	function(){
 	    var d = new Date();
 	    document.getElementById("clock").innerHTML = d.toLocaleTimeString();
-      displayCanvas();
+		displayCanvas();
 	}
   , 1000);
 selectedDT('', 1);
