@@ -356,6 +356,8 @@ echo "var lnlm=".$linelimit.";";
 var el=document.getElementById('mainTab');
 var els1=el.getElementsByTagName('tr');
 var els2;
+var els3;
+var els4; // массив для совпадений
 for (var li=1; li<els1.length-1; li++) {
 	els2=els1[li].getElementsByTagName('td');
 	if (els2.length==lnlm) {
@@ -368,6 +370,13 @@ for (var li=1; li<els1.length-1; li++) {
 	//                                         если время1.старт>время2.старт		<------ позже
 	//										   то время1старт не должно быть время1.старт<время2.финиш
 	// 										   если любое условие не выполнено, то break; return false. Иначе return true.)
+		// место - td[8]
+		for (var lj=li; lj<els1.length-1; lj++) {
+			els3=els1[lj].getElementsByTagName('td');
+			if (els3.length==lnlm) {
+				if (els2[8]==els3[8]) {console.log(li+' ::: '+lj);}
+			}
+		}
 	}
 }
 return true;
