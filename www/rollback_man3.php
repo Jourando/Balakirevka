@@ -180,10 +180,10 @@ echo "var a2='".$r0."';\r\n";
 echo "var a3='2';\r\n";
 echo "var a4=document.getElementById('dps').selectedIndex;\r\n";
 echo "var a5=document.getElementById('dfs').selectedIndex;\r\n";
-echo "a1='/test2.ru/rollback_man3.php?mode=insert&ft='+a1;\r\n";
+echo "a1='rollback_man3.php?mode=insert&ft='+a1;\r\n";
 echo "a2=a1+'&fn='+a2+'&arg='+a3+'&dp='+a4+'&method='+a5+'&r=928762';\r\n";
 ?>
-location.href='http:/'+a2;
+location.href=a2;
 }
 }
 </Script>
@@ -211,7 +211,7 @@ location.href='http:/'+a2;
 				echo $ptmp;
 				$ptmp="<select id=dfs><option value=0> </option><option value=1>Добавить в начало</option><option value=2>Заменить существующие</option><option value=3>Добавить в конец</option></select>";
 				echo $ptmp;
-				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"http://test2.ru/rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK Onclick='genlnk()'> для запуска вставки данных</div><hr>";
+				echo "<div>Если кодировка русского языка отображается некорректно, попробуйте вернуться <input type=button value=Назад Onclick='location.href=\"rollback_man3.php?mode=upl&r=2240\"'> и прочитать как ".(($r3=='DOS')?'Windows':'Dos')."-файл; если всё отображается корректно - нажмите <input type=button value=OK Onclick='genlnk()'> для запуска вставки данных</div><hr>";
 				echo "<!-- шапку ставим скриптом из global -->";
 ?>
 <script src=globals2.js></script>
@@ -236,14 +236,14 @@ document.write(hdrStr);
 		}
 		include('toolmen.php');
     } else {
-        echo("<p>Ошибка загрузки файла<br>[<a href='http://test2.ru/rollback_man3.php?mode=upl&r=2111'>Перейти обратно</a>]</p>");
+        echo("<p>Ошибка загрузки файла<br>[<a href='rollback_man3.php?mode=upl&r=2111'>Перейти обратно</a>]</p>");
     }
 		echo "</BODY></HTML>";
 }
 if ($md==6) {
 	echo "<PRE>Please, choose one:
-- <a href=http://test2.ru/rollback_man3.php?mode=show>Export</a>
-- <a href=http://test2.ru/rollback_man3.php?mode=upl&r=9879890709>Import</a></PRE>";
+- <a href=rollback_man3.php?mode=show>Export</a>
+- <a href=rollback_man3.php?mode=upl&r=9879890709>Import</a></PRE>";
 	include('toolmen.php');
 }
 if ($md==7) {
@@ -334,7 +334,7 @@ if (file_exists($newfile)) {
 <h2>Форма для загрузки csv</h2>
 <form>
 <Table border=0><tr><td><label>Файл успешно загружен и добавлен к имеющейся таблице</label></td></tr>
-<tr><td><label>Теперь можно <input type=button value="Экспортировать раздел" Onclick="location.href='http://test2.ru/rollback_man3.php?mode=show'"> <input type=button value="Импортировать еще один" Onclick="location.href='http://test2.ru/rollback_man3.php?mode=upl'"> или <input type=button value="Вернуться в меню" Onclick="location.href='http://test2.ru/adm3.php?auser=0&arg=26'"></label></td></tr>
+<tr><td><label>Теперь можно <input type=button value="Экспортировать раздел" Onclick="location.href='rollback_man3.php?mode=show'"> <input type=button value="Импортировать еще один" Onclick="location.href='rollback_man3.php?mode=upl'"> или <input type=button value="Вернуться в меню" Onclick="location.href='adm3.php?auser=0&arg=26'"></label></td></tr>
 <tr><td><h5>не забудьте указывать раздел!</h5></td></tr></Table>
 </form>
 <? 
