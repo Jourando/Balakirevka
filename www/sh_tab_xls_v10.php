@@ -354,7 +354,7 @@ function TCompare(s1, f1, s2, f2) {
 	if ((s1==s2) || (f1==f2)) {return false;}
 	else {
 		if (s1<s2) {
-			if (f1<s2) {return false;}
+			if (f1>s2) {return false;}
 		} else {
 			if (s1<f2) {return false;}
 		}
@@ -369,7 +369,6 @@ var el=document.getElementById('mainTab');
 var els1=el.getElementsByTagName('tr');
 var els2;
 var els3;
-var els4; // массив для совпадений
 for (var li=1; li<els1.length-1; li++) {
 	els2=els1[li].getElementsByTagName('td');
 	if (els2.length==lnlm) {
@@ -383,8 +382,8 @@ for (var li=1; li<els1.length-1; li++) {
 	//										   то время1старт не должно быть время1.старт<время2.финиш
 	// 										   если любое условие не выполнено, то break; return false. Иначе return true.)
 			// место - td[8]
-		for (var lj=1; lj<els1.length-1; lj++) { // перебор tr начиная с текущей
-			els3=els1[lj].getElementsByTagName('td'); // массив td
+		for (var lj=1; lj<els1.length-1; lj++) {
+			els3=els1[lj].getElementsByTagName('td');
 			if (els3.length==lnlm) {
 				if (lj!==li) {
 					if (els2[8].innerHTML==els3[8].innerHTML) {
