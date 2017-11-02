@@ -28,6 +28,7 @@ input[type=text] {resize:both;}
 .T1:hover {background: lightblue;}
 .T2 {font-weight: bold}
 .T3 {background: rgb(232, 139, 139);}
+.T4 {background: rgb(192, 102, 102);}
 .RO {background: #eee;}
 .depHdr {color: #000; background: #9c9; padding-left: 150px;}
 .upLayer {background: rgba(202, 202, 202, 0.5); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 3;}
@@ -323,7 +324,7 @@ function ClrChkErr() {
 var el=document.getElementById('mainTab');
 var els1=el.getElementsByTagName('tr');
 for (var li=1; li<els1.length-1; li++) {
-		if (els1[li].className=='T3') {els1[li].className='T1';}
+		if ((els1[li].className=='T3') || (els1[li].className=='T4')) {els1[li].className='T1';}
 }
 return true;
 }
@@ -348,6 +349,17 @@ function ChEdtMode() {
  edMode=edMode+1;
  if (edMode>3) {edMode=1;}
  document.getElementById('E1').innerHTML='Редактор '+edMode; 
+}
+function TCompare(s1, f1, s2, f2) {
+	if ((s1==s2) || (f1==f2)) {return false;}
+	else {
+		if (s1<s2) {
+			if (f1<s2) {return false;}
+		} else {
+			if (s1<f2) {return false;}
+		}
+	}
+return true;
 }
 function CheckPlace() {
 <?
@@ -375,7 +387,13 @@ for (var li=1; li<els1.length-1; li++) {
 			els3=els1[lj].getElementsByTagName('td'); // массив td
 			if (els3.length==lnlm) {
 				if (lj!==li) {
-					if (els2[8].innerHTML==els3[8].innerHTML) {console.log('at str '+li+' els2[8]='+els2[8].innerHTML+' ::: at str '+lj+' els3[8]='+els3[8].innerHTML);}
+					if (els2[8].innerHTML==els3[8].innerHTML) {
+						if (TCompare(dat2numstr(els2[2].innerHTML), dat2numstr(els2[3].innerHTML), dat2numstr(els3[2].innerHTML), dat2numstr(els3[3].innerHTML))==false) {
+							els1[li].className='T4';
+							els1[lj].className='T4';
+						}
+						console.log('at str '+li+' els2[8]='+els2[8].innerHTML+' ::: at str '+lj+' els3[8]='+els3[8].innerHTML);
+					}
 				}
 			}
 		}
