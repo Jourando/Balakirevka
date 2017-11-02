@@ -350,7 +350,6 @@ function ChEdtMode() {
  document.getElementById('E1').innerHTML='Редактор '+edMode; 
 }
 function CheckPlace() {
-var lj=0;
 <?
 echo "var lnlm=".$linelimit.";";
 ?>
@@ -372,10 +371,12 @@ for (var li=1; li<els1.length-1; li++) {
 	//										   то время1старт не должно быть время1.старт<время2.финиш
 	// 										   если любое условие не выполнено, то break; return false. Иначе return true.)
 			// место - td[8]
-		for (lj=li; lj<els1.length-1; lj++) { // перебор tr начиная с текущей
+		for (var lj=1; lj<els1.length-1; lj++) { // перебор tr начиная с текущей
 			els3=els1[lj].getElementsByTagName('td'); // массив td
 			if (els3.length==lnlm) {
-				if (els2[8]==els3[8]) {console.log('at str '+li+' els2[8]='+els2[8]+' ::: at str '+lj+' els3[8]='+els3[8]);}
+				if (lj!==li) {
+					if (els2[8].innerHTML==els3[8].innerHTML) {console.log('at str '+li+' els2[8]='+els2[8].innerHTML+' ::: at str '+lj+' els3[8]='+els3[8].innerHTML);}
+				}
 			}
 		}
 

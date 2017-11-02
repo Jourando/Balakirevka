@@ -19,10 +19,11 @@
  
  https://samy.pl/
  http://www.wisdomweb.ru/JS/trcat.php - js errors
+
+
  
  1) воспользоваться событием onerror объекта window.
  
-
 <script type="text/JavaScript">
 //подавить все сообщения об ошибках JavaScript 
 window.onerror=null;
