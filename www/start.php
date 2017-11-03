@@ -14,8 +14,8 @@ if ($vtx==2) {
 } else {
 	$uPC[0]='...';
 }
-$a='System was started from '.$page.' at '.$tm.' on device {';
-if ($owner=='unknown device'} {
+$a='System was started from ['.$page.'] at '.$tm.' on device {';
+if ($owner=='unknown device') {
 	$a=$a.$owner."}\r\n";
 } else {
 	$a=$a."host: ".$uPC[0]."; ip: ".$uPC[1]."; mac: ".$uPC[2]."; profile: ".$uPC[3]."}\r\n";
@@ -29,5 +29,7 @@ else if ($vtx==1) {echo 'background-color="gold">';}
 else if ($vtx==2) {echo 'background-color="green">';}
 else {echo 'background-color="black">';}
 echo "<div> </div>";
+// echo "<p>".urldecode($_GET['data'])."</p>";
+// print_r($uPC);
 echo "</body></html>";
 ?>

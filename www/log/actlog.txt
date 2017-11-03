@@ -1,1 +1,3 @@
-                       
+System was started from usr_fastlog at 04 11 2017 01:34:06 on device {host: DESKTOP-36L2RVB; ip: 192.168.0.101; mac: 3C-A9-F4-05-C1-34; profile: Joue}
+System was started from usr_fastlog at 04 11 2017 01:37:19 on device {host: DESKTOP-36L2RVB; ip: 192.168.0.101; mac: 3C-A9-F4-05-C1-34; profile: Joue}
+System was started from usr_fastlog at 04 11 2017 01:38:15 on device {host: JoueDell-2CCRVC; ip: 192.168.0.102; mac: 3C-A9-F2-25-CE-34; profile: v.yakovlev}
