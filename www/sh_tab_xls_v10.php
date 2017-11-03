@@ -71,6 +71,10 @@ form.lgfrm {width: 100%; background: #599874;}
 .btnTd {background-color: silver; color: navy; cursor: pointer;}
 .btnTd:hover {background-color: #999; color: #900;}
 </style>
+<!-- from start.php ? ---
+save to log -------------
+add actlog.php ----------
+check saved datas --- -->
 <script>
 var edMode=1; // расположение полей в modalEdit
 function myErrHandler(msg, url, lno){

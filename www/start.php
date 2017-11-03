@@ -29,7 +29,5 @@ else if ($vtx==1) {echo 'background-color="gold">';}
 else if ($vtx==2) {echo 'background-color="green">';}
 else {echo 'background-color="black">';}
 echo "<div> </div>";
-// echo "<p>".urldecode($_GET['data'])."</p>";
-// print_r($uPC);
 echo "</body></html>";
 ?>
