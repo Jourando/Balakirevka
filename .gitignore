@@ -3,4 +3,5 @@ www/*.a
 # НО отслеживать файл tmp.a
 !www/tmp.a
 # игнорировать все файлы в каталоге oldata/
-www/oldata/**/**/*
+www/oldata/**/*
+www/oldata/**/*.*

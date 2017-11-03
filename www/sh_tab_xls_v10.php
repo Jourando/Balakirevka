@@ -73,6 +73,9 @@ form.lgfrm {width: 100%; background: #599874;}
 </style>
 <script>
 var edMode=1; // расположение полей в modalEdit
+function myErrHandler(msg, url, lno){
+	// обработчик ошибок
+}
 function trim(str, charlist) {
 charlist = !charlist?' \\s\xA0':charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
 var re = new RegExp('^[' + charlist + ']+|[' + charlist + ']+$', 'g');
@@ -181,6 +184,7 @@ showHint();
 <script src=globals2.js?rev=125></script>
 <script src=editab.js?rev=127></script>
 <script>
+window.onerror = myErrHandler;
 function getXmlHttp(){
     try {
         return new ActiveXObject("Msxml2.XMLHTTP");
@@ -434,7 +438,6 @@ function modalWarnP(str1, str2) {
 			sxWin.appendChild(spWin);	
 }
 function modalLogWrn(a, b) {
-// логины, сообщ. об успешном/неуспешном логине и варнинги
 if (a==1) {
 	if ((document.getElementById('dps') !== null) && (document.getElementById('dps').disabled==true)) {
 		modalWarnP('<div class=sq1>Добро пожаловать!<br>Вы вошли как '+document.getElementById('lusr').value+'.<br>Вам доступен для редактирования раздел ['+document.getElementById('dps').selectedIndex+'].<div><input type=button value=OK Onclick=modalClose("none")>', b);
@@ -464,6 +467,7 @@ if (trx !== null) {trx.setAttribute('name', 'skip');}
 }
 function Auth(px) {
 var qStr='';
+var qLog='';
 var xnewStr1='';
 var xnewStr2='';
 if ((document.getElementById('lusr') !== null) && (document.getElementById('pusr') !== null)) {
@@ -471,6 +475,7 @@ if ((document.getElementById('lusr') !== null) && (document.getElementById('pusr
 	xnewStr2=document.getElementById('pusr').value;
 	if ((a4b(xnewStr1)=='106010721084108010831080110300321080003210801085108010941080107210831099') || (trim(xnewStr1)=='') || (trim(xnewStr2)=='')) {
 		modalLogWrn(3, 'Ошибка авторизации');
+		qLog='&act=FILEL&u=new_user&doc='+encodeURIComponent(location.href)+'&fa=Echo&v1='+encodeURIComponent('Ошибка авторизации: незаполненное поле'); // ------------------------------------------------ //
 		return false;
 	}
 }
